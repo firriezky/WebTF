@@ -1,0 +1,228 @@
+.card-list .item-list .info-user .username, .card-list .item-list .info-user a.username {
+    color: #1572e8;
+    font-size: 13px;
+    margin-bottom: 5px;
+    font-weight: 400
+ }
+
+
+/*    Avatar    */
+
+.avatar {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .avatar-img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+  }
+  
+  .avatar-title {
+    width: 100%;
+    height: 100%;
+    background-color: #6861CE;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .avatar-online::before, .avatar-offline::before, .avatar-away::before {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 25%;
+    height: 25%;
+    border-radius: 50%;
+    content: '';
+    border: 2px solid #fff;
+  }
+  
+  .avatar-online::before {
+    background-color: #31CE36;
+  }
+  
+  .avatar-offline::before {
+    background-color: #97a2b1;
+  }
+  
+  .avatar-away::before {
+    background-color: #FFAD46;
+  }
+  
+  .avatar {
+    width: 3rem;
+    height: 3rem;
+  }
+  
+  .avatar .border {
+    border-width: 3px !important;
+  }
+  
+  .avatar .rounded {
+    border-radius: 6px !important;
+  }
+  
+  .avatar .avatar-title {
+    font-size: 18px;
+  }
+  
+  .avatar-xs {
+    width: 1.65rem;
+    height: 1.65rem;
+  }
+  
+  .avatar-xs .border {
+    border-width: 2px !important;
+  }
+  
+  .avatar-xs .rounded {
+    border-radius: 4px !important;
+  }
+  
+  .avatar-xs .avatar-title {
+    font-size: 12px;
+  }
+  
+  .avatar-xs.avatar-online::before, .avatar-xs.avatar-offline::before, .avatar-xs.avatar-away::before {
+    border-width: 1px;
+  }
+  
+  .avatar-sm {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  
+  .avatar-sm .border {
+    border-width: 3px !important;
+  }
+  
+  .avatar-sm .rounded {
+    border-radius: 4px !important;
+  }
+  
+  .avatar-sm .avatar-title {
+    font-size: 15px;
+  }
+  
+  .avatar-sm.avatar-online::before, .avatar-sm.avatar-offline::before, .avatar-sm.avatar-away::before {
+    border-width: 2px;
+  }
+  
+  .avatar-lg {
+    width: 3.75rem;
+    height: 3.75rem;
+  }
+  
+  .avatar-lg .border {
+    border-width: 3px !important;
+  }
+  
+  .avatar-lg .rounded {
+    border-radius: 8px !important;
+  }
+  
+  .avatar-lg .avatar-title {
+    font-size: 24px;
+  }
+  
+  .avatar-lg.avatar-online::before, .avatar-lg.avatar-offline::before, .avatar-lg.avatar-away::before {
+    border-width: 3px;
+  }
+  
+  .avatar-xl {
+    width: 5rem;
+    height: 5rem;
+  }
+  
+  .avatar-xl .border {
+    border-width: 4px !important;
+  }
+  
+  .avatar-xl .rounded {
+    border-radius: 8px !important;
+  }
+  
+  .avatar-xl .avatar-title {
+    font-size: 28px;
+  }
+  
+  .avatar-xl.avatar-online::before, .avatar-xl.avatar-offline::before, .avatar-xl.avatar-away::before {
+    border-width: 4px;
+  }
+  
+  .avatar-xxl {
+    width: 5.125rem;
+    height: 5.125rem;
+  }
+  
+  .avatar-xxl .border {
+    border-width: 6px !important;
+  }
+  
+  .avatar-xxl .rounded {
+    border-radius: 8px !important;
+  }
+  
+  .avatar-xxl .avatar-title {
+    font-size: 30px;
+  }
+  
+  .avatar-xxl.avatar-online::before, .avatar-xxl.avatar-offline::before, .avatar-xxl.avatar-away::before {
+    border-width: 4px;
+  }
+  
+  @media (min-width: 768px) {
+    .avatar-xxl {
+      width: 8rem;
+      height: 8rem;
+    }
+    .avatar-xxl .border {
+      border-width: 4px !important;
+    }
+    .avatar-xxl .rounded {
+      border-radius: 12px !important;
+    }
+    .avatar-xxl .avatar-title {
+      font-size: 42px;
+    }
+    .avatar-xxl.avatar-online::before, .avatar-xxl.avatar-offline::before, .avatar-xxl.avatar-away::before {
+      border-width: 4px;
+    }
+  }
+  
+  .avatar-group {
+    display: inline-flex;
+  }
+  
+  .avatar-group .avatar+.avatar {
+    margin-left: -.75rem;
+  }
+  
+  .avatar-group .avatar-xs+.avatar-xs {
+    margin-left: -.40625rem;
+  }
+  
+  .avatar-group .avatar-sm+.avatar-sm {
+    margin-left: -.625rem;
+  }
+  
+  .avatar-group .avatar-lg+.avatar-lg {
+    margin-left: -1rem;
+  }
+  
+  .avatar-group .avatar-xl+.avatar-xl {
+    margin-left: -1.28125rem;
+  }
+  
+  .avatar-group .avatar:hover {
+    z-index: 1;
+  }
+  
+  .border-dark {
+    border-color: #202940 !important;
+  }
+  

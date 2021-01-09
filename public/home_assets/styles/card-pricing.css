@@ -1,0 +1,575 @@
+.fw-bold , .sub-title{
+    color: white !important;
+}
+
+/*     Card Pricing    */
+.card-pricing {
+    padding: 20px 5px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.card-pricing .card-header {
+    color: white;
+    border-bottom: 0px !important;
+}
+
+.card-pricing .card-footer {
+    border-top: 0px !important;
+    padding: 15px 15px 10px 15px;
+}
+
+.card-pricing .card-title {
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.card-pricing .card-price .price {
+    font-size: 36px;
+    font-weight: 400;
+}
+
+.card-pricing .card-price .text {
+    font-size: 18px;
+    font-weight: 400;
+    color: #d1d7e3;
+}
+
+.card-pricing .specification-list {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.card-pricing .specification-list li {
+    padding: 8px 0 12px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.card-pricing .specification-list li .name-specification {
+    color: #83848a;
+}
+
+.card-pricing .specification-list li .status-specification {
+    margin-left: auto;
+    float: right;
+    font-weight: 400;
+}
+
+.card-pricing.card-pricing-focus {
+    padding: 40px 5px;
+}
+
+.card-pricing.card-default .name-specification,
+.card-pricing.card-primary .name-specification,
+.card-pricing.card-secondary .name-specification,
+.card-pricing.card-info .name-specification,
+.card-pricing.card-success .name-specification,
+.card-pricing.card-danger .name-specification,
+.card-pricing.card-warning .name-specification {
+    color: #ffffff !important;
+}
+
+.card-pricing.card-primary .specification-list li {
+    border-color: #2f8bff !important;
+}
+
+.card-pricing.card-primary .btn-light {
+    color: #1572E8 !important;
+}
+
+.card-pricing.card-success .specification-list li {
+    border-color: #64e069 !important;
+}
+
+.card-pricing.card-success .btn-light {
+    color: #31CE36 !important;
+}
+
+.card-pricing.card-secondary .specification-list li {
+    border-color: #7f77dc !important;
+}
+
+.card-pricing.card-secondary .btn-light {
+    color: #6861CE !important;
+}
+
+.card-pricing.card-default .specification-list li {
+    border-color: #6f8996 !important;
+}
+
+.card-pricing.card-default .btn-light {
+    color: #1a2035 !important;
+}
+
+.card-pricing.card-info .specification-list li {
+    border-color: #11c0e4 !important;
+}
+
+.card-pricing.card-info .btn-light {
+    color: #48ABF7 !important;
+}
+
+.card-pricing.card-danger .specification-list li {
+    border-color: #ff6972 !important;
+}
+
+.card-pricing.card-danger .btn-light {
+    color: #F25961 !important;
+}
+
+.card-pricing.card-warning .specification-list li {
+    border-color: #ffbc67 !important;
+}
+
+.card-pricing.card-warning .btn-light {
+    color: #FFAD46 !important;
+}
+
+.card-pricing2 {
+    padding-bottom: 10px;
+    background: #fff !important;
+    border-bottom: 7px solid;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.08);
+    -moz-box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.08);
+    box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.08);
+}
+
+.card-pricing2:before {
+    content: "";
+    width: 100%;
+    height: 350px;
+    position: absolute;
+    top: -150px;
+    left: 0;
+    transform: skewY(-20deg);
+}
+
+.card-pricing2 .price-value:after,
+.card-pricing2 .price-value:before {
+    content: "";
+    left: 50%;
+    transform: translateX(-50%) scaleY(0.5) rotate(45deg);
+}
+
+.card-pricing2 .value:after,
+.card-pricing2 .value:before {
+    content: "";
+    left: 50%;
+    transform: translateX(-50%) scaleY(0.5) rotate(45deg);
+}
+
+.card-pricing2 .pricing-header {
+    padding: 20px 20px 60px;
+    text-align: left;
+    position: relative;
+}
+
+.card-pricing2 .sub-title {
+    display: block;
+    font-size: 16px;
+}
+
+.card-pricing2 .value {
+    background: #fff;
+}
+
+.card-pricing2 .price-value {
+    display: inline-block;
+    width: 170px;
+    height: 110px;
+    padding: 15px;
+    border: 2px solid;
+    border-top: none;
+    border-bottom: none;
+    position: relative;
+}
+
+.card-pricing2 .price-value:after,
+.card-pricing2 .price-value:before {
+    width: 121px;
+    height: 121px;
+    border: 3px solid;
+    border-right: none;
+    border-bottom: none;
+    position: absolute;
+    top: -60px;
+}
+
+.card-pricing2 .price-value:after {
+    border-top: none;
+    border-left: none;
+    border-bottom: 3px solid;
+    border-right: 3px solid;
+    top: auto;
+    bottom: -60px;
+}
+
+.card-pricing2 .value {
+    width: 100%;
+    height: 100%;
+    border: 2px solid;
+    border-top: none;
+    border-bottom: none;
+    z-index: 1;
+    position: relative;
+}
+
+.card-pricing2 .value:after,
+.card-pricing2 .value:before {
+    width: 97px;
+    height: 97px;
+    background: #fff;
+    border: 3px solid;
+    border-bottom: none;
+    border-right: none;
+    position: absolute;
+    top: -48px;
+    z-index: -1;
+}
+
+.card-pricing2 .value:after {
+    border-right: 3px solid;
+    border-bottom: 3px solid;
+    border-top: none;
+    border-left: none;
+    top: auto;
+    bottom: -48px;
+}
+
+.card-pricing2 .currency {
+    display: inline-block;
+    font-size: 30px;
+    margin-top: 7px;
+    vertical-align: top;
+}
+
+.card-pricing2 .amount {
+    display: inline-block;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 65px;
+}
+
+.card-pricing2 .amount span {
+    display: inline-block;
+    font-size: 30px;
+    font-weight: 400;
+    vertical-align: top;
+    margin-top: -7px;
+}
+
+.card-pricing2 .month {
+    display: block;
+    font-size: 16px;
+    line-height: 0;
+}
+
+.card-pricing2 .pricing-content {
+    padding: 50px 0 0 80px;
+    margin-bottom: 20px;
+    list-style: none;
+    text-align: left;
+    transition: all .3s ease 0s;
+}
+
+.card-pricing2 .pricing-content li {
+    padding: 7px 0;
+    font-size: 13px;
+    color: grey;
+    position: relative;
+}
+
+.card-pricing2 .pricing-content li.disable:before,
+.card-pricing2 .pricing-content li:before {
+    content: "\f00c";
+    font-family: 'Font Awesome 5 Solid';
+    font-weight: 900;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 50%;
+    background: #98c458;
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    left: -50px;
+    font-size: 9px;
+}
+
+.card-pricing2 .pricing-content li.disable:before {
+    content: "\f00d";
+    background: #fe6c6c;
+}
+
+.card-pricing2.card-default {
+    border-bottom-color: #1a2035;
+}
+
+.card-pricing2.card-default .price-value:before,
+.card-pricing2.card-default .value:before {
+    border-left-color: #1a2035;
+    border-top-color: #1a2035;
+}
+
+.card-pricing2.card-default .price-value,
+.card-pricing2.card-default .value {
+    border-right-color: #1a2035;
+}
+
+.card-pricing2.card-default .price-value:after,
+.card-pricing2.card-default .value:after {
+    border-right-color: #1a2035;
+}
+
+.card-pricing2.card-default .price-value:after,
+.card-pricing2.card-default .value:after {
+    border-bottom-color: #1a2035;
+}
+
+.card-pricing2.card-default .value {
+    color: #1a2035;
+}
+
+.card-pricing2.card-default:before {
+    background: #1a2035;
+}
+
+.card-pricing2.card-default .price-value,
+.card-pricing2.card-default .value {
+    border-left-color: #1a2035;
+}
+
+.card-pricing2.card-primary {
+    border-bottom-color: #1572E8;
+}
+
+.card-pricing2.card-primary .price-value:before,
+.card-pricing2.card-primary .value:before {
+    border-left-color: #1572E8;
+    border-top-color: #1572E8;
+}
+
+.card-pricing2.card-primary .price-value,
+.card-pricing2.card-primary .value {
+    border-right-color: #1572E8;
+}
+
+.card-pricing2.card-primary .price-value:after,
+.card-pricing2.card-primary .value:after {
+    border-right-color: #1572E8;
+}
+
+.card-pricing2.card-primary .price-value:after,
+.card-pricing2.card-primary .value:after {
+    border-bottom-color: #1572E8;
+}
+
+.card-pricing2.card-primary .value {
+    color: #1572E8;
+}
+
+.card-pricing2.card-primary:before {
+    background: #1572E8;
+}
+
+.card-pricing2.card-primary .price-value,
+.card-pricing2.card-primary .value {
+    border-left-color: #1572E8;
+}
+
+.card-pricing2.card-secondary {
+    border-bottom-color: #6861CE;
+}
+
+.card-pricing2.card-secondary .price-value:before,
+.card-pricing2.card-secondary .value:before {
+    border-left-color: #6861CE;
+    border-top-color: #6861CE;
+}
+
+.card-pricing2.card-secondary .price-value,
+.card-pricing2.card-secondary .value {
+    border-right-color: #6861CE;
+}
+
+.card-pricing2.card-secondary .price-value:after,
+.card-pricing2.card-secondary .value:after {
+    border-right-color: #6861CE;
+}
+
+.card-pricing2.card-secondary .price-value:after,
+.card-pricing2.card-secondary .value:after {
+    border-bottom-color: #6861CE;
+}
+
+.card-pricing2.card-secondary .value {
+    color: #6861CE;
+}
+
+.card-pricing2.card-secondary:before {
+    background: #6861CE;
+}
+
+.card-pricing2.card-secondary .price-value,
+.card-pricing2.card-secondary .value {
+    border-left-color: #6861CE;
+}
+
+.card-pricing2.card-info {
+    border-bottom-color: #48ABF7;
+}
+
+.card-pricing2.card-info .price-value:before,
+.card-pricing2.card-info .value:before {
+    border-left-color: #48ABF7;
+    border-top-color: #48ABF7;
+}
+
+.card-pricing2.card-info .price-value,
+.card-pricing2.card-info .value {
+    border-right-color: #48ABF7;
+}
+
+.card-pricing2.card-info .price-value:after,
+.card-pricing2.card-info .value:after {
+    border-right-color: #48ABF7;
+}
+
+.card-pricing2.card-info .price-value:after,
+.card-pricing2.card-info .value:after {
+    border-bottom-color: #48ABF7;
+}
+
+.card-pricing2.card-info .value {
+    color: #48ABF7;
+}
+
+.card-pricing2.card-info:before {
+    background: #48ABF7;
+}
+
+.card-pricing2.card-info .price-value,
+.card-pricing2.card-info .value {
+    border-left-color: #48ABF7;
+}
+
+.card-pricing2.card-success {
+    border-bottom-color: #31CE36;
+}
+
+.card-pricing2.card-success .price-value:before,
+.card-pricing2.card-success .value:before {
+    border-left-color: #31CE36;
+    border-top-color: #31CE36;
+}
+
+.card-pricing2.card-success .price-value,
+.card-pricing2.card-success .value {
+    border-right-color: #31CE36;
+}
+
+.card-pricing2.card-success .price-value:after,
+.card-pricing2.card-success .value:after {
+    border-right-color: #31CE36;
+}
+
+.card-pricing2.card-success .price-value:after,
+.card-pricing2.card-success .value:after {
+    border-bottom-color: #31CE36;
+}
+
+.card-pricing2.card-success .value {
+    color: #31CE36;
+}
+
+.card-pricing2.card-success:before {
+    background: #31CE36;
+}
+
+.card-pricing2.card-success .price-value,
+.card-pricing2.card-success .value {
+    border-left-color: #31CE36;
+}
+
+.card-pricing2.card-warning {
+    border-bottom-color: #FFAD46;
+}
+
+.card-pricing2.card-warning .price-value:before,
+.card-pricing2.card-warning .value:before {
+    border-left-color: #FFAD46;
+    border-top-color: #FFAD46;
+}
+
+.card-pricing2.card-warning .price-value,
+.card-pricing2.card-warning .value {
+    border-right-color: #FFAD46;
+}
+
+.card-pricing2.card-warning .price-value:after,
+.card-pricing2.card-warning .value:after {
+    border-right-color: #FFAD46;
+}
+
+.card-pricing2.card-warning .price-value:after,
+.card-pricing2.card-warning .value:after {
+    border-bottom-color: #FFAD46;
+}
+
+.card-pricing2.card-warning .value {
+    color: #FFAD46;
+}
+
+.card-pricing2.card-warning:before {
+    background: #FFAD46;
+}
+
+.card-pricing2.card-warning .price-value,
+.card-pricing2.card-warning .value {
+    border-left-color: #FFAD46;
+}
+
+.card-pricing2.card-danger {
+    border-bottom-color: #F25961;
+}
+
+.card-pricing2.card-danger .price-value:before,
+.card-pricing2.card-danger .value:before {
+    border-left-color: #F25961;
+    border-top-color: #F25961;
+}
+
+.card-pricing2.card-danger .price-value,
+.card-pricing2.card-danger .value {
+    border-right-color: #F25961;
+}
+
+.card-pricing2.card-danger .price-value:after,
+.card-pricing2.card-danger .value:after {
+    border-right-color: #F25961;
+}
+
+.card-pricing2.card-danger .price-value:after,
+.card-pricing2.card-danger .value:after {
+    border-bottom-color: #F25961;
+}
+
+.card-pricing2.card-danger .value {
+    color: #F25961;
+}
+
+.card-pricing2.card-danger:before {
+    background: #F25961;
+}
+
+.card-pricing2.card-danger .price-value,
+.card-pricing2.card-danger .value {
+    border-left-color: #F25961;
+}
