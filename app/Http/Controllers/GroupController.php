@@ -102,10 +102,10 @@ class GroupController extends Controller
 
         if ($student) {
             //redirect dengan pesan sukses
-            return redirect("/group/$group_id/edit")->with(['success' => "$student->name Berhasil Dihapus Dari Kelompok"]);
+            return redirect("/group/$group_id/edit")->with(['success' => "$student->name Berhasil Ditambahkan Ke Kelompok"]);
         } else {
             //redirect dengan pesan error
-            return redirect("/group/$group_id/edit")->with(['error' => "$student->name Gagal Dihapus!"]);
+            return redirect("/group/$group_id/edit")->with(['error' => "$student->name Gagal Ditambahkan Ke Kelompok!"]);
         }
     }
 
@@ -121,12 +121,11 @@ class GroupController extends Controller
         $this->validate($request, $rules, $customMessages);
         $group_id = $request->group_id;
 
-        // dd($request->all());
 
 
         $mentor = Mentor::where('id', $request->mentor_id)->first();
         if ($mentor==null) {
-            return redirect("/group/$group_id/edit")->with(['error' => "NISN Tidak Ditemukan"]);
+            return redirect("/group/$group_id/edit")->with(['error' => "Pembimbing Tidak Ditemukan , Silakan Coba Lagi Nanti"]);
         }
         $group = Group::findOrFail($group_id);        
 

@@ -166,7 +166,6 @@
                                     <th scope="col">Siswa</th>
                                     <th scope="col">Pembimbing</th>
                                     <th scope="col">Kontak Pembimbing</th>
-                                    <th scope="col">Kelas</th>
                                     <th scope="col">Edit</th>
                                     <th scope="col">Hapus</th>
                                 </tr>
@@ -181,8 +180,7 @@
                                     <td>{{$loop->index+1}}</td>
                                     <td>{{ $data->name }}</td>
                                     <td>{{ $data->mentor }}</td>
-                                    <td>{{ $data->student_contact }}</td>
-                                    <td>{{ $data->student_contact }}</td>
+                                    <td>{{ $data->contact_mentor }}</td>
                                     <td>
                                         <button type="button" title="" class="btn btn-link btn-primary btn-lg"
                                             data-toggle="modal" data-target="#updateModal{{$loop->index+1}}"
