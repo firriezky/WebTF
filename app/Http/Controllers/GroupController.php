@@ -88,8 +88,7 @@ class GroupController extends Controller
         $this->validate($request, $rules, $customMessages);
         $group_id = $request->group_id;
 
-
-        $student = Student::where('id', $request->student_id)->first();
+        $student = Student::where('nisn', $request->nisn)->first();
         if ($student==null) {
             return redirect("/group/$group_id/edit")->with(['error' => "NISN Tidak Ditemukan"]);
         }
