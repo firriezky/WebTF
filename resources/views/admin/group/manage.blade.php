@@ -140,7 +140,6 @@
                                         <th scope="col">Nama Kelompok/Kelas</th>
                                         <th scope="col">Pembimbing</th>
                                         <th scope="col">Kontak Pembimbing</th>
-                                        <th scope="col">Kelas</th>
                                         <th scope="col">Edit</th>
                                         <th scope="col">Hapus</th>
                                     </tr>
@@ -155,7 +154,6 @@
                                         <td>{{$loop->index+1}}</td>
                                         <td>{{ $data->group_name }}</td>
                                         <td>{{ $data->name }}</td>
-                                        <td>{{ $data->contact }}</td>
                                         <td>{{ $data->contact }}</td>
                                         <td>
                                             <a href="{{route('group.update',$data->group_id)}}">
