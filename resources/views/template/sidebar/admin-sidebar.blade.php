@@ -146,13 +146,6 @@
 
 
 
-                {{-- <li class="nav-item {{ Request::is('profile') ? 'active' : '' }}">
-                    <a href="{{ url('/profile') }}">
-                        <i class="fas fa-user"></i>
-                        <p>My Profile</p>
-                    </a>
-                </li> --}}
-
                 <li class="nav-item">
                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();">

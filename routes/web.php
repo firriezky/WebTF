@@ -73,12 +73,10 @@ Route::post('/register/mentor', 'Auth\RegisterController@createMentor')->name('r
 Route::post('/register/student', 'Auth\RegisterController@createStudent')->name('regis-student');
 
 Route::view('/admin', 'admin.home')->middleware('auth');
-Route::view('/mentor', 'mentor.home');
-Route::view('/student', 'student.home');
+Route::view('/mentor', 'mentor.home')->middleware('auth');
+Route::view('/student', 'student.home')->middleware('auth');
 
 
 Route::get('/students', 'StudentController@retrieveAll')->name('students');
-
-
 
 Auth::routes();
