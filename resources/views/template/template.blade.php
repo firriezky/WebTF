@@ -80,9 +80,7 @@
 			<!-- End Logo Header -->
 
 			<!-- Navbar Header -->
-			@auth
 			@include('template.nav_bar')
-			@endauth
 		
 			<!-- End Navbar -->
 		</div>

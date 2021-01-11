@@ -62,7 +62,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/mentor/{mentor}/edit', 'AdminMentorController@edit')->name('admin.mentor.edit');
 
 
-
     Route::delete('/group/destroy/{group}', 'GroupController@destroy')->name('group.destroy');
     Route::get('/group/{group}/edit', 'GroupController@update')->name('group.update');
     Route::post('/group/changeMentor', 'GroupController@change_mentor')->name('group.change_mentor');
@@ -74,7 +73,15 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 
+Route::group(['middleware’' => ['auth:student']], function () {
+Route::get('/student/task', 'HomeStudentController@view_task')->middleware('auth:student');
+Route::get('/student/group', 'HomeStudentController@view_group')->middleware('auth:student');
+});
 
+
+
+Route::post('/logout-student','Auth\LoginController@logoutStudent')->name('logout-student');
+Route::post('/logout-mentor','Auth\LoginController@logoutMentor')->name('logout-mentor');
 
 
 
@@ -92,8 +99,8 @@ Route::post('/register/mentor', 'Auth\RegisterController@createMentor')->name('r
 Route::post('/register/student', 'Auth\RegisterController@createStudent')->name('regis-student');
 
 Route::view('/admin', 'admin.home')->middleware('auth');
-Route::view('/mentor', 'mentor.home')->middleware('auth');
-Route::view('/student', 'student.home')->middleware('auth');
+Route::view('/mentor', 'mentor.home')->middleware('auth:mentor');
+Route::view('/student', 'student.home')->middleware('auth:student');
 
 
 Route::get('/students', 'StudentController@retrieveAll')->name('students');

@@ -164,6 +164,7 @@
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Siswa</th>
+                                    <th scope="col">Asal Kelas Siswa</th>
                                     <th scope="col">Pembimbing</th>
                                     <th scope="col">Kontak Pembimbing</th>
                                     <th scope="col">Edit</th>
@@ -172,13 +173,10 @@
                             </thead>
                             <tbody>
                                 @forelse ($dayta as $data)
-
-
-
-
                                 <tr>
                                     <td>{{$loop->index+1}}</td>
                                     <td>{{ $data->name }}</td>
+                                    <td>{{ $data->class }}</td>
                                     <td>{{ $data->mentor }}</td>
                                     <td>{{ $data->contact_mentor }}</td>
                                     <td>

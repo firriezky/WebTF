@@ -3,8 +3,9 @@
         <div class="sidebar-content">
             <div class="user">
                 <div class="avatar-sm float-left mr-2">
-                    <img src="https://www.lansweeper.com/wp-content/uploads/2018/05/ASSET-USER-ADMIN.png" alt="profile"
-                        class="avatar-img rounded-circle">
+                    <img onerror="this.src='{{asset('img/img-error.jpg')}}';"
+                    src="{{ "http://tahfidz.sditwahdahbtg.com/student/photo/" . Auth::guard('student')->user()->url_profile }}"
+                    alt="image profile" class="avatar-img rounded-circle">
                 </div>
                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
@@ -50,7 +51,7 @@
 
 
 
-                <li class="nav-item active">
+                <li class="nav-item {{ (Request::is('student')) ? 'active' : ''}}">
                     <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
                         <i class="fas fa-home"></i>
                         <p>Dashboard</p>
@@ -59,7 +60,7 @@
                     <div class="collapse" id="dashboard">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="{{ url('/admin') }}">
+                                <a href="{{ url('/student') }}">
                                     <span class="sub-item">Go to Dashboard</span>
                                 </a>
                             </li>
@@ -74,8 +75,22 @@
                     <h4 class="text-section">Menu</h4>
                 </li>
 
+                <li class="nav-item {{ (Request::is('student/task')) ? 'active' : ''}}">
+                    <a href="{{ url('/student/task') }}">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="link-collapse">Kirim Setoran</span>
+                    </a>
+                </li>
 
-                <li class="nav-item  {{ (Request::is('admnin/student/*')) ? 'active' : ''}}">
+                <li class="nav-item {{ (Request::is('student/group')) ? 'active' : ''}}">
+                    <a href="{{ url('/student/group') }}">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="link-collapse">Kelompok Tahfidz</span>
+                    </a>
+                </li>
+
+
+                <li class="nav-item  {{ (Request::is('admin/student/*')) ? 'active' : ''}}">
                     <a data-toggle="collapse" href="#arts">
                         <i class="fas fa-cubes"></i>
                         <p>Siswa</p>
