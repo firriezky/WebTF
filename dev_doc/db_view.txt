@@ -1,0 +1,36 @@
+CREATE OR REPLACE VIEW 	`kelompok_mentor` AS SELECT a.id as `group_id`, a.id_mentor as `mentor_id`,
+a.name as `group_name`, b.name , b.contact 
+from kelompok a left JOIN mentor b on a.id_mentor=b.id;
+
+
+CREATE OR REPLACE VIEW  `mentor_submission` as select a.id ,
+ b.name ,b.id as `student_id`, b.id_kelompok as `group_id` , 
+ b.nisn , a.status , a.start,a.end , a.audio_path, a.created_at, a.score ,a.correction
+from setoran a left join student b on a.student_id=b.id 
+
+
+create or replace view `group_data_for_student` as select a.id as `student_id` ,a.name,a.nisn,a.contact as`student_contact`, a.gender as  `student_gender`, 
+a.url_profile as `student_photo`, a.kelas as `class` ,b.id as `group_id`,b.name as `group_name`, c.name as `mentor`,c.id as `mentor_id`, 
+c.url_profile as `mentor_photo`, c.contact as `contact_mentor` from student a left join kelompok b on a.id_kelompok=b.id left join mentor c on b.id_mentor=c.id
+
+
+ DROP TRIGGER IF EXISTS `deleteTrigger`;
+ CREATE DEFINER=`root`@`localhost` TRIGGER `deleteTrigger` BEFORE DELETE ON `kelompok` 
+ FOR EACH ROW UPDATE student set student.id_kelompok = null where student.id_kelompok= old.id
+
+
+//Mentor Grouping
+ CREATE OR REPLACE VIEW `mentor_grouping` as SELECT a.id as `mentor_id`,a.name,a.contact,
+ a.gender as `mentor_gender`,
+ b.id as `group_id` , b.name as `group_name`,b.category 
+ FROM kelompok b left join mentor a on a.id=b.id_mentor
+
+CREATE or REPLACE view `admin_submission` as select a.id , b.name ,b.id as `student_id`,b.nisn, b.kelas,
+b.url_profile as `student_photo`, b.contact as `student_contact`,
+ b.id_kelompok as `group_id` , c.id_mentor as `mentor_id`, c.name as `group_name`, d.name as `mentor_name` , d.contact as `mentor_contact`,
+ d.gender as `mentor_gender` , d.email as `mentor_email`, d.url_profile as `mentor_profile`, 
+ a.status , a.start,a.end , a.audio_path, 
+a.created_at, a.score ,a.correction from setoran a 
+left join student b on a.student_id=b.id
+ left join kelompok c on b.id_kelompok=c.id 
+left join mentor d on c.id_mentor = d.id

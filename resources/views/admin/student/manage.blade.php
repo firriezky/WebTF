@@ -162,46 +162,6 @@
                                         @forelse ($dayta as $data)
 
 
-                                        <div class="modal fade" id="modalResetPassword{{$loop->index+1}}" tabindex="-1"
-                                            role="dialog" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalCenterTitle">Reset
-                                                            Password Siswa</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form action="{{route('student.reset-password')}}" method="post">
-                                                            @csrf
-                                                            @method('POST')
-                                                            <input type="text" value="{{ $data->id}}" name="id"
-                                                                class="d-none">
-                                                            <div class="form-group">
-                                                                <label for="">Masukkan Password Baru Untuk
-                                                                    {{$data->name}}</label>
-                                                                <input type="text"
-                                                                    value="{{ old('password') }}"
-                                                                    class="form-control @error('password') is-invalid @enderror"
-                                                                    name="password" id="" placeholder="Password Baru">
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Close</button>
-                                                                <button type="submit" class="btn btn-warning">Reset
-                                                                    Password</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-
-
-                                                </div>
-                                            </div>
-                                        </div>
-
 
                                         <div class="modal fade" id="updateModal{{$loop->index+1}}" tabindex="-1"
                                             role="dialog" aria-hidden="true">

@@ -70,7 +70,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/group/manage', 'GroupController@allGroup');
     Route::post('/admin/group/store', 'GroupController@simpan')->name('admin.group.create');
     Route::get('/admin/student/manage', 'AdminStudentController@manageStudent')->name('admin.student.manage');
+
+    Route::get('admin/task/manage', 'AdminTaskTahfidzController@manageTask')->name('admin.task.manage');
 });
+Route::get('admin/task/retrieve', 'AdminTaskTahfidzController@retrieveTask');
 
 
 Route::group(['middleware’' => ['auth:student']], function () {
@@ -78,6 +81,14 @@ Route::get('/student/task', 'HomeStudentController@view_task')->middleware('auth
 Route::get('/student/group', 'HomeStudentController@view_group')->middleware('auth:student');
 });
 
+Route::group(['middleware’' => ['auth:mentor']], function () {
+    Route::get('/mentor/task', 'MentorTaskController@manage')->middleware('auth:mentor');
+    Route::get('/mentor/task/{task}', 'MentorTaskController@edit')->middleware('auth:mentor');
+    Route::get('/mentor/task/group/{group}', 'MentorTaskController@taskByGroup')->middleware('auth:mentor');
+    Route::get('/mentor/group', 'HomeStudentController@view_group')->middleware('auth:mentor');
+});
+    
+    
 
 
 Route::post('/logout-student','Auth\LoginController@logoutStudent')->name('logout-student');

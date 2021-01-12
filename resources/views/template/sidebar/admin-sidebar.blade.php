@@ -144,6 +144,13 @@
                     </div>
                 </li>
 
+                <li class="nav-item  {{ (Request::is('admin/task/manage*')) ? 'active' : ''}}">
+                    <a href="{{ url('admin/task/manage') }}">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="link-collapse">Setoran Siswa</span>
+                    </a>
+                </li>
+
 
 
                 <li class="nav-item">

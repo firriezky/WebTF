@@ -1,7 +1,6 @@
-
 <nav class="navbar navbar-header navbar-expand-lg" data-background-color="blue2">
     <div class="container-fluid">
-        <div class="collapse d-none" id="search-nav">
+        <div class="collapse" id="search-nav">
             <form class="navbar-left navbar-form nav-search mr-md-3">
                 <div class="input-group">
                     <div class="input-group-prepend">
@@ -13,7 +12,7 @@
                 </div>
             </form>
         </div>
-        <ul class="navbar-nav topbar-nav ml-md-auto align-items-center d-none">
+        <ul class="navbar-nav topbar-nav ml-md-auto align-items-center ">
             <li class="nav-item toggle-nav-search hidden-caret">
                 <a class="nav-link" data-toggle="collapse" href="#search-nav" role="button" aria-expanded="false"
                     aria-controls="search-nav">

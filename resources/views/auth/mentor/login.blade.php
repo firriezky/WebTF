@@ -25,7 +25,7 @@
                             {!! implode('', $errors->all('<div>:message</div>')) !!}
                         </div>
                         @endif
-                        <form method="POST" action="{{ route('login-student') }}">
+                        <form method="POST" action="{{ route('login-mentor') }}">
                             @csrf
 
                             <div class="form-group row">
@@ -33,9 +33,9 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('NISN') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="nisn" type="number"
-                                        class="form-control @error('email') is-invalid @enderror" name="nisn"
-                                        value="{{ old('nisn') }}" required autocomplete="nisn" autofocus>
+                                    <input id="contact" type="number"
+                                        class="form-control @error('contact') is-invalid @enderror" name="contact"
+                                        value="{{ old('contact') }} " required autocomplete="contact" autofocus>
 
                                     @error('nisn')
                                     <span class="invalid-feedback" role="alert">
