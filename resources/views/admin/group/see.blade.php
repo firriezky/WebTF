@@ -223,23 +223,24 @@
             {{-- {{ $blogs->links() }} --}}
         </div>
     </div>
+</div>
 
-    @endsection
+@endsection
 
-    @section('script')
+@section('script')
 
-    <!-- SELECT2 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
+<!-- SELECT2 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
 
 
 
-    {{-- Toastr --}}
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <!-- Datatables -->
-    <script src="{{asset('atlantis/examples')}}/assets/js/plugin/datatables/datatables.min.js"></script>
-    <script>
-        $(document).ready(function() {
+{{-- Toastr --}}
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<!-- Datatables -->
+<script src="{{asset('atlantis/examples')}}/assets/js/plugin/datatables/datatables.min.js"></script>
+<script>
+    $(document).ready(function() {
         $('#basic-datatables').DataTable({
         });
 
@@ -248,20 +249,16 @@
                 $('#counter').text($(this).val().length);
             });
     });
-    </script>
+</script>
 
-    <script>
-        //message with toastr
+<script>
+    //message with toastr
             @if(session()-> has('success'))
                 toastr.success('{{ session('success') }}', 'BERHASIL!'); 
             @elseif(session()-> has('error'))
                 toastr.error('{{ session('error') }}', 'GAGAL!'); 
             @endif
-    </script>
+</script>
 
 
-    @endsection
-
-</div>
-</div>
-</div>
+@endsection

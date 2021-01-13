@@ -18,7 +18,7 @@
 
 
 
-  
+
         <div class="row">
             <div class="col-md-12">
 
@@ -65,9 +65,9 @@
 
                     <div class="card-body">
                         <a href="{{url('/admin/student/manage')}}">
-                        <button class="btn btn-primary btn-border btn-round mb-3" data-toggle="modal"
-                            data-target="#exampleModalCenter">
-                            Tambah Siswa</button>
+                            <button class="btn btn-primary btn-border btn-round mb-3" data-toggle="modal"
+                                data-target="#exampleModalCenter">
+                                Tambah Siswa</button>
                         </a>
                         <div class="table-responsive">
 
@@ -87,7 +87,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                 
+
                                     @forelse ($dayta as $data)
                                     <tr>
                                         <td>{{$loop->index+1}}</td>
@@ -146,11 +146,11 @@
                                     </div>
                                     @empty
                                     <div class="alert alert-danger">
-                                       Belum Ada Siswa Yang Mengirim Hafalan
+                                        Belum Ada Siswa Yang Mengirim Hafalan
                                     </div>
                                     @endforelse
 
-                                 
+
 
 
                                 </tbody>
@@ -167,36 +167,29 @@
                 {{-- {{ $blogs->links() }} --}}
             </div>
         </div>
+    </div>
+</div>
 
-        @endsection
+@endsection
 
-        @section('script')
-
-
-
-        {{-- Toastr --}}
-        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-        <!-- Datatables -->
-        <script src="{{asset('atlantis/examples')}}/assets/js/plugin/datatables/datatables.min.js"></script>
-        <script>
-            $(document).ready(function() {
+@section('script')
+{{-- Toastr --}}
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<!-- Datatables -->
+<script src="{{asset('atlantis/examples')}}/assets/js/plugin/datatables/datatables.min.js"></script>
+<script>
+    $(document).ready(function() {
         $('#datatables').DataTable({
         });
     });
-        </script>
+</script>
 
-        <script>
-            //message with toastr
+<script>
+    //message with toastr
             @if(session()-> has('success'))
                 toastr.success('{{ session('success') }}', 'BERHASIL!'); 
             @elseif(session()-> has('error'))
                 toastr.error('{{ session('error') }}', 'GAGAL!'); 
             @endif
-        </script>
-
-
-        @endsection
-
-    </div>
-</div>
-</div>
+</script>
+@endsection

@@ -213,7 +213,8 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form action="{{route('admin.mentor.edit',$data->id)}}" method="get">
+                                                    <form action="{{route('admin.mentor.edit',$data->id)}}"
+                                                        method="get">
                                                         @csrf
                                                         @method('GET')
                                                         <input type="text" value="{{ $data->id}}" name="id"
@@ -239,7 +240,7 @@
                                                                 class="form-control @error('contact') is-invalid @enderror"
                                                                 name="contact" id="" placeholder="Kontak Guru">
                                                         </div>
-                                                       
+
                                                         <div class="form-group">
                                                             <label for="">Email</label>
                                                             <input type="email" value="{{$data->email, old('email') }}"
@@ -328,35 +329,34 @@
             </div>
         </div>
 
-        @endsection
+    </div>
+</div>
 
-        @section('script')
+@endsection
+
+@section('script')
 
 
 
-        {{-- Toastr --}}
-        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-        <!-- Datatables -->
-        <script src="{{asset('atlantis/examples')}}/assets/js/plugin/datatables/datatables.min.js"></script>
-        <script>
-            $(document).ready(function() {
+{{-- Toastr --}}
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<!-- Datatables -->
+<script src="{{asset('atlantis/examples')}}/assets/js/plugin/datatables/datatables.min.js"></script>
+<script>
+    $(document).ready(function() {
         $('#basic-datatables').DataTable({
         });
     });
-        </script>
+</script>
 
-        <script>
-            //message with toastr
+<script>
+    //message with toastr
             @if(session()-> has('success'))
                 toastr.success('{{ session('success') }}', 'BERHASIL!'); 
             @elseif(session()-> has('error'))
                 toastr.error('{{ session('error') }}', 'GAGAL!'); 
             @endif
-        </script>
+</script>
 
 
-        @endsection
-
-    </div>
-</div>
-</div>
+@endsection
