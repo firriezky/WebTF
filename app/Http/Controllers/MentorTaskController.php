@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
+use App\Models\TahfidzTask;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +11,11 @@ use Illuminate\Support\Facades\Http;
 
 class MentorTaskController extends Controller
 {
+    /**
+     * update data show all task from all student
+     *
+     * @return void
+     */
     public function manage()
     {
         $groupName = "Daftar Semua Siswa";
@@ -26,17 +32,16 @@ class MentorTaskController extends Controller
                 'mentor_id' => Auth::guard('mentor')->user()->id,
             ]);
 
-
         $groupData = json_decode($responseGroup);
         if ($groupData->response_code != 1) {
-            $groupData = [];
+            $groupData = array();
         } else {
             $groupData = $groupData->group;
         }
 
         $dayta = json_decode($response);
         if ($dayta->response_code != 1) {
-            $dayta = [];
+            $dayta = array();
         } else {
             $dayta = $dayta->submission;
         }
@@ -44,6 +49,31 @@ class MentorTaskController extends Controller
         return view('mentor.tahfidz-task.manage')->with(compact('groupData', 'dayta','groupName'));
     }
 
+     /**
+     * score selected task from table in order for scoring
+     *
+     * @return void
+     */
+    public function edit($id)  //view
+    {
+        $data = Http::get('http://tahfidz.sditwahdahbtg.com/submission/api_get_submission_master.php', [
+            'id' => $id,
+        ]);
+        $dayta = json_decode($data);
+        if ($dayta->response_code != 1) {
+            $dayta = array();
+        } else {
+            $dayta = $dayta->submission;
+            $dayta = $dayta[0];
+        }
+        return view('mentor.tahfidz-task.scoring')->with(compact('dayta'));
+    }
+
+      /**
+     * show tahfidz task data based on group
+     *
+     * @return void
+     */
     public function taskByGroup($id)
     {
         $modelGroup = Group::findOrFail($id);
@@ -79,24 +109,55 @@ class MentorTaskController extends Controller
         } else {
             $dayta = $dayta->submission;
         }
+
         return view('mentor.tahfidz-task.manage')->with(compact('groupData', 'dayta','groupName'));
     }
 
-
-    public function edit($id)
+    /**
+     * update data setoran
+     *
+     * @return void
+     */
+    public function updateTask(Request $request)
     {
-        $data = Http::get('http://tahfidz.sditwahdahbtg.com/submission/api_get_submission_master.php', [
-            'id' => $id,
+        $rules = [
+            'score'     => 'required',
+            'submission_id'     => 'required',
+            'score_ahkam'     => 'required',
+            'score_itqan'     => 'required',
+            'score_makhroj'     => 'required',
+            'status'     => 'required',
+            'correction'   => 'required'
+        ];
+        $customMessages = [
+            'required' => 'Mohon Isi Kolom :attribute terlebih dahulu'
+        ];
+        $this->validate($request, $rules, $customMessages);
+
+        $task_id = $request->submission_id;
+
+        // $tahfidzTask= TahfidzTask::findOrFail($request->submission_id);
+        $tahfidzTask= TahfidzTask::findOrFail(82);
+
+        $tahfidzTask->update([
+            'score-ahkam'     => $request->score_ahkam,
+            'score-itqan'     => $request->score_itqan,
+            'score-makhroj'     => $request->score_makhroj,
+            'score'     => $request->score,
+            'status'     => $request->status,
+            'correction'     => $request->correction,
         ]);
-        $dayta = json_decode($data);
-        if ($dayta->response_code != 1) {
-            $dayta = array();
+
+        if ($tahfidzTask) {
+            //redirect dengan pesan sukses
+            return redirect("mentor/task/$request->submission_id")->with(['success' => 'Penilaian Berhasil Disimpan!']);
         } else {
-            $dayta = $dayta->submission;
-            $dayta = $dayta[0];
+            //redirect dengan pesan error
+            return redirect("mentor/task/$request->submission_id")->with(['error' => 'Penilaian Gagal Disimpan!']);
         }
-
-
-        return view('mentor.tahfidz-task.scoring')->with(compact('dayta'));
     }
+    
+
+
+
 }

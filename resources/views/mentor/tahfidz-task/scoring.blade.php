@@ -2,12 +2,13 @@
 
 @section('head-section')
 <script src="{{ asset('library/ckeditor/ckeditor.js') }}"></script>
-
 @endsection
 
 @section('main')
+
 <div class="container-fluid">
     <div class="container mt-5">
+
         {{-- @include('blog.breadcumb') --}}
         <!-- Page Header -->
 
@@ -28,12 +29,10 @@
                         <label for="">Petunjuk Penilaian</label>
                     </div>
                     <ul class="mt-1">
-                        <li>Pilih Kelompok Yang Ingin Dinilai Menggunakan Pilihan Diatas</li>
-                        <li>Klik Tombol <strong>Input/Lihat</strong> Untuk Menginput atau Melihat Nilai Siswa</li>
-                        <li>Untuk Mengimport Data Setoran, Silakan Klik Tombol
-                            <strong>Sembunyikan Kolom Untuk Import</strong> terlebih dahulu jika ingin menyembunyikan
-                            Kolom
-                        </li>
+                        <li>Masukkan Nilai Siswa Berdasarkan Hafalan Yang Disetorkan Siswa</li>
+                        <li><strong>Ubah Status ke Sudah Dinilai</strong> untuk menampilkan nilai di akun siswa</li>
+                        <li>Komponen Penilaian Dapat Dilihat dibawah kolom pengisian nilai</li>
+                        <li>Klik Simpan Jika Nilai Sudah Diinputkan</li>
                     </ul>
                 </div>
             </div>
@@ -83,65 +82,141 @@
                 </div>
                 @endif
 
-                <div class="container p-4">
-                    Nama Siswa : {{$dayta->student_name}}<br>
-                     <br>
-                    Hafalan yang disetorkan :
-                    <p>{{$dayta->start}} - {{$dayta->end}}</p>
-                    <div class="col-lg-12">
-                        <audio controls loop style="width: 100%;">
-                            <source src="http://tahfidz.sditwahdahbtg.com/submission/" type="audio/ogg">
-                            Your browser dose not Support the audio Tag
-                        </audio>
+                <form action="{{url('correction/save')}}" method="post">
+                    @csrf
+                    @method('POST')
+                    <input type="hidden" name="submission_id" value="{{$dayta->id_submission}}">
+                    <input type="hidden" name="student_id" value="{{$dayta->id_student}}">
+                    <input type="hidden" name="mentor_id" value="{{$dayta->mentor_id}}">
+                    <div class="container p-4">
+                        <div class="card border-primary">
+                            <div class="avatar-sm float-left mt-4 ml-4">
+                                <img onerror="this.src='{{asset('img/img-error.jpg')}}';"
+                                    src="{{ "http://tahfidz.sditwahdahbtg.com/student/photo/".$dayta->student_photo }}"
+                                    alt="image profile" class="avatar-img rounded-circle">
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title"> {{$dayta->student_name}}</h4>
+                                <p class="card-text">{{$dayta->student_nisn}}</p>
+                                <p class="card-text">Asal Kelas : {{$dayta->student_class}}</p>
+                            </div>
+                        </div>
+
+
+                        <br>
+                        <h4>Hafalan Yang Disetorkan : </h4>
+                        <p>{{$dayta->start}} - {{$dayta->end}}</p>
+                        <div class="col-lg-12">
+                            <audio controls loop style="width: 100%;">
+                                <source src="http://tahfidz.sditwahdahbtg.com/submission/{{$dayta->audio}}"
+                                    type="audio/ogg">
+                                Your browser doesnt not Support the audio Tag
+                            </audio>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label>Nilai Hukum Bacaan</label>
+                                <input type="number" required min="0" max="100" name="score_ahkam" class="form-control @error('score_ahkam') is-invalid @enderror" 
+                                    id="score-ahkam" placeholder="Nilai Hukum Bacaan" value="{{$dayta->score_ahkam .@old('score_ahkam')}}">
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label>Nilai Makhorijul Huruf</label>
+                                <input type="number" required min="0" max="100" name="score_makhroj"  class="form-control @error('score_makhroj') is-invalid @enderror" 
+                                    id="score-makhroj" placeholder="Nilai Makhroj" " value="{{$dayta->score_makhroj .@old('score_makhroj')}}">
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label>Nilai Kelancaran Hafalan</label>
+                                <input type="number" required min="0" max="100" name="score_itqan"  class="form-control @error('score_itqan') is-invalid @enderror" 
+                                    id="score-itqan" placeholder="Nilai Kelancaran"" value="{{$dayta->score_itqan .@old('score_itqan')}}">
+                            </div>
+                            
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label>Nilai Akhir</label>
+                                <input type="text" required disabled class="form-control class="form-control @error('score') is-invalid @enderror" id="score"
+                                    value="{{$dayta->score,old('score')}}">
+                                    <input type="hidden" name="score" id="score-sent">
+                                </div>
+                            <script>
+                                $(document).ready(function() {
+                                        var calculateFinalScore = function() {
+                                                var scoreItqan = parseFloat(document.getElementById("score-itqan").value);
+                                                var scoreMakhroj = parseFloat(document.getElementById("score-makhroj").value);
+                                                var scoreAhkam = parseFloat(document.getElementById("score-ahkam").value);
+                                                if(isNaN(scoreItqan)){
+                                                    scoreItqan=0;
+                                                }
+                                                if(isNaN(scoreMakhroj)){
+                                                    scoreMakhroj=0;
+                                                }
+                                                if(isNaN(scoreAhkam)){
+                                                    scoreAhkam=0;
+                                                }
+                                                var scoreTajwid = ((scoreMakhroj+scoreAhkam)/2.0);
+                                            
+                                                document.getElementById("v-score-tajwid").innerText = scoreTajwid;
+                                                document.getElementById("v-score-itqan").innerText = scoreItqan;
+                                                var scoreFinal = ((scoreTajwid*0.03)+(scoreItqan*0.07));
+                                                document.getElementById("v-score-final").innerText = scoreFinal.toFixed(2);
+                                                document.getElementById("score").value = scoreFinal.toFixed(2);
+                                                document.getElementById("score-sent").value = scoreFinal.toFixed(2);
+                                            };
+                            
+                            
+                                            $("#refreshCalculate").click(function() {
+                                                calculateFinalScore();
+                                            })
+                            
+                                            $("#score-ahkam").keyup(function() {
+                                                calculateFinalScore();
+                                            });
+                                            $("#score-itqan").keyup(function() {
+                                                calculateFinalScore();
+                                            });
+                                            $("#score-makhroj").keyup(function() {
+                                                calculateFinalScore();
+                                            });
+                                });
+                            </script>
+
+
+                            <div class="col-12">
+                               
+                                <strong>Pembagian Nilai : </strong>
+                                <ul class="row">
+                                    <div class="col-md-6 col-sm-12">
+                                        <li><strong>Nilai Tajwid : </strong> <span id="v-score-tajwid"></span></li>
+                                        <li>Nilai Kelancaran : <span id="v-score-itqan">{{$dayta->score_itqan}}</span></li>
+                                        <li>Nilai Akhir : <span id="v-score-final">{{$dayta->score}}</span></li>
+                                    </div>
+                                </ul>
+                                <button type="button" id="refreshCalculate" class="btn btn-primary btn-xs">
+                                Hitung Nilai Akhir</button><br>
+                                <strong>Keterangan</strong>
+                                <ul>
+                                    <li>Nilai Tajwid Diambil dari rerata nilai hukum bacaan dan makhroj</li>
+                                    <li>Nilai Akhir Diambil Dari Nilai Tajwid(30%) ditambah nilai kelancaran (70%)</li>
+                                </ul>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label for="">Status</label>
+                                <select class="form-control" name="status" id="">
+                                    <option value="0">Menunggu Dinilai</option>
+                                    <option value="1">Sudah Dinilai</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-12">
+                                <label for="">Catatan Untuk Siswa</label>
+                                <textarea class="form-control ckeditor @error('correction') is-invalid @enderror"
+                                    name="correction" rows="5"
+                                    placeholder="Masukkan Catatan Untuk Siswa">{{$dayta->correction,old('correction') }}</textarea>
+                            </div>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-md btn-primary">SIMPAN</button>
                     </div>
-                    <div class="row">
-                        <div class="form-group col-md-6 col-sm-12">
-                            <label>Nilai Tajwid</label>
-                            <input type="text" class="form-control" name="score-tajwid" id="score-tajwid"
-                                placeholder="Nilai Tajwid">
-                        </div>
-                        <div class="form-group col-md-6 col-sm-12">
-                            <label>Nilai Makhorijul Huruf</label>
-                            <input type="text" class="form-control" name="score-makhroj" id="score-makhroj"
-                                placeholder="Nilai Makhroj">
-                        </div>
-                        <div class="form-group col-md-6 col-sm-12">
-                            <label>Nilai Kelancaran Hafalan</label>
-                            <input type="text" class="form-control" name="score-itqan" id="score-itqan"
-                                placeholder="Nilai Kelancaran">
-                        </div>
-                        <div class="form-group col-md-6 col-sm-12">
-                            <label>Nilai Akhir</label>
-                            <input type="text" disabled class="form-control" name="score" id="score"
-                                aria-describedby="helpId" placeholder="Nilai Kelancaran">
-                        </div>
-                        <div class="form-group col-md-6 col-sm-12">
-                            <label for="">Status</label>
-                            <select class="form-control" name="status" id="">
-                                <option value="0">Menunggu Dinilai</option>
-                                <option value="1">Sudah Dinilai</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-12">
-                            <label for="">Catatan Untuk Siswa</label>
-                            <textarea class="form-control ckeditor @error('correction') is-invalid @enderror" name="content"
-                                rows="5"
-                                placeholder="Masukkan Catatan Untuk Siswa">{{old('correction') }}</textarea>
-                        </div>
-    
-                    </div>
-                    <label for="">Jika status diset menunggu dinilai, maka nilai tidak ditampilkan di
-                        siswa</label>
-                 
+                </form>
 
-                </div>
-
-
-
-
-
-                </tbody>
-                </table>
 
 
                 {{-- Next Page Link --}}
@@ -163,29 +238,9 @@
 
 
 
-{{-- Toastr --}}
+{{-- <<-- Toastr -->> --}}
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<!-- Datatables -->
-<script>
-    $.calculateFinalScore = function() {
-                    var scoreItqan = $.trim($("#score-itqan").val())
-                    var scoreMakhroj = $.trim($("#score-makhroj").val())
-                    var scoreTajwid = $.trim($("#score-tajwid").val())
 
-                    finalScore = (scoreItqan+scoreMakhroj+scoreTajwid)/3;
-                    $("#score").text(finalScore);
-                };
-
-                $("#score-tajwid").keyup(function() {
-                    $.calculateFinalScore();
-                });
-                $("#score-itqan").keyup(function() {
-                    $.calculateFinalScore();
-                });
-                $("#score-makhroj").keyup(function() {
-                    $.calculateFinalScore();
-                });
-</script>
 
 <script>
     //message with toastr

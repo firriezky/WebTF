@@ -86,6 +86,9 @@ Route::group(['middleware’' => ['auth:mentor']], function () {
     Route::get('/mentor/task/{task}', 'MentorTaskController@edit')->middleware('auth:mentor');
     Route::get('/mentor/task/group/{group}', 'MentorTaskController@taskByGroup')->middleware('auth:mentor');
     Route::get('/mentor/group', 'HomeStudentController@view_group')->middleware('auth:mentor');
+    Route::view('/mentor/profile','mentor.profile');
+
+    Route::post('/correction/save', 'MentorTaskController@updateTask')->middleware('auth:mentor');
 });
     
     

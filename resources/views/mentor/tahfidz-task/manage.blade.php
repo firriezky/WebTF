@@ -53,15 +53,7 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card border-0 shadow rounded">
-                <div class="card-body">
 
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-12">
 
@@ -132,6 +124,8 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Input/Ubah Nilai</th>
                                     <th scope="col">Nama Siswa</th>
                                     <th scope="col">NISN</th>
                                     <th scope="col">Asal Kelas</th>
@@ -141,7 +135,7 @@
                                     <th scope="col">Kelancaran</th>
                                     <th scope="col">Makhorijul Huruf</th>
                                     <th scope="col">Nilai Akhir</th>
-                                    <th scope="col">Detail</th>
+                                    <th scope="col">Tanggal Setoran</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -149,6 +143,15 @@
                                 @forelse ($dayta as $data)
                                 <tr>
                                     <td>{{$loop->index+1}}</td>
+                                    <td><span class="badge badge-{{ ($data->status==0) ? 'danger' : 'success'  }}
+                                        ">{{ $data->status_text }}</span></td>
+                                    <td>
+                                        <a href="{{url("mentor/task/$data->id_submission")}}">
+                                            <button class="btn btn-primary btn-border btn-xs btn-round">
+                                                Input/Lihat Penilaian
+                                            </button>
+                                        </a>
+                                    </td>
                                     <td>{{ $data->student_name }}</td>
                                     {{-- <td>
                                         <div class="avatar-sm float-left mr-2">
@@ -169,14 +172,9 @@
                     <td></td>
                     <td></td>
                     <td>{{$data->score}}</td>
+                    <td>{{$data->created_at}}</td>
 
-                    <td>
-                        <a href="{{url("mentor/task/$data->id_submission")}}">
-                            <button class="btn btn-success btn-border btn-round mb-3">
-                                Input/Lihat Penilaian
-                            </button>
-                        </a> 
-                </td>
+
                     </tr>
 
 
@@ -207,23 +205,23 @@
                                     <div class="row">
                                         <div class="form-group col-md-6 col-sm-12">
                                             <label>Nilai Tajwid</label>
-                                            <input type="text" class="form-control" name="score-tajwid" 
-                                            id="score-tajwid" placeholder="Nilai Tajwid">
+                                            <input type="text" class="form-control" name="score-tajwid"
+                                                id="score-tajwid" placeholder="Nilai Tajwid">
                                         </div>
                                         <div class="form-group col-md-6 col-sm-12">
                                             <label>Nilai Makhorijul Huruf</label>
-                                            <input type="text" class="form-control" name="score-makhroj" 
-                                            id="score-makhroj"  placeholder="Nilai Makhroj">
+                                            <input type="text" class="form-control" name="score-makhroj"
+                                                id="score-makhroj" placeholder="Nilai Makhroj">
                                         </div>
                                         <div class="form-group col-md-6 col-sm-12">
                                             <label>Nilai Kelancaran Hafalan</label>
-                                            <input type="text" class="form-control" name="score-itqan" 
-                                            id="score-itqan" placeholder="Nilai Kelancaran">
+                                            <input type="text" class="form-control" name="score-itqan" id="score-itqan"
+                                                placeholder="Nilai Kelancaran">
                                         </div>
                                         <div class="form-group col-md-6 col-sm-12">
                                             <label>Nilai Akhir</label>
-                                            <input type="text" disabled class="form-control" name="score"
-                                                id="score" aria-describedby="helpId" placeholder="Nilai Kelancaran">
+                                            <input type="text" disabled class="form-control" name="score" id="score"
+                                                aria-describedby="helpId" placeholder="Nilai Kelancaran">
                                         </div>
                                         <div class="form-group col-md-6 col-sm-12">
                                             <label for="">Status</label>
@@ -233,7 +231,8 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <label for="">Jika status diset menunggu dinilai, maka nilai tidak ditampilkan di
+                                    <label for="">Jika status diset menunggu dinilai, maka nilai tidak
+                                        ditampilkan di
                                         siswa</label>
                                     <div class="form-group col-12">
                                         <label for="">Catatan Untuk Siswa</label>
@@ -263,11 +262,6 @@
 
                     </tbody>
                     </table>
-
-
-                    {{-- Next Page Link --}}
-                    {{-- {{ $dayta->links() }} --}}
-                    <br>
                 </div>
             </div>
         </div>
@@ -309,25 +303,6 @@
         column.visible( ! column.visible() );
     } );
     });
-
-    $.calculateFinalScore = function() {
-                    var scoreItqan = $.trim($("#score-itqan").val())
-                    var scoreMakhroj = $.trim($("#score-makhroj").val())
-                    var scoreTajwid = $.trim($("#score-tajwid").val())
-
-                    finalScore = (scoreItqan+scoreMakhroj+scoreTajwid)/3;
-                    $("#score").text(finalScore);
-                };
-
-                $("#score-tajwid").keyup(function() {
-                    $.calculateFinalScore();
-                });
-                $("#score-itqan").keyup(function() {
-                    $.calculateFinalScore();
-                });
-                $("#score-makhroj").keyup(function() {
-                    $.calculateFinalScore();
-                });
 </script>
 
 <script>
@@ -341,7 +316,3 @@
 
 
 @endsection
-
-</div>
-</div>
-</div>

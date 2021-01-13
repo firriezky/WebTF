@@ -9,7 +9,7 @@
                         <h1 class="gloss mt-2 my-2" style=" text-align:center; color: #28df99 !important">Tahfidz</h1>
                         <p class=" mt-2 my-2" style=" text-align:center; color: #150129 !important">Aplikasi Setoran
                             Hafalan Quran, <br> SDIT Wahdah Islamiyah Bantaeng</p>
-                        <p class=" mt-2 my-2" style=" text-align:center; "> <strong>Login Siswa</strong> </p>
+                        <p class=" mt-2 my-2" style=" text-align:center; "> <strong>Login Guru/Pembimbing</strong> </p>
                     </div>
 
                     <div class="card-body">
@@ -30,14 +30,14 @@
 
                             <div class="form-group row">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('NISN') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Kontak/No Telp') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="contact" type="number"
                                         class="form-control @error('contact') is-invalid @enderror" name="contact"
                                         value="{{ old('contact') }} " required autocomplete="contact" autofocus>
 
-                                    @error('nisn')
+                                    @error('contact')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

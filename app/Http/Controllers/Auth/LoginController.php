@@ -8,7 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
-
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class LoginController extends Controller
 {
@@ -112,29 +112,18 @@ class LoginController extends Controller
     }
 
 
-    public function logoutStudent(Request $request)
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    public function logout(Request $request)
     {
+        Auth::logout();
         $this->guard()->logout();
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        if ($response = $this->loggedOut($request)) {
-            return $response;
-        }
-
-        return $request->wantsJson()
-            ? new JsonResponse([], 204)
-            : redirect('/');
-    }
-
-    public function logoutMentor(Request $request)
-    {
-        $this->guard()->logout();
-        $request->session()->invalidate();
-        $request->session()->flush();
-
-        $request->session()->regenerateToken();
+        Auth::guard('mentor')->logout();
+        Auth::guard('student')->logout();
 
         if ($response = $this->loggedOut($request)) {
             return $response;

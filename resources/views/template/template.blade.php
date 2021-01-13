@@ -155,7 +155,7 @@
 	<script src="{{asset('atlantis/examples')}}/assets/js/atlantis.min.js"></script>
 
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
-	{{-- <script src="{{asset('atlantis/examples')}}/assets/js/setting-demo.js"></script>--}}
+	{{-- <script src="{{asset('atlantis/examples')}}/assets/js/setting-demo.js"></script> --}}
 	{{-- <script src="{{asset('atlantis/examples')}}/assets/js/demo.js"></script> --}}
 
 
