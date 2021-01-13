@@ -136,8 +136,7 @@ class MentorTaskController extends Controller
 
         $task_id = $request->submission_id;
 
-        // $tahfidzTask= TahfidzTask::findOrFail($request->submission_id);
-        $tahfidzTask= TahfidzTask::findOrFail(82);
+        $tahfidzTask= TahfidzTask::findOrFail($request->submission_id);
 
         $tahfidzTask->update([
             'score-ahkam'     => $request->score_ahkam,
