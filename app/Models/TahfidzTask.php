@@ -20,5 +20,7 @@ class TahfidzTask extends Model
         'start',
         'end',
         'correction',
+        'created_at',
+        'updated_at',
     ];
 }
