@@ -201,8 +201,8 @@
                             <div class="form-group col-md-6 col-sm-12">
                                 <label for="">Status</label>
                                 <select class="form-control" name="status" id="">
-                                    <option value="0">Menunggu Dinilai</option>
-                                    <option value="1">Sudah Dinilai</option>
+                                    <option value="0" {{($dayta->status==0) ? 'selected' : ''}}>Menunggu Dinilai</option>
+                                    <option value="1" {{($dayta->status==1) ? 'selected' : ''}}>Sudah Dinilai</option>
                                 </select>
                             </div>
                             <div class="form-group col-12">
