@@ -78,8 +78,6 @@ class StudentController extends Controller
         }
     }
 
-
-
     /**
      * edit
      *
