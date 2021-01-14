@@ -116,26 +116,33 @@
                         <div class="row">
                             <div class="form-group col-md-6 col-sm-12">
                                 <label>Nilai Hukum Bacaan</label>
-                                <input type="number" required min="0" max="100" name="score_ahkam" class="form-control @error('score_ahkam') is-invalid @enderror" 
-                                    id="score-ahkam" placeholder="Nilai Hukum Bacaan" value="{{$dayta->score_ahkam .@old('score_ahkam')}}">
+                                <input type="number" required min="0" max="100" name="score_ahkam"
+                                    class="form-control @error('score_ahkam') is-invalid @enderror" id="score-ahkam"
+                                    placeholder="Nilai Hukum Bacaan"
+                                    value="{{$dayta->score_ahkam .@old('score_ahkam')}}">
                             </div>
                             <div class="form-group col-md-6 col-sm-12">
                                 <label>Nilai Makhorijul Huruf</label>
-                                <input type="number" required min="0" max="100" name="score_makhroj"  class="form-control @error('score_makhroj') is-invalid @enderror" 
-                                    id="score-makhroj" placeholder="Nilai Makhroj" " value="{{$dayta->score_makhroj .@old('score_makhroj')}}">
+                                <input type="number" required min="0" max="100" name="score_makhroj"
+                                    class="form-control @error('score_makhroj') is-invalid @enderror" id="score-makhroj"
+                                    placeholder="Nilai Makhroj" " value="
+                                    {{$dayta->score_makhroj .@old('score_makhroj')}}">
                             </div>
                             <div class="form-group col-md-6 col-sm-12">
                                 <label>Nilai Kelancaran Hafalan</label>
-                                <input type="number" required min="0" max="100" name="score_itqan"  class="form-control @error('score_itqan') is-invalid @enderror" 
-                                    id="score-itqan" placeholder="Nilai Kelancaran"" value="{{$dayta->score_itqan .@old('score_itqan')}}">
+                                <input type="number" required min="0" max="100" name="score_itqan"
+                                    class="form-control @error('score_itqan') is-invalid @enderror" id="score-itqan"
+                                    placeholder="Nilai Kelancaran"" value="
+                                    {{$dayta->score_itqan .@old('score_itqan')}}">
                             </div>
-                            
+
                             <div class="form-group col-md-6 col-sm-12">
                                 <label>Nilai Akhir</label>
-                                <input type="text" required disabled class="form-control class="form-control @error('score') is-invalid @enderror" id="score"
+                                <input type="text" required disabled class="form-control class=" form-control
+                                    @error('score') is-invalid @enderror" id="score"
                                     value="{{$dayta->score,old('score')}}">
-                                    <input type="hidden" name="score" id="score-sent">
-                                </div>
+                                <input type="hidden" name="score" id="score-sent">
+                            </div>
                             <script>
                                 $(document).ready(function() {
                                         var calculateFinalScore = function() {
@@ -181,17 +188,18 @@
 
 
                             <div class="col-12">
-                               
+
                                 <strong>Pembagian Nilai : </strong>
                                 <ul class="row">
                                     <div class="col-md-6 col-sm-12">
                                         <li><strong>Nilai Tajwid : </strong> <span id="v-score-tajwid"></span></li>
-                                        <li>Nilai Kelancaran : <span id="v-score-itqan">{{$dayta->score_itqan}}</span></li>
+                                        <li>Nilai Kelancaran : <span id="v-score-itqan">{{$dayta->score_itqan}}</span>
+                                        </li>
                                         <li>Nilai Akhir : <span id="v-score-final">{{$dayta->score}}</span></li>
                                     </div>
                                 </ul>
                                 <button type="button" id="refreshCalculate" class="btn btn-primary btn-xs">
-                                Hitung Nilai Akhir</button><br>
+                                    Hitung Nilai Akhir</button><br>
                                 <strong>Keterangan</strong>
                                 <ul>
                                     <li>Nilai Tajwid Diambil dari rerata nilai hukum bacaan dan makhroj</li>
@@ -201,7 +209,8 @@
                             <div class="form-group col-md-6 col-sm-12">
                                 <label for="">Status</label>
                                 <select class="form-control" name="status" id="">
-                                    <option value="0" {{($dayta->status==0) ? 'selected' : ''}}>Menunggu Dinilai</option>
+                                    <option value="0" {{($dayta->status==0) ? 'selected' : ''}}>Menunggu Dinilai
+                                    </option>
                                     <option value="1" {{($dayta->status==1) ? 'selected' : ''}}>Sudah Dinilai</option>
                                 </select>
                             </div>
@@ -231,7 +240,6 @@
 <div class="row">
     {{-- {{ $blogs->links() }} --}}
 </div>
-</div>
 
 @endsection
 
@@ -254,7 +262,3 @@
 
 
 @endsection
-
-</div>
-</div>
-</div>
