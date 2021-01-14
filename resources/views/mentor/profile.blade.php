@@ -128,7 +128,7 @@
                     <div class="profile-picture">
                         <div class="avatar avatar-xl">
                             <img onerror="this.src='{{asset('img/img-error.jpg')}}';"
-                                src="{{ "http://tahfidz.sditwahdahbtg.com/mentor/photo/" . Auth::guard('mentor')->user()->url_profile }}"
+                                src="{{ "http://tahfidz.sditwahdahbtg.com/mentor/" . Auth::guard('mentor')->user()->url_profile }}"
                                 alt="image profile" class="avatar-img rounded-circle">
                         </div>
                     </div>
