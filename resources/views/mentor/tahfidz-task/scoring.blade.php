@@ -157,9 +157,9 @@
                                                 document.getElementById("v-score-itqan").innerText = scoreItqan;
                                                 var scoreFinal = ((scoreTajwid*0.03)+(scoreItqan*0.07));
                                                 scoreFinal = Math.floor(scoreFinal*10);
-                                                document.getElementById("v-score-final").innerText = scoreFinal.toFixed(2);
-                                                document.getElementById("score").value = scoreFinal.toFixed(2);
-                                                document.getElementById("score-sent").value = scoreFinal.toFixed(2);
+                                                document.getElementById("v-score-final").innerText = scoreFinal;
+                                                document.getElementById("score").value = scoreFinal;
+                                                document.getElementById("score-sent").value = scoreFinal;
                                             };
                             
                             
