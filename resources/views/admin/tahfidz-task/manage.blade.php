@@ -99,6 +99,7 @@
                                                     alt="image profile" class="avatar-img rounded-circle">
                                             </div>
                                         </td>
+                                        
                                         <td>{{ $data->student_nisn }}</td>
                                         <td>{{ $data->group_name }}</td>
                                         <td>
