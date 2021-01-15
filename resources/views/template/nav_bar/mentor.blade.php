@@ -155,8 +155,8 @@
             <li class="nav-item dropdown hidden-caret">
                 <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                     <div class="avatar-sm">
-                        <img onerror="this.src='{{asset('img/img-error.jpg')}}';"
-                            src="{{ "http://tahfidz.sditwahdahbtg.com/mentor/photo/" . Auth::guard('mentor')->user()->url_profile }}"
+                        <img onerror="this.src='{{asset('img/img-error.jpg')}}?n={{time()}}';"
+                            src="{{ "http://tahfidz.sditwahdahbtg.com/mentor/" . Auth::guard('mentor')->user()->url_profile }}?n={{time()}}"
                             alt="image profile" class="avatar-img rounded-circle">
                     </div>
                 </a>
@@ -164,11 +164,12 @@
                     <div class="dropdown-user-scroll scrollbar-outer">
                         <li>
                             <div class="user-box">
-                                <div class="avatar-lg"> <img onerror="this.src='{{asset('img/img-error.jpg')}}';"
-                                        src="{{ "http://tahfidz.sditwahdahbtg.com/mentor/photo/" . Auth::guard('mentor')->user()->url_profile }}"
+                                <div class="avatar-lg"> <img onerror="this.src='{{asset('img/img-error.jpg')}}?n={{time()}}';"
+                                        src="{{ "http://tahfidz.sditwahdahbtg.com/mentor/" . Auth::guard('mentor')->user()->url_profile }}"
                                         alt="image profile" class="avatar-img rounded-circle"></div>
                                 <div class="u-text">
-                                    <h4>Hizrian</h4>
+                                    <h4>{{Auth::guard('mentor')->user()->name}}</h4>
+                                    <h4>{{Auth::guard('mentor')->user()->contact}}</h4>
                                     <p class="text-muted">{{ Auth::guard('mentor')->user()->email }}</p>
                                     <a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
                                 </div>
