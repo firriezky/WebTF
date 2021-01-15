@@ -116,31 +116,31 @@
                         <div class="row">
                             <div class="form-group col-md-6 col-sm-12">
                                 <label>Nilai Hukum Bacaan</label>
-                                <input type="number" required min="0" max="100" name="score_ahkam"
+                                <input required type="number" required min="0" max="100" name="score_ahkam"
                                     class="form-control @error('score_ahkam') is-invalid @enderror" id="score-ahkam"
                                     placeholder="Nilai Hukum Bacaan"
-                                    value="{{$dayta->score_ahkam .@old('score_ahkam')}}">
+                                    value="{{@old('score_ahkam',$dayta->score_ahkam)}}">
                             </div>
                             <div class="form-group col-md-6 col-sm-12">
                                 <label>Nilai Makhorijul Huruf</label>
-                                <input type="number" required min="0" max="100" name="score_makhroj"
+                                <input required type="number" required min="0" max="100" name="score_makhroj"
                                     class="form-control @error('score_makhroj') is-invalid @enderror" id="score-makhroj"
                                     placeholder="Nilai Makhroj" " value="
-                                    {{$dayta->score_makhroj .@old('score_makhroj')}}">
+                                    {{@old('score_makhroj',$dayta->score_makhroj)}}">
                             </div>
                             <div class="form-group col-md-6 col-sm-12">
                                 <label>Nilai Kelancaran Hafalan</label>
                                 <input type="number" required min="0" max="100" name="score_itqan"
                                     class="form-control @error('score_itqan') is-invalid @enderror" id="score-itqan"
                                     placeholder="Nilai Kelancaran"" value="
-                                    {{$dayta->score_itqan .@old('score_itqan')}}">
+                                    {{@old('score_itqan',$dayta->score_itqan)}}">
                             </div>
 
                             <div class="form-group col-md-6 col-sm-12">
                                 <label>Nilai Akhir</label>
                                 <input type="text" required disabled class="form-control class=" form-control
                                     @error('score') is-invalid @enderror" id="score"
-                                    value="{{$dayta->score,old('score')}}">
+                                    value="{{old('score',$dayta->score)}}">
                                 <input type="hidden" name="score" id="score-sent">
                             </div>
                             <script>
@@ -216,7 +216,7 @@
                             </div>
                             <div class="form-group col-12">
                                 <label for="">Catatan Untuk Siswa</label>
-                                <textarea class="form-control ckeditor @error('correction') is-invalid @enderror"
+                                <textarea required class="form-control ckeditor @error('correction') is-invalid @enderror"
                                     name="correction" rows="5"
                                     placeholder="Masukkan Catatan Untuk Siswa">{{$dayta->correction,old('correction') }}</textarea>
                             </div>

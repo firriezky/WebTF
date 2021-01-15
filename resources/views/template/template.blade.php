@@ -46,6 +46,8 @@
 	<link rel="stylesheet" type="text/css"
 		href="https://cdn.datatables.net/v/bs4-4.1.1/jszip-2.5.0/dt-1.10.23/b-1.6.5/b-colvis-1.6.5/b-flash-1.6.5/b-html5-1.6.5/b-print-1.6.5/cr-1.5.3/r-2.2.7/sc-2.0.3/sb-1.0.1/sp-1.2.2/datatables.css" />
 
+	<!-- DataAOS script -->
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
 	<!-- Fonts and icons -->
 	<script src="{{asset('atlantis/examples')}}/assets/js/plugin/webfont/webfont.min.js"></script>
@@ -66,6 +68,9 @@
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="{{asset('atlantis/examples')}}/assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="{{asset('atlantis/examples')}}/assets/css/atlantis.min.css">
+
+	<!-- CSS DATA AOS -->
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	{{-- <link rel="stylesheet" href="{{asset('atlantis/examples')}}/assets/css/demo.css"> --}}
@@ -210,6 +215,10 @@
 			lineColor: '#ffa534',
 			fillColor: 'rgba(255, 165, 52, .14)'
 		});
+	</script>
+
+	<script>
+		AOS.init();
 	</script>
 </body>
 

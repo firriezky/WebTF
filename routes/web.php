@@ -124,7 +124,7 @@ Route::post('/register/mentor', 'Auth\RegisterController@createMentor')->name('r
 Route::post('/register/student', 'Auth\RegisterController@createStudent')->name('regis-student');
 
 Route::view('/admin', 'admin.home')->middleware('auth');
-Route::view('/mentor', 'mentor.home')->middleware('auth:mentor');
+Route::get('/mentor', 'MentorController@home')->middleware('auth:mentor');
 Route::view('/student', 'student.home')->middleware('auth:student');
 
 
