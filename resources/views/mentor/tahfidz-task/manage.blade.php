@@ -17,6 +17,44 @@
                 <h3 class="page-title">Setoran Tahfidz {{$groupName}}</h3>
             </div>
         </div>
+        @if(session() -> has('success'))
+        <div class="alert alert-primary alert-dismissible fade show mx-2 my-2" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+            </button>
+
+            <script>
+                var notify = $.notify('<strong>Saving</strong> Do not close this page...', { allow_dismiss: false });
+                    notify.update({ type: 'success', '<strong>Success</strong> Your page has been saved!' });
+            </script>
+
+            <strong>{{Session::get( 'success' )}}</strong>
+        </div>
+
+
+        @elseif(session() -> has('error'))
+
+        <div class="alert alert-primary alert-dismissible fade show mx-2 my-2" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+            </button>
+            <strong>{{Session::get( 'error' )}}</strong>
+        </div>
+        @endif
+
+        @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+            </button>
+
+            {!! implode('', $errors->all('<div>:message</div>')) !!}
+        </div>
+        @endif
+
 
     </div>
 
@@ -27,10 +65,11 @@
                     <div class="form-group">
                         <label for="">Filter Kelas</label>
                         <select class="form-control" onchange="location = this.value">
-                            <option value="{{url('/mentor/task')}}">Pilih Kelompok</option>
-                            <option value="{{url('/mentor/task')}}"></a>Semua Siswa Yang Saya Bimbing</option>
+                            <option value="{{url('/mentor/tahfidz/task')}}">Pilih Kelompok</option>
+                            <option value="{{url('/mentor/tahfidz/task')}}"></a>Semua Siswa Yang Saya Bimbing</option>
                             @forelse ($groupData as $item)
-                            <option value="{{url("/mentor/task/group/$item->group_id")}}">{{$item->group_name}}</option>
+                            <option value="{{url("/mentor/tahfidz/task/group/$item->group_id")}}">{{$item->group_name}}
+                            </option>
                             @empty
 
                             @endforelse
@@ -43,14 +82,32 @@
                     <ul class="mt-3">
                         <li>Pilih Kelompok Yang Ingin Dinilai Menggunakan Pilihan Diatas</li>
                         <li>Klik Tombol <strong>Input/Lihat</strong> Untuk Menginput atau Melihat Nilai Siswa</li>
-                        <li>Untuk Mengimport Data Setoran, Silakan Klik Tombol
-                            <strong>Sembunyikan Kolom Untuk Import</strong> terlebih dahulu jika ingin menyembunyikan
-                            Kolom
-                        </li>
+                        <li>Untuk Mengupdate Pengumuman ke Kelompok , Masukkan dan simpan pengumuman pada kolom dibawah</li>
                     </ul>
                 </div>
             </div>
         </div>
+
+        @if (isset($group_id) && $group_id !=null)
+
+        <div class="col-md-12">
+            <form action="{{url('tahfidz/group/announcement/save')}}" method="post">
+                @csrf
+                @method('POST')
+                <div class="card border-0 shadow rounded">
+                    <div class="card-body">
+                        <h3>Pengumuman Untuk Kelompok</h3>
+                        <div class="form-group">
+                            <textarea class="form-control" name="announce" @error('announce') is-invalid @enderror
+                                rows="3">@if ($announcement==null)"Belum Ada Pengumuman"@endif{{old('announce',$announcement)}}</textarea>
+                        </div>
+                        <input type="hidden" name="group_id" value="{{$group_id}}">
+                        <button type="submit" class="btn btn-primary">Update Pengumuman</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        @endif
     </div>
 
 
@@ -58,43 +115,6 @@
         <div class="col-md-12">
 
             <div class="card border-0 shadow rounded">
-                @if(session() -> has('success'))
-                <div class="alert alert-primary alert-dismissible fade show mx-2 my-2" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-
-                    <script>
-                        var notify = $.notify('<strong>Saving</strong> Do not close this page...', { allow_dismiss: false });
-                            notify.update({ type: 'success', '<strong>Success</strong> Your page has been saved!' });
-                    </script>
-
-                    <strong>{{Session::get( 'success' )}}</strong>
-                </div>
-
-
-                @elseif(session() -> has('error'))
-
-                <div class="alert alert-primary alert-dismissible fade show mx-2 my-2" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                    <strong>{{Session::get( 'error' )}}</strong>
-                </div>
-                @endif
-
-                @if ($errors->any())
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-
-                    {!! implode('', $errors->all('<div>:message</div>')) !!}
-                </div>
-                @endif
 
 
 
@@ -146,7 +166,7 @@
                                     <td><span class="badge badge-{{ ($data->status==0) ? 'danger' : 'success'  }}
                                         ">{{ $data->status_text }}</span></td>
                                     <td>
-                                        <a href="{{url("mentor/task/$data->id_submission")}}">
+                                        <a href="{{url("mentor/tahfidz/task/$data->id_submission")}}">
                                             <button class="btn btn-primary btn-border btn-xs btn-round">
                                                 Input/Lihat Penilaian
                                             </button>

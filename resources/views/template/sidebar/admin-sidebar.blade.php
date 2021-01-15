@@ -19,11 +19,6 @@
 
                     <div class="collapse in" id="collapseExample">
                         <ul class="nav">
-                            {{-- <li>
-                                <a href="{{ url('/profile') }}" class="active">
-                                    <span class="link-collapse">My Profile</span>
-                                </a>
-                            </li> --}}
                             <li>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                               document.getElementById('logout-form').submit();">

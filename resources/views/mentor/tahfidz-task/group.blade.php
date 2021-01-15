@@ -27,10 +27,10 @@
                     <div class="form-group">
                         <label for="">Filter Kelas</label>
                         <select class="form-control" onchange="location = this.value">
-                            <option value="{{url('/mentor/task')}}">Pilih Kelompok</option>
-                            <option value="{{url('/mentor/task')}}"></a>Semua Siswa Yang Saya Bimbing</option>
+                            <option value="{{url('/mentor/tahfidz/task')}}">Pilih Kelompok</option>
+                            <option value="{{url('/mentor/tahfidz/task')}}"></a>Semua Siswa Yang Saya Bimbing</option>
                             @forelse ($groupData as $item)
-                            <option value="{{url("/mentor/task/group/$item->group_id")}}">{{$item->group_name}}</option>
+                            <option value="{{url("/mentor/tahfidz/task/group/$item->group_id")}}">{{$item->group_name}}</option>
                             @empty
 
                             @endforelse

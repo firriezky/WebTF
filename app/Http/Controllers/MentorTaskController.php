@@ -91,6 +91,8 @@ class MentorTaskController extends Controller
             'mentor_id' => $mentor_id,
         ]);
 
+        $announcement = $modelGroup->announcement;
+
 
         // list group that belongs to this teacher
         $groupData = json_decode($responseGroup);
@@ -109,8 +111,18 @@ class MentorTaskController extends Controller
         } else {
             $dayta = $dayta->submission;
         }
-
-        return view('mentor.tahfidz-task.manage')->with(compact('groupData', 'dayta','groupName'));
+        
+        $isGroup=true;
+        $group_id=$modelGroup->id;
+        return view('mentor.tahfidz-task.manage')->with(
+            compact(
+            'groupData',
+             'dayta',
+             'groupName',
+             'modelGroup',
+             'announcement',
+             'isGroup',
+             'group_id'));
     }
 
     /**

@@ -16,15 +16,8 @@
                         </span>
                     </a>
                     <div class="clearfix"></div>
-
-
                     <div class="collapse in" id="collapseExample">
                         <ul class="nav">
-                            {{-- <li>
-                                <a href="{{ url('/profile') }}" class="active">
-                            <span class="link-collapse">My Profile</span>
-                            </a>
-                            </li> --}}
                             <li>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                               document.getElementById('logout-form').submit();">
@@ -65,15 +58,40 @@
                     </div>
                 </li>
 
-
-                <li class="nav-item  {{ (Request::is('mentor/task')) ? 'active' : ''}}">
-                    <a href="{{ url('mentor/task') }}">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span class="link-collapse">Setoran Hafalan Tahfidz</span>
+                <li class="nav-item  {{ Request::is('mentor/tahfidz/*') ? 'active submenu' : '' }}">
+                    <a data-toggle="collapse" href="#messages-app-nav">
+                        <i class="far fa-paper-plane"></i>
+                        <p>Tahfidz</p>
+                        <span class="caret"></span>
                     </a>
+                    <div class="collapse {{ Request::is('mentor/tahfidz/*') ? 'show' : '' }}" id="messages-app-nav">
+                        <ul class="nav nav-collapse">
+                            <li class="{{(Request::is('mentor/tahfidz/task')) ? 'active' : ''}}">
+                                <a href="{{url('mentor/tahfidz/task')}}">
+                                    <span class="sub-item">Kelompok Tahfidz</span>
+                                </a>
+                            </li>
+                            <li class="{{(Request::is('mentor/tahfidz/quiz')) ? 'active' : ''}}">
+                                <a href="{{url('mentor/tahfidz/quiz')}}">
+                                    <span class="sub-item">Quiz Hafalan</span>
+                                </a>
+                            </li>
+                            {{-- <li class="{{ (Request::is('mentor/tahfidz/quiz')) ? 'active' : ''}}">
+                                <a href="{{url('mentor/tahfidz/quiz')}}">
+                                    <span class="sub-item">Kuis Hafalan</span>
+                                </a>
+                            </li>
+                            <li class="{{(Request::is('mentor/tahfidz/announce')) ? 'active' : ''}}">
+                                <a href="{{url('mentor/tahfidz/announce')}}">
+                                    <span class="sub-item">Lihat Setoran Siswa</span>
+                                </a>
+                            </li> --}}
+                        </ul>
+                    </div>
                 </li>
 
-            
+
+     
                 <li class="nav-item   {{ (Request::is('mentor/profile')) ? 'active' : ''}}">
                     <a href="{{ url('mentor/profile') }}">
                         <i class="fas fa-user-circle"></i>

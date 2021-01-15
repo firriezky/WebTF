@@ -35,3 +35,9 @@ a.created_at,a.score_ahkam,a.score_makhroj,a.score_itqan, a.score ,a.correction 
 left join student b on a.student_id=b.id
  left join kelompok c on b.id_kelompok=c.id 
 left join mentor d on c.id_mentor = d.id
+
+
+CREATE or REPLACE view `mentor_tahfidz_quiz` as 
+SELECT a.*, c.id as `mentor_id`, b.name as `group_name`
+from quiz a left join kelompok b on a.group_id=b.id
+left join mentor c on b.id_mentor=c.id

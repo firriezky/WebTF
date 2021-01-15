@@ -98,7 +98,6 @@ class GroupController extends Controller
         $student->update([
             'id_kelompok'     => $group_id,
         ]);
-             $student->delete();
 
         if ($student) {
             //redirect dengan pesan sukses
@@ -153,9 +152,10 @@ class GroupController extends Controller
         $student->update([
             'id_kelompok'     => NULL,
         ]);
-             $student->delete();
+        
+        $delete = $student->delete();
 
-        if ($student) {
+        if ($delete) {
             //redirect dengan pesan sukses
             return redirect("/group/$group_id/edit")->with(['success' => "$student->name Berhasil Dihapus Dari Kelompok"]);
         } else {
@@ -163,5 +163,34 @@ class GroupController extends Controller
             return redirect("/group/$group_id/edit")->with(['error' => "$student->name Gagal Dihapus!"]);
         }
     }
+
+
+    public function updateAnnouncement(Request $request)
+    {
+        $rules = [
+            'announce'     => 'required',
+        ];
+        $customMessages = [
+            'required' => 'Mohon Isi Kolom :attribute terlebih dahulu'
+        ];
+        $this->validate($request, $rules, $customMessages);
+        $group_id = $request->group_id;
+ 
+        $group = Group::findOrFail($request->group_id);
+        
+
+        $update = $group->update([
+            'announcement'     => $request->announce,
+        ]);
+
+        if ($update) {
+            //redirect dengan pesan sukses
+            return redirect("mentor/tahfidz/task/group/17")->with(['success' => "Berhasil Mengupdate Pengumuman"]);
+        } else {
+            //redirect dengan pesan error
+            return redirect("mentor/tahfidz/task/group/17")->with(['error' => "Gagal Mengupdate Pengumuman"]);
+        }
+    }
+
 
 }
