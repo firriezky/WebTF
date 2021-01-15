@@ -18,7 +18,7 @@
         }
 
         body {
-            background-color: #28df99 !important;
+            /* background-color: #28df99 !important; */
             height: 100% !important;
         }
 
