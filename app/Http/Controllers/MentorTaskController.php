@@ -92,7 +92,6 @@ class MentorTaskController extends Controller
 
         $announcement = $modelGroup->announcement;
 
-
         // list group that belongs to this teacher
         $groupData = json_decode($responseGroup);
         // list of submission that belongs to student teached by this teacher
@@ -141,7 +140,6 @@ class MentorTaskController extends Controller
             'score_makhroj'     => 'required',
             'status'     => 'required',
             'correction'   => 'required',
-            'correction_audio'   => 'required',
         ];
         $customMessages = [
             'required' => 'Mohon Isi :attribute terlebih dahulu'
@@ -149,7 +147,7 @@ class MentorTaskController extends Controller
         $this->validate($request, $rules, $customMessages);
 
         if (!$request->hasFile('correction_audio')) {
-            $tahfidzTask = TahfidzTask::find($request->submission_id);
+            $tahfidzTask = TahfidzTask::findOrFail($request->submission_id);
             $tahfidzTask->update([
                 'score-ahkam'     => $request->score_ahkam,
                 'score-itqan'     => $request->score_itqan,
@@ -177,11 +175,19 @@ class MentorTaskController extends Controller
                 "submission_id" => $request->submission_id
             ]);
 
-     
-
-//             Http::attach($name,$contents,$filename,$header);
-    
-            dd(($response->getBody()->getContents()));
+            $dayta = json_decode($response);
+            $status = false;
+            if ($dayta->response_code != 1) {
+                $dayta = array();
+                $status = false;
+            } else {
+                $status = true;
+            }
+            if ($status) {
+                return redirect("mentor/tahfidz/task/$request->submission_id")->with(['success' => 'Penilaian Berhasil Disimpan!']);
+            } else {
+                return redirect("mentor/tahfidz/task/$request->submission_id")->with(['error' => 'Penilaian Gagal Disimpan!']);
+            }
         }
     }
 
