@@ -171,7 +171,7 @@ class MentorTaskController extends Controller
 
 
     /**
-     * update data setoran
+     * hapus setoran siswa
      *
      * @return void
      */
@@ -182,13 +182,19 @@ class MentorTaskController extends Controller
             'submission_id' => $id,
         ]);
         $dayta = json_decode($response);
-        dd($dayta);
         $status = false;
         if ($dayta->response_code != 1) {
             $dayta = array();
+            $status=false;
         } else {
+            $status=true;
             $dayta = $dayta->submission;
         }
-        return redirect("mentor/tahfidz/task")->with(compact('dayta'));
+        if ($status) {
+            return redirect("mentor/tahfidz/task")->with(['success' => 'Setoran Berhasil Dihapus']);
+        }else{
+            return redirect("mentor/tahfidz/task")->with(['success' => 'Setoran Gagal Dihapus']);
+        }
+
     }
 }

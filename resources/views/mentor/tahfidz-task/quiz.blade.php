@@ -22,11 +22,6 @@
                 <span class="sr-only">Close</span>
             </button>
 
-            <script>
-                var notify = $.notify('<strong>Saving</strong> Do not close this page...', { allow_dismiss: false });
-                    notify.update({ type: 'success', '<strong>Success</strong> Your page has been saved!' });
-            </script>
-
             <strong>{{Session::get( 'success' )}}</strong>
         </div>
 
