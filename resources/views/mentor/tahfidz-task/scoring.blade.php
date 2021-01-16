@@ -92,7 +92,7 @@
                     <input type="hidden" name="student_id" value="{{$dayta->id_student}}">
                     <input type="hidden" name="mentor_id" value="{{$dayta->mentor_id}}">
                     <div class="container p-4">
-                 
+
 
                         <div class="row">
                             <div class="card border-primary col-12">
@@ -157,10 +157,13 @@
                                             <strong>Pembagian Nilai : </strong>
                                             <ul class="row">
                                                 <div class="col-md-6 col-sm-12">
-                                                    <li><strong>Nilai Tajwid : </strong> <span id="v-score-tajwid"></span></li>
-                                                    <li>Nilai Kelancaran : <span id="v-score-itqan">{{$dayta->score_itqan}}</span>
+                                                    <li><strong>Nilai Tajwid : </strong> <span
+                                                            id="v-score-tajwid"></span></li>
+                                                    <li>Nilai Kelancaran : <span
+                                                            id="v-score-itqan">{{$dayta->score_itqan}}</span>
                                                     </li>
-                                                    <li>Nilai Akhir : <span id="v-score-final">{{$dayta->score}}</span></li>
+                                                    <li>Nilai Akhir : <span id="v-score-final">{{$dayta->score}}</span>
+                                                    </li>
                                                 </div>
                                             </ul>
                                             <button type="button" id="refreshCalculate" class="btn btn-primary btn-xs">
@@ -168,7 +171,8 @@
                                             <strong>Keterangan</strong>
                                             <ul>
                                                 <li>Nilai Tajwid Diambil dari rerata nilai hukum bacaan dan makhroj</li>
-                                                <li>Nilai Akhir Diambil Dari Nilai Tajwid(30%) ditambah nilai kelancaran (70%)</li>
+                                                <li>Nilai Akhir Diambil Dari Nilai Tajwid(30%) ditambah nilai kelancaran
+                                                    (70%)</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -193,16 +197,15 @@
                                             aria-describedby="fileHelpId" accept="audio/*">
                                         <small id="fileHelpId" class="form-text text-muted">Upload File Rekaman Koreksi
                                             Disini (Tidak Wajib)</small>
-                                            <small id="fileHelpId" class="form-text text-muted">Audio hanya bisa didengarkan jika file rekaman ada
-                                            </small>
+                                        <small id="fileHelpId" class="form-text text-muted">Audio hanya bisa didengarkan
+                                            jika file rekaman ada
+                                        </small>
                                     </div>
                                     <div class="col-lg-6 col-12">
-                                        <form id="deleteForm" action="" onsubmit="confirm(Apakah Anda Yakin ??)" method="post" class="">
-                                            @csrf
-                                            <a href={{url("/correction/deleteCorrectionAudio/$dayta->id_submission")}}>
-                                                <button type="submit" form="deleteForm" class="btn btn-outline-danger mt-4">Hapus Koreksi Audio</button>
-                                            </a>
-                                        </form>
+                                        <a href={{url("/correction/deleteCorrectionAudio/$dayta->id_submission")}}>
+                                            <button type="submit" form="deleteForm"
+                                                class="btn btn-outline-danger mt-4">Hapus Koreksi Audio</button>
+                                        </a>
                                     </div>
 
                                 </div>
@@ -253,7 +256,7 @@
                             </script>
 
 
-                           
+
                             <div class="form-group col-md-6 col-sm-12">
                                 <label for="">Status</label>
                                 <select class="form-control" name="status" id="">
@@ -271,13 +274,13 @@
                             </div>
 
                             @error('correction')
-                                <div class="alert alert-primary alert-dismissible fade show col-12" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                        <span class="sr-only">Close</span>
-                                    </button>
-                                    <h5>Mohon Tambahkan Koreksi Untuk Murid</h5>
-                                </div>
+                            <div class="alert alert-primary alert-dismissible fade show col-12" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    <span class="sr-only">Close</span>
+                                </button>
+                                <h5>Mohon Tambahkan Koreksi Untuk Murid</h5>
+                            </div>
                             @enderror
 
                         </div>
