@@ -140,32 +140,48 @@ class MentorTaskController extends Controller
             'score_itqan'     => 'required',
             'score_makhroj'     => 'required',
             'status'     => 'required',
-            'correction'   => 'required'
+            'correction'   => 'required',
+            'correction_audio'   => 'required',
         ];
         $customMessages = [
-            'required' => 'Mohon Isi Kolom :attribute terlebih dahulu'
+            'required' => 'Mohon Isi :attribute terlebih dahulu'
         ];
         $this->validate($request, $rules, $customMessages);
 
-        $task_id = $request->submission_id;
+        if (!$request->hasFile('correction_audio')) {
+            $tahfidzTask = TahfidzTask::find($request->submission_id);
+            $tahfidzTask->update([
+                'score-ahkam'     => $request->score_ahkam,
+                'score-itqan'     => $request->score_itqan,
+                'score-makhroj'     => $request->score_makhroj,
+                'score'     => $request->score,
+                'status'     => $request->status,
+                'correction'     => $request->correction,
+            ]);
+            if ($tahfidzTask) {
+                //redirect dengan pesan sukses
+                return redirect("mentor/tahfidz/task/$request->submission_id")->with(['success' => 'Penilaian Berhasil Disimpan!']);
+            } else {
+                //redirect dengan pesan error
+                return redirect("mentor/tahfidz/task/$request->submission_id")->with(['error' => 'Penilaian Gagal Disimpan!']);
+            }
+        } else if ($request->hasFile('correction_audio')) {
+            $urlAPI = config('base_tahfidz_url') . "submission/upload_correction_audio.php";
+            $extension = $request->file('correction_audio')->extension();
+            $file_name = $request->submission_id.".".$extension;
+            $response = Http::attach(
+                'input_correction',
+                file_get_contents($request->correction_audio),
+                $file_name
+            )->post($urlAPI, [
+                "submission_id" => $request->submission_id
+            ]);
 
-        $tahfidzTask = TahfidzTask::findOrFail($request->submission_id);
+     
 
-        $tahfidzTask->update([
-            'score-ahkam'     => $request->score_ahkam,
-            'score-itqan'     => $request->score_itqan,
-            'score-makhroj'     => $request->score_makhroj,
-            'score'     => $request->score,
-            'status'     => $request->status,
-            'correction'     => $request->correction,
-        ]);
-
-        if ($tahfidzTask) {
-            //redirect dengan pesan sukses
-            return redirect("mentor/tahfidz/task/$request->submission_id")->with(['success' => 'Penilaian Berhasil Disimpan!']);
-        } else {
-            //redirect dengan pesan error
-            return redirect("mentor/tahfidz/task/$request->submission_id")->with(['error' => 'Penilaian Gagal Disimpan!']);
+//             Http::attach($name,$contents,$filename,$header);
+    
+            dd(($response->getBody()->getContents()));
         }
     }
 
@@ -185,16 +201,15 @@ class MentorTaskController extends Controller
         $status = false;
         if ($dayta->response_code != 1) {
             $dayta = array();
-            $status=false;
+            $status = false;
         } else {
-            $status=true;
+            $status = true;
             $dayta = $dayta->submission;
         }
         if ($status) {
             return redirect("mentor/tahfidz/task")->with(['success' => 'Setoran Berhasil Dihapus']);
-        }else{
+        } else {
             return redirect("mentor/tahfidz/task")->with(['success' => 'Setoran Gagal Dihapus']);
         }
-
     }
 }

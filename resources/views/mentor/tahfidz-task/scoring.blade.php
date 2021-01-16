@@ -16,6 +16,7 @@
             <div class="col-12 text-center text-sm-left mb-0">
                 <span class="text-uppercase page-subtitle">Manage Setoran Tahfidz</span>
                 <h3 class="page-title">Setoran Tahfidz</h3>
+                <a href="{{url('mentor/tahfidz/task')}}"><h3>Kembali/Lihat Semua Setoran</h3></a>
             </div>
         </div>
 
@@ -82,7 +83,7 @@
                 </div>
                 @endif
 
-                <form action="{{url('correction/save')}}" method="post">
+                <form action="{{url('correction/save')}}" method="post"  enctype="multipart/form-data">
                     @csrf
                     @method('POST')
                     <input type="hidden" name="submission_id" value="{{$dayta->id_submission}}">
@@ -142,6 +143,13 @@
                                     @error('score') is-invalid @enderror" id="score"
                                     value="{{old('score',$dayta->score)}}">
                                 <input type="hidden" name="score" id="score-sent">
+                            </div>
+
+                            <div class="form-group">
+                              <label for="">File Suara/Audio Koreksi</label>
+                              <input type="file" class="form-control-file" name="correction_audio" placeholder="Upload File Rekaman Koreksi Disini (Tidak Wajib)" 
+                              aria-describedby="fileHelpId" accept="audio/*">
+                              <small id="fileHelpId" class="form-text text-muted">Upload File Rekaman Koreksi Disini (Tidak Wajib)</small>
                             </div>
                             <script>
                                 $(document).ready(function() {
