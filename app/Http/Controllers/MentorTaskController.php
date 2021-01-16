@@ -215,7 +215,26 @@ class MentorTaskController extends Controller
         if ($status) {
             return redirect("mentor/tahfidz/task")->with(['success' => 'Setoran Berhasil Dihapus']);
         } else {
-            return redirect("mentor/tahfidz/task")->with(['success' => 'Setoran Gagal Dihapus']);
+            return redirect("mentor/tahfidz/task")->with(['error' => 'Setoran Gagal Dihapus']);
+        }
+    }
+
+    /**
+     * hapus setoran siswa
+     *
+     * @return void
+     */
+    public function deleteCorrectionAudio($id)
+    {
+        $urlAPI = config('base_tahfidz_url') . '/submission/delete_correction_audio.php';
+        $response = Http::asForm()->post($urlAPI, [
+            'submission_id' => $id,
+        ]);
+        $response=json_decode($response);
+        if ($response->response_code !=1) {
+            return redirect("mentor/tahfidz/task/$id")->with(['error' => "$response->info"]);
+        }else{
+            return redirect("mentor/tahfidz/task/$id")->with(['success' => "Koreksi Dengan Audio Berhasil Dihapus"]);
         }
     }
 }

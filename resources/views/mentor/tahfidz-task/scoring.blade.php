@@ -65,7 +65,7 @@
 
                 @elseif(session() -> has('error'))
 
-                <div class="alert alert-primary alert-dismissible fade show mx-2 my-2" role="alert">
+                <div class="alert alert-danger alert-dismissible fade show mx-2 my-2" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         <span class="sr-only">Close</span>
@@ -176,7 +176,7 @@
                             </div>
 
                             <div class="card border-primary col-12">
-                                <div class="card-body">
+                                <div class="card-body row">
                                     <h4 class="card-title">Koreksi Audio</h4>
                                     <div class="col-lg-12">
                                         <audio controls loop style="width: 100%;">
@@ -186,13 +186,23 @@
                                             Your browser doesnt not Support the audio Tag
                                         </audio>
                                     </div>
-                                    <div class="form-group col-lg-12 col-12">
+                                    <div class="form-group col-lg-6 col-12">
                                         <label for="">File Suara/Audio Koreksi</label>
                                         <input type="file" class="form-control-file" name="correction_audio"
                                             placeholder="Upload File Rekaman Koreksi Disini (Tidak Wajib)"
                                             aria-describedby="fileHelpId" accept="audio/*">
                                         <small id="fileHelpId" class="form-text text-muted">Upload File Rekaman Koreksi
                                             Disini (Tidak Wajib)</small>
+                                            <small id="fileHelpId" class="form-text text-muted">Audio hanya bisa didengarkan jika file rekaman ada
+                                            </small>
+                                    </div>
+                                    <div class="col-lg-6 col-12">
+                                        <form id="deleteForm" action="" onsubmit="confirm(Apakah Anda Yakin ??)" method="post" class="">
+                                            @csrf
+                                            <a href={{url("/correction/deleteCorrectionAudio/$dayta->id_submission")}}>
+                                                <button type="submit" form="deleteForm" class="btn btn-outline-danger mt-4">Hapus Koreksi Audio</button>
+                                            </a>
+                                        </form>
                                     </div>
 
                                 </div>
@@ -257,7 +267,7 @@
                                 <textarea required
                                     class="form-control ckeditor @error('correction') is-invalid @enderror"
                                     name="correction" rows="5"
-                                    placeholder="Masukkan Catatan Untuk Siswa">{{$dayta->correction,old('correction')}}</textarea>
+                                    placeholder="Masukkan Catatan Untuk Siswa">{{$dayta->correction,old('correction')}}.</textarea>
                             </div>
 
                             @error('correction')

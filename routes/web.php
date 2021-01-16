@@ -101,6 +101,7 @@ Route::group(['middleware’' => ['auth:mentor']], function () {
     Route::post('/mentor/tahfidz/quiz/update','TahfidzQuizController@update');
 
     Route::post('/correction/save', 'MentorTaskController@updateTask')->middleware('auth:mentor');
+    Route::get('/correction/deleteCorrectionAudio/{id}', 'MentorTaskController@deleteCorrectionAudio')->middleware('auth:mentor');
 });
     
     
