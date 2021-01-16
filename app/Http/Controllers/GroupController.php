@@ -47,6 +47,7 @@ class GroupController extends Controller
                 'name'     => $request->name,
                 'id_mentor'     => $request->mentor,
                 'category'     => $request->category,
+                'announcement'     => "Belum Ada Pengumuman",
             ]);
 
             if ($inputDeyta) {

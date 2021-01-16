@@ -49,7 +49,7 @@
                                     Login Sebagai Ustadz/Ustadzah
                                 </button>
                             </a>
-                            <a href="{{url('login/admin')}}">
+                            <a href="{{url('login/')}}">
                                 <button class="btn btn-block btn-icon btn-icon-google mb-3">
                                     Login Sebagai Admin
                                 </button>

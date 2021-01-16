@@ -82,7 +82,13 @@
                     <ul class="mt-3">
                         <li>Pilih Kelompok Yang Ingin Dinilai Menggunakan Pilihan Diatas</li>
                         <li>Klik Tombol <strong>Input/Lihat</strong> Untuk Menginput atau Melihat Nilai Siswa</li>
-                        <li>Untuk Mengupdate Pengumuman ke Kelompok , Masukkan dan simpan pengumuman pada kolom dibawah</li>
+                        <li>Untuk Mengupdate Pengumuman ke Kelompok , Masukkan dan simpan pengumuman pada kolom dibawah
+                        </li>
+                    </ul>
+                    <h5>Komposisi Nilai</h5>
+                    <ul>
+                        <li>Nilai Tajwid = Nilai Hukum Bacaan + Nilai Makhroj / 2</li>
+                        <li>Nilai Akhir = 70% Nilai Kelancaran + 30% Nilai Tajwid</li>
                     </ul>
                 </div>
             </div>
@@ -145,15 +151,16 @@
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Status</th>
-                                    <th scope="col">Input/Ubah Nilai</th>
+                                    <th scope="col">Edit</th>
                                     <th scope="col">Nama Siswa</th>
                                     <th scope="col">NISN</th>
                                     <th scope="col">Asal Kelas</th>
                                     <th scope="col">Mulai</th>
                                     <th scope="col">Selesai</th>
+                                    <th scope="col">Hukum Bacaan</th>
+                                    <th scope="col">Makhorijul Huruf</th>
                                     <th scope="col">Tajwid</th>
                                     <th scope="col">Kelancaran</th>
-                                    <th scope="col">Makhorijul Huruf</th>
                                     <th scope="col">Nilai Akhir</th>
                                     <th scope="col">Tanggal Setoran</th>
                                 </tr>
@@ -165,12 +172,24 @@
                                     <td>{{$loop->index+1}}</td>
                                     <td><span class="badge badge-{{ ($data->status==0) ? 'danger' : 'success'  }}
                                         ">{{ $data->status_text }}</span></td>
+
                                     <td>
-                                        <a href="{{url("mentor/tahfidz/task/$data->id_submission")}}">
-                                            <button class="btn btn-primary btn-border btn-xs btn-round">
-                                                Input/Lihat Penilaian
-                                            </button>
-                                        </a>
+                                        <div class="form-button-action">
+                                            <a href="{{url("mentor/tahfidz/task/$data->id_submission")}}"><button
+                                                    type="button" data-toggle="tooltip" title=""
+                                                    class="btn btn-link btn-primary btn-lg"
+                                                    data-original-title="Edit Nilai">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                            </a>
+                                            <form action="{{url("tahfidz/task/$data->id_submission/delete")}}"
+                                                onsubmit="return confirm('Anda Yakin Ingin Menghapus Setoran Ini ?');">
+                                                @csrf
+                                                <button type="submit"  title='' class="btn btn-link btn-danger" data-original-title="Remove">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </td>
                                     <td>{{ $data->student_name }}</td>
                                     {{-- <td>
@@ -188,9 +207,27 @@
                     <td>
                         {{ $data->end}}
                     </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    @php
+                    $scoreAhkam = $data->score_ahkam;
+                    $scoreMakhroj = $data->score_makhroj;
+                    $scoreItqan = $data->score_itqan;
+                    if ($scoreAhkam == null || $scoreAhkam == "") {
+                    $scoreAhkam=0;
+                    }
+                    if ($scoreItqan == null || $scoreItqan == "") {
+                    $scoreItqan=0;
+                    }
+                    if ($scoreMakhroj == null || $scoreMakhroj == "") {
+                    $scoreMakhroj=0;
+                    }
+
+                    $scoreTajwid=($scoreAhkam+$scoreMakhroj)/2;
+
+                    @endphp
+                    <td>{{$scoreAhkam}}</td>
+                    <td>{{$scoreMakhroj}}</td>
+                    <td>{{$scoreTajwid}}</td>
+                    <td>{{$scoreItqan}}</td>
                     <td>{{$data->score}}</td>
                     <td>{{$data->created_at}}</td>
 

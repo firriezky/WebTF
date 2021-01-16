@@ -49,17 +49,17 @@
                                 <label for="">Email</label>
                                 <input type="email" value="{{ old('email') }}"
                                     class="form-control @error('email') is-invalid @enderror" name="email" id=""
-                                    placeholder="Email Siswa">
+                                    placeholder="Email Guru">
                                 <small class="form-text text-muted">Email Guru ,
-                                    Isi dengan nama-siswa@tahfidz.com jika siswa tidak memiliki email
+                                    Isi dengan nama-guru@tahfidz.com jika guru tidak memiliki email
                                 </small>
                             </div>
                             <div class="form-group">
-                                <label for="">Kontak Siswa</label>
+                                <label for="">Kontak Guru</label>
                                 <input type="text" value="{{ old('contact') }}"
                                     class="form-control @error('contact') is-invalid @enderror"
                                     class="form-control @error('contact') is-invalid @enderror" name="contact" id=""
-                                    placeholder="Kontak Siswa">
+                                    placeholder="Kontak Guru">
                                 <small class="form-text text-muted">
                                     <strong>Nomor Telepon Ini Digunakan Untuk Login Guru</strong>
                                 </small>
@@ -166,7 +166,7 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalCenterTitle">Reset
-                                                        Password Siswa</h5>
+                                                        Password Guru</h5>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
@@ -206,7 +206,7 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalCenterTitle">Update
-                                                        Data Siswa</h5>
+                                                        Data Guru</h5>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
@@ -223,7 +223,7 @@
                                                             <label for="">Nama Pembimbing</label>
                                                             <input type="text" value="{{ $data->name, old('name') }}"
                                                                 class="form-control @error('name') is-invalid @enderror"
-                                                                name="name" id="" placeholder="Nama Siswa">
+                                                                name="name" id="" placeholder="Nama Guru">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="">Jenis Kelamin</label>
@@ -245,9 +245,9 @@
                                                             <label for="">Email</label>
                                                             <input type="email" value="{{$data->email, old('email') }}"
                                                                 class="form-control @error('email') is-invalid @enderror"
-                                                                name="email" id="" placeholder="Email Siswa">
-                                                            <small class="form-text text-muted">Email Siswa ,
-                                                                Isi dengan nama-siswa@tahfidz.com jika siswa tidak
+                                                                name="email" id="" placeholder="Email Guru">
+                                                            <small class="form-text text-muted">Email Guru ,
+                                                                Isi dengan nama-guru@tahfidz.com jika Guru tidak
                                                                 memiliki email
                                                             </small>
                                                         </div>
@@ -257,15 +257,15 @@
                                                             <input type="text"
                                                                 value="{{ $data->contact,old('contact') }}"
                                                                 class="form-control @error('contact') is-invalid @enderror"
-                                                                name="contact" id="" placeholder="Kontak Siswa">
+                                                                name="contact" id="" placeholder="Kontak Guru">
                                                         </div>
-                                                        <p>Password Default Siswa : Bismillah atau bismillah</p>
+                                                        <p>Password Default Guru : Wahdah Islamiyah</p>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-dismiss="modal">Close</button>
                                                             <button type="submit" class="btn btn-primary">Update
                                                                 Data
-                                                                Siswa</button>
+                                                                Guru</button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -314,7 +314,7 @@
                                     </tr>
                                     @empty
                                     <div class="alert alert-danger">
-                                        Data Siswa belum Tersedia.
+                                        Data Guru belum Tersedia.
                                     </div>
                                     @endforelse
                                 </tbody>

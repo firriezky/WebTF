@@ -23,12 +23,12 @@ class MentorTaskController extends Controller
         $group = null;
 
         $response =
-            Http::get('http://tahfidz.sditwahdahbtg.com/submission/api_get_submission_master.php', [
+            Http::get(config('base_tahfidz_url') . '/submission/api_get_submission_master.php', [
                 'mentor_id' => Auth::guard('mentor')->user()->id,
             ]);
 
         $responseGroup =
-            Http::get('http://tahfidz.sditwahdahbtg.com/group/grouping_mentor_info.php', [
+            Http::get(config('base_tahfidz_url') . '/group/grouping_mentor_info.php', [
                 'mentor_id' => Auth::guard('mentor')->user()->id,
             ]);
 
@@ -45,18 +45,17 @@ class MentorTaskController extends Controller
         } else {
             $dayta = $dayta->submission;
         }
-
-        return view('mentor.tahfidz-task.manage')->with(compact('groupData', 'dayta','groupName'));
+        return view('mentor.tahfidz-task.manage')->with(compact('groupData', 'dayta', 'groupName'));
     }
 
-     /**
+    /**
      * score selected task from table in order for scoring
      *
      * @return void
      */
     public function edit($id)  //view
     {
-        $data = Http::get('http://tahfidz.sditwahdahbtg.com/submission/api_get_submission_master.php', [
+        $data = Http::get(config('base_tahfidz_url') . '/submission/api_get_submission_master.php', [
             'id' => $id,
         ]);
         $dayta = json_decode($data);
@@ -69,7 +68,7 @@ class MentorTaskController extends Controller
         return view('mentor.tahfidz-task.scoring')->with(compact('dayta'));
     }
 
-      /**
+    /**
      * show tahfidz task data based on group
      *
      * @return void
@@ -83,11 +82,11 @@ class MentorTaskController extends Controller
         $className = null;
 
         // list of submission that belongs to student teached by this teacher
-        $response = Http::get('http://tahfidz.sditwahdahbtg.com/submission/api_get_submission_master.php', [
+        $response = Http::get(config('base_tahfidz_url') . '/submission/api_get_submission_master.php', [
             'group_id' => $id,
         ]);
         // list group that belongs to this teacher
-        $responseGroup = Http::get('http://tahfidz.sditwahdahbtg.com/group/grouping_mentor_info.php', [
+        $responseGroup = Http::get(config('base_tahfidz_url') . 'group/grouping_mentor_info.php', [
             'mentor_id' => $mentor_id,
         ]);
 
@@ -111,18 +110,20 @@ class MentorTaskController extends Controller
         } else {
             $dayta = $dayta->submission;
         }
-        
-        $isGroup=true;
-        $group_id=$modelGroup->id;
+
+        $isGroup = true;
+        $group_id = $modelGroup->id;
         return view('mentor.tahfidz-task.manage')->with(
             compact(
-            'groupData',
-             'dayta',
-             'groupName',
-             'modelGroup',
-             'announcement',
-             'isGroup',
-             'group_id'));
+                'groupData',
+                'dayta',
+                'groupName',
+                'modelGroup',
+                'announcement',
+                'isGroup',
+                'group_id'
+            )
+        );
     }
 
     /**
@@ -148,7 +149,7 @@ class MentorTaskController extends Controller
 
         $task_id = $request->submission_id;
 
-        $tahfidzTask= TahfidzTask::findOrFail($request->submission_id);
+        $tahfidzTask = TahfidzTask::findOrFail($request->submission_id);
 
         $tahfidzTask->update([
             'score-ahkam'     => $request->score_ahkam,
@@ -161,14 +162,33 @@ class MentorTaskController extends Controller
 
         if ($tahfidzTask) {
             //redirect dengan pesan sukses
-            return redirect("mentor/task/$request->submission_id")->with(['success' => 'Penilaian Berhasil Disimpan!']);
+            return redirect("mentor/tahfidz/task/$request->submission_id")->with(['success' => 'Penilaian Berhasil Disimpan!']);
         } else {
             //redirect dengan pesan error
-            return redirect("mentor/task/$request->submission_id")->with(['error' => 'Penilaian Gagal Disimpan!']);
+            return redirect("mentor/tahfidz/task/$request->submission_id")->with(['error' => 'Penilaian Gagal Disimpan!']);
         }
     }
-    
 
 
-
+    /**
+     * update data setoran
+     *
+     * @return void
+     */
+    public function delete($id)
+    {
+        // list of submission that belongs to student teached by this teacher
+        $response = Http::get(config('base_tahfidz_url') . '/submission/delete_submission.php', [
+            'submission_id' => $id,
+        ]);
+        $dayta = json_decode($response);
+        dd($dayta);
+        $status = false;
+        if ($dayta->response_code != 1) {
+            $dayta = array();
+        } else {
+            $dayta = $dayta->submission;
+        }
+        return redirect("mentor/tahfidz/task")->with(compact('dayta'));
+    }
 }

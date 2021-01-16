@@ -83,6 +83,7 @@ Route::get('/student/group', 'HomeStudentController@view_group')->middleware('au
 
 Route::group(['middleware’' => ['auth:mentor']], function () {
     Route::get('/mentor/tahfidz/task', 'MentorTaskController@manage')->middleware('auth:mentor');
+    Route::get('tahfidz/task/{id}/delete', 'MentorTaskController@delete')->middleware('auth:mentor');
     Route::get('/mentor/tahfidz/task/{task}', 'MentorTaskController@edit')->middleware('auth:mentor');
     Route::get('/mentor/tahfidz/task/group/{group}', 'MentorTaskController@taskByGroup')->middleware('auth:mentor');
     Route::get('/mentor/group', 'HomeStudentController@view_group')->middleware('auth:mentor');

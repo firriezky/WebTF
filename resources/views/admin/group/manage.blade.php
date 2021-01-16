@@ -107,114 +107,112 @@
                             <span class="sr-only">Close</span>
                         </button>
                         <strong>{{Session::get( 'error' )}}</strong> You should check in on some of those fields below.
-
-                        @endif
-
-                        @if ($errors->any())
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                <span class="sr-only">Close</span>
-                            </button>
-
-                            {!! implode('', $errors->all('<div>:message</div>')) !!}
-                        </div>
                     </div>
                     @endif
 
+                    @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+
+                        {!! implode('', $errors->all('<div>:message</div>')) !!}
+                    </div>
+                </div>
+                @endif
 
 
 
 
-                    <div class="card-body">
-                        <button class="btn btn-primary btn-border btn-round mb-3" data-toggle="modal"
-                            data-target="#modalCreateGroup">
-                            Buat Kelompok Baru</button>
-                        <div class="table-responsive">
+
+                <div class="card-body">
+                    <button class="btn btn-primary btn-border btn-round mb-3" data-toggle="modal"
+                        data-target="#modalCreateGroup">
+                        Buat Kelompok Baru</button>
+                    <div class="table-responsive">
 
 
-                            <table id="basic-datatables" class="table table-bordered table-responsive">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Nama Kelompok/Kelas</th>
-                                        <th scope="col">Pembimbing</th>
-                                        <th scope="col">Kontak Pembimbing</th>
-                                        <th scope="col">Edit</th>
-                                        <th scope="col">Hapus</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($dayta as $data)
+                        <table id="basic-datatables" class="table table-bordered table-responsive">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Nama Kelompok/Kelas</th>
+                                    <th scope="col">Pembimbing</th>
+                                    <th scope="col">Kontak Pembimbing</th>
+                                    <th scope="col">Edit</th>
+                                    <th scope="col">Hapus</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($dayta as $data)
 
 
+                                <tr>
+                                    <td>{{$loop->index+1}}</td>
+                                    <td>{{ $data->group_name }}</td>
+                                    <td>{{ $data->name }}</td>
+                                    <td>{{ $data->contact }}</td>
+                                    <td>
+                                        <a href="{{route('group.update',$data->group_id)}}">
+                                            <button type="button" title="" class="btn btn-link btn-primary btn-lg"
+                                                data-toggle="modal" data-target="#updateModal{{$loop->index+1}}"
+                                                data-original-title="Edit Task">
+                                                <i class="fa fa-edit"></i>
+                                            </button></a>
 
+                                    </td>
 
-                                    <tr>
-                                        <td>{{$loop->index+1}}</td>
-                                        <td>{{ $data->group_name }}</td>
-                                        <td>{{ $data->name }}</td>
-                                        <td>{{ $data->contact }}</td>
+                                    <form id="delete-post-form" action="{{ route('group.destroy', $data->group_id) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('DELETE')
                                         <td>
-                                            <a href="{{route('group.update',$data->group_id)}}">
-                                                <button type="button" title="" class="btn btn-link btn-primary btn-lg"
-                                                    data-toggle="modal" data-target="#updateModal{{$loop->index+1}}"
-                                                    data-original-title="Edit Task">
-                                                    <i class="fa fa-edit"></i>
-                                                </button></a>
-
+                                            <button type="submit"
+                                                onclick="return confirm('Apakah Anda Yakin ? Ini Akan Menghapus Data Kelompok')"
+                                                class="btn btn-warning btn-border btn-round mb-3" data-toggle="tooltip">
+                                                Hapus Kelompok
+                                            </button>
                                         </td>
-
-                                        <form id="delete-post-form"
-                                            action="{{ route('group.destroy', $data->group_id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <td>
-                                                <button type="submit"
-                                                    onclick="return confirm('Apakah Anda Yakin ? Ini Akan Menghapus Data Kelompok')"
-                                                    class="btn btn-warning btn-border btn-round mb-3"
-                                                    data-toggle="tooltip">
-                                                    Hapus Kelompok
-                                                </button>
-                                            </td>
-                                        </form>
+                                    </form>
 
 
 
-                                    </tr>
-                                    @empty
-                                    <div class="alert alert-danger">
-                                        Data Siswa belum Tersedia.
-                                    </div>
-                                    @endforelse
-                                </tbody>
-                            </table>
-                        </div>
+                                </tr>
+                                @empty
+                                <div class="alert alert-danger">
+                                    Data Siswa belum Tersedia.
+                                </div>
+                                @endforelse
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                {{-- {{ $blogs->links() }} --}}
-            </div>
         </div>
 
-        @endsection
+        <div class="row">
+            {{-- {{ $blogs->links() }} --}}
+        </div>
+    </div>
+</div>
 
-        @section('script')
+@endsection
 
-        <!-- SELECT2 -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
+@section('script')
+
+<!-- SELECT2 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
 
 
 
-        {{-- Toastr --}}
-        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-        <!-- Datatables -->
-        <script src="{{asset('atlantis/examples')}}/assets/js/plugin/datatables/datatables.min.js"></script>
-        <script>
-            $(document).ready(function() {
+{{-- Toastr --}}
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<!-- Datatables -->
+<script src="{{asset('atlantis/examples')}}/assets/js/plugin/datatables/datatables.min.js"></script>
+<script>
+    $(document).ready(function() {
         $('#basic-datatables').DataTable({
         });
 
@@ -223,20 +221,16 @@
                 $('#counter').text($(this).val().length);
             });
     });
-        </script>
+</script>
 
-        <script>
-            //message with toastr
+<script>
+    //message with toastr
             @if(session()-> has('success'))
                 toastr.success('{{ session('success') }}', 'BERHASIL!'); 
             @elseif(session()-> has('error'))
                 toastr.error('{{ session('error') }}', 'GAGAL!'); 
             @endif
-        </script>
+</script>
 
 
-        @endsection
-
-    </div>
-</div>
-</div>
+@endsection
