@@ -128,7 +128,7 @@ Route::post('/register/student', 'Auth\RegisterController@createStudent')->name(
 
 Route::view('/admin', 'admin.home')->middleware('auth');
 Route::get('/mentor', 'MentorController@home')->middleware('auth:mentor');
-Route::view('/student', 'student.home')->middleware('auth:student');
+Route::get('/student', 'StudentController@home')->middleware('auth:student');
 
 
 Route::get('/students', 'StudentController@retrieveAll')->name('students');
