@@ -1,9 +1,11 @@
 @extends('template.template')
 
 @section('head-section')
+@include('mentor.script')
 @endsection
 
 @section('script')
+
 @endsection
 
 @section('main')
@@ -12,319 +14,263 @@
     <div class="page-inner py-5">
         <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
             <div>
-                <h2 class="text-white pb-2 fw-bold uppercase">Dashboard Admin</h2>
-                <h5 class="text-white op-7 mb-2">Welcome back, {{ Auth::user()->name }} <br>
-                    {{ Auth::user()->motto }}
+                <h2 class="text-white pb-2 fw-bold uppercase">Dashboard Admin Tahfidz</h2>
+                <h5 class="text-white op-7 mb-2">Ahlan wa Sahlan <br>
                 </h5>
             </div>
-          
+
         </div>
     </div>
 </div>
 
-<div class="row d-none">
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title">Top Products</div>
-            </div>
-            <div class="card-body pb-0">
-                <div class="d-flex">
-                    <div class="avatar">
-                        <img src="../assets/img/logoproduct.svg" alt="..." class="avatar-img rounded-circle">
+<div class="page-inner mt--5">
+    <div class="row mt-2">
+        <!-- Row Card No Padding -->
+        <div class="row col-12">
+            <div class="col-md-4">
+                <div class="card card-secondary">
+                    <div class="card-body skew-shadow">
+                        <h1>{{$myStudent}}</h1>
+                        <div class="pull-right">
+                            <h3 class="fw-bold op-8">Jumlah Siswa Tahfidz</h3>
+                        </div>
                     </div>
-                    <div class="flex-1 pt-1 ml-2">
-                        <h6 class="fw-bold mb-1">CSS</h6>
-                        <small class="text-muted">Cascading Style Sheets</small>
-                    </div>
-                    <div class="d-flex ml-auto align-items-center">
-                        <h3 class="text-info fw-bold">+$17</h3>
-                    </div>
-                </div>
-                <div class="separator-dashed"></div>
-                <div class="d-flex">
-                    <div class="avatar">
-                        <img src="../assets/img/logoproduct.svg" alt="..." class="avatar-img rounded-circle">
-                    </div>
-                    <div class="flex-1 pt-1 ml-2">
-                        <h6 class="fw-bold mb-1">J.CO Donuts</h6>
-                        <small class="text-muted">The Best Donuts</small>
-                    </div>
-                    <div class="d-flex ml-auto align-items-center">
-                        <h3 class="text-info fw-bold">+$300</h3>
-                    </div>
-                </div>
-                <div class="separator-dashed"></div>
-                <div class="d-flex">
-                    <div class="avatar">
-                        <img src="../assets/img/logoproduct3.svg" alt="..." class="avatar-img rounded-circle">
-                    </div>
-                    <div class="flex-1 pt-1 ml-2">
-                        <h6 class="fw-bold mb-1">Ready Pro</h6>
-                        <small class="text-muted">Bootstrap 4 Admin Dashboard</small>
-                    </div>
-                    <div class="d-flex ml-auto align-items-center">
-                        <h3 class="text-info fw-bold">+$350</h3>
-                    </div>
-                </div>
-                <div class="separator-dashed"></div>
-                <div class="pull-in">
-                    <canvas id="topProductsChart"></canvas>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-                <div class="card-title fw-mediumbold">Suggested People</div>
-                <div class="card-list">
-                    <div class="item-list">
-                        <div class="avatar">
-                            <img src="../assets/img/jm_denis.jpg" alt="..." class="avatar-img rounded-circle">
+            <div class="col-md-4">
+                <div class="card card-dark bg-secondary-gradient">
+                    <div class="card-body bubble-shadow">
+                        <h1>{{$myGroup}}</h1>
+                        <div class="pull-right">
+                            <h3 class="fw-bold op-8">Kelompok Tahfidz</h3>
                         </div>
-                        <div class="info-user ml-3">
-                            <div class="username">Jimmy Denis</div>
-                            <div class="status">Graphic Designer</div>
-                        </div>
-                        <button class="btn btn-icon btn-primary btn-round btn-xs">
-                            <i class="fa fa-plus"></i>
-                        </button>
                     </div>
-                    <div class="item-list">
-                        <div class="avatar">
-                            <img src="../assets/img/chadengle.jpg" alt="..." class="avatar-img rounded-circle">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-dark bg-secondary2">
+                    <div class="card-body curves-shadow">
+                        <h1>{{$mentorCount}}</h1>
+                        <div class="pull-right">
+                            <h3 class="fw-bold op-8">Jumlah Guru</h3>
                         </div>
-                        <div class="info-user ml-3">
-                            <div class="username">Chad</div>
-                            <div class="status">CEO Zeleaf</div>
-                        </div>
-                        <button class="btn btn-icon btn-primary btn-round btn-xs">
-                            <i class="fa fa-plus"></i>
-                        </button>
-                    </div>
-                    <div class="item-list">
-                        <div class="avatar">
-                            <img src="../assets/img/talha.jpg" alt="..." class="avatar-img rounded-circle">
-                        </div>
-                        <div class="info-user ml-3">
-                            <div class="username">Talha</div>
-                            <div class="status">Front End Designer</div>
-                        </div>
-                        <button class="btn btn-icon btn-primary btn-round btn-xs">
-                            <i class="fa fa-plus"></i>
-                        </button>
-                    </div>
-                    <div class="item-list">
-                        <div class="avatar">
-                            <img src="../assets/img/mlane.jpg" alt="..." class="avatar-img rounded-circle">
-                        </div>
-                        <div class="info-user ml-3">
-                            <div class="username">John Doe</div>
-                            <div class="status">Back End Developer</div>
-                        </div>
-                        <button class="btn btn-icon btn-primary btn-round btn-xs">
-                            <i class="fa fa-plus"></i>
-                        </button>
-                    </div>
-                    <div class="item-list">
-                        <div class="avatar">
-                            <img src="../assets/img/talha.jpg" alt="..." class="avatar-img rounded-circle">
-                        </div>
-                        <div class="info-user ml-3">
-                            <div class="username">Talha</div>
-                            <div class="status">Front End Designer</div>
-                        </div>
-                        <button class="btn btn-icon btn-primary btn-round btn-xs">
-                            <i class="fa fa-plus"></i>
-                        </button>
-                    </div>
-                    <div class="item-list">
-                        <div class="avatar">
-                            <img src="../assets/img/jm_denis.jpg" alt="..." class="avatar-img rounded-circle">
-                        </div>
-                        <div class="info-user ml-3">
-                            <div class="username">Jimmy Denis</div>
-                            <div class="status">Graphic Designer</div>
-                        </div>
-                        <button class="btn btn-icon btn-primary btn-round btn-xs">
-                            <i class="fa fa-plus"></i>
-                        </button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card card-primary bg-primary-gradient">
-            <div class="card-body">
-                <h4 class="mt-3 b-b1 pb-2 mb-4 fw-bold">Active user right now</h4>
-                <h1 class="mb-4 fw-bold">17</h1>
-                <h4 class="mt-3 b-b1 pb-2 mb-5 fw-bold">Page view per minutes</h4>
-                <div id="activeUsersChart"></div>
-                <h4 class="mt-5 pb-3 mb-0 fw-bold">Top active pages</h4>
-                <ul class="list-unstyled">
-                    <li class="d-flex justify-content-between pb-1 pt-1"><small>/product/readypro/index.html</small>
-                        <span>7</span>
-                    </li>
-                    <li class="d-flex justify-content-between pb-1 pt-1"><small>/product/atlantis/demo.html</small>
-                        <span>10</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row d-none">
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title">Feed Activity</div>
-            </div>
-            <div class="card-body">
-                <ol class="activity-feed">
-                    <li class="feed-item feed-item-secondary">
-                        <time class="date" datetime="9-25">Sep 25</time>
-                        <span class="text">Responded to need <a href="#">"Volunteer opportunity"</a></span>
-                    </li>
-                    <li class="feed-item feed-item-success">
-                        <time class="date" datetime="9-24">Sep 24</time>
-                        <span class="text">Added an interest <a href="#">"Volunteer Activities"</a></span>
-                    </li>
-                    <li class="feed-item feed-item-info">
-                        <time class="date" datetime="9-23">Sep 23</time>
-                        <span class="text">Joined the group <a href="single-group.php">"Boardsmanship
-                                Forum"</a></span>
-                    </li>
-                    <li class="feed-item feed-item-warning">
-                        <time class="date" datetime="9-21">Sep 21</time>
-                        <span class="text">Responded to need <a href="#">"In-Kind Opportunity"</a></span>
-                    </li>
-                    <li class="feed-item feed-item-danger">
-                        <time class="date" datetime="9-18">Sep 18</time>
-                        <span class="text">Created need <a href="#">"Volunteer Opportunity"</a></span>
-                    </li>
-                    <li class="feed-item">
-                        <time class="date" datetime="9-17">Sep 17</time>
-                        <span class="text">Attending the event <a href="single-event.php">"Some New
-                                Event"</a></span>
-                    </li>
-                </ol>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="card full-height">
-            <div class="card-header">
-                <div class="card-head-row">
-                    <div class="card-title">Support Tickets</div>
-                    <div class="card-tools">
-                        <ul class="nav nav-pills nav-secondary nav-pills-no-bd nav-sm" id="pills-tab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link" id="pills-today" data-toggle="pill" href="#pills-today" role="tab"
-                                    aria-selected="true">Today</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" id="pills-week" data-toggle="pill" href="#pills-week"
-                                    role="tab" aria-selected="false">Week</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="pills-month" data-toggle="pill" href="#pills-month" role="tab"
-                                    aria-selected="false">Month</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="d-flex">
-                    <div class="avatar avatar-online">
-                        <span class="avatar-title rounded-circle border border-white bg-info">J</span>
-                    </div>
-                    <div class="flex-1 ml-3 pt-1">
-                        <h6 class="text-uppercase fw-bold mb-1">Joko Subianto <span
-                                class="text-warning pl-3">pending</span></h6>
-                        <span class="text-muted">I am facing some trouble with my viewport. When i start my</span>
-                    </div>
-                    <div class="float-right pt-1">
-                        <small class="text-muted">8:40 PM</small>
-                    </div>
-                </div>
-                <div class="separator-dashed"></div>
-                <div class="d-flex">
-                    <div class="avatar avatar-offline">
-                        <span class="avatar-title rounded-circle border border-white bg-secondary">P</span>
-                    </div>
-                    <div class="flex-1 ml-3 pt-1">
-                        <h6 class="text-uppercase fw-bold mb-1">Prabowo Widodo <span
-                                class="text-success pl-3">open</span></h6>
-                        <span class="text-muted">I have some query regarding the license issue.</span>
-                    </div>
-                    <div class="float-right pt-1">
-                        <small class="text-muted">1 Day Ago</small>
-                    </div>
-                </div>
-                <div class="separator-dashed"></div>
-                <div class="d-flex">
-                    <div class="avatar avatar-away">
-                        <span class="avatar-title rounded-circle border border-white bg-danger">L</span>
-                    </div>
-                    <div class="flex-1 ml-3 pt-1">
-                        <h6 class="text-uppercase fw-bold mb-1">Lee Chong Wei <span
-                                class="text-muted pl-3">closed</span></h6>
-                        <span class="text-muted">Is there any update plan for RTL version near future?</span>
-                    </div>
-                    <div class="float-right pt-1">
-                        <small class="text-muted">2 Days Ago</small>
-                    </div>
-                </div>
-                <div class="separator-dashed"></div>
-                <div class="d-flex">
-                    <div class="avatar avatar-offline">
-                        <span class="avatar-title rounded-circle border border-white bg-secondary">P</span>
-                    </div>
-                    <div class="flex-1 ml-3 pt-1">
-                        <h6 class="text-uppercase fw-bold mb-1">Peter Parker <span class="text-success pl-3">open</span>
-                        </h6>
-                        <span class="text-muted">I have some query regarding the license issue.</span>
-                    </div>
-                    <div class="float-right pt-1">
-                        <small class="text-muted">2 Day Ago</small>
-                    </div>
-                </div>
-                <div class="separator-dashed"></div>
-                <div class="d-flex">
-                    <div class="avatar avatar-away">
-                        <span class="avatar-title rounded-circle border border-white bg-danger">L</span>
-                    </div>
-                    <div class="flex-1 ml-3 pt-1">
-                        <h6 class="text-uppercase fw-bold mb-1">Logan Paul <span class="text-muted pl-3">closed</span>
-                        </h6>
-                        <span class="text-muted">Is there any update plan for RTL version near future?</span>
-                    </div>
-                    <div class="float-right pt-1">
-                        <small class="text-muted">2 Days Ago</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        <div class="row mt--2">
 
 
-@if (session()->has('success'))
-<script>
-    toastr.success('{{ session('
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-chart-pie text-warning"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Setoran Hafalan Masuk</p>
+                                    <h4 class="card-title">{{$allTahfidzTask}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-check text-success"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Setoran Sudah Dinilai</p>
+                                    <h4 class="card-title">{{$tahfidzTask1}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-error text-danger"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Setoran Belum Dinilai</p>
+                                    <h4 class="card-title">{{$tahfidzTask0}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-round text-primary"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Setoran Belum Dikoreksi</p>
+                                    <h4 class="card-title">{{$tahfidzTask3}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-12">
+                <h1>Akses Menu</h1>
+            </div>
+            <div class="col-md-6">
+                <div class="card card-info card-annoucement card-round">
+                    <div class="card-body text-center">
+                        <div class="card-opening">Manage Siswa</div>
+                        <div class="card-desc">
+                            Klik Menu Ini Untuk Melihat, dan Mengedit Data Siswa
+                        </div>
+                        <div class="card-detail">
+                            <a href="{{url('admin/student/manage')}}">
+                                <div class="btn btn-light btn-rounded">Manage Siswa</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card card-info card-annoucement card-round">
+                    <div class="card-body text-center">
+                        <div class="card-opening">Manage Kelompok</div>
+                        <div class="card-desc">
+                            Klik Menu Ini Untuk Melihat dan Mengedit Data Kelompok
+                        </div>
+                        <div class="card-detail">
+                            <a href="{{url('admin/group/manage')}}">
+                                <div class="btn btn-light btn-rounded">Manage Kelompok</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xs-6">
+                <div class="card card-info card-annoucement card-round">
+                    <div class="card-body text-center">
+                        <div class="card-opening">Manage Data Guru</div>
+                        <div class="card-desc">
+                            Klik Menu Ini Untuk Melihat dan Mengedit Data Guru/Pembimbing
+                        </div>
+                        <div class="card-detail">
+                            <a href="{{url('mentor/profile')}}">
+                                <div class="btn btn-light btn-rounded">Edit Data Guru</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xs-6">
+                <div class="card card-info card-annoucement card-round">
+                    <div class="card-body text-center">
+                        <div class="card-opening">Lihat Setoran Siswa</div>
+                        <div class="card-desc">
+                            Klik Menu Ini Untuk Melihat dan Mendengarkan Setoran Siswa
+                        </div>
+                        <div class="card-detail">
+                            <a href="{{url('admin/task/manage')}}">
+                                <div class="btn btn-light btn-rounded">Manage Setoran Siswa</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card full-height">
+                    <div class="card-header">
+                        <div class="card-title">Aktivitas Terbaru Dari Kelompok Anda</div>
+                        <a href="{{url('mentor/tahfidz/task/')}}">Untuk Melihat Semua Setoran Terbaru Klik Disini</a>
+                        </h4>
+                        <br><br>
+                    </div>
+                    <div class="card-body">
+                        <ol class="activity-feed">
+                            <h4 data-aos="zoom-out">
+                                @forelse ($recent as $item)
+                                <li data-aos="zoom-out" class="feed-item 
+                        @if ($item->id_submission%3==0)
+                        feed-item-success
+                        @endif
+                        @if ($item->id_submission%4==0)
+                        feed-item-secondary
+                        @endif
+                        @if ($item->id_submission%5==0)
+                        feed-item-warning
+                        @endif
+                        @if ($item->id_submission%2==0)
+                        feed-item-danger
+                        @endif
+                        ">
+                                    <time class="date" datetime="9-25">{{$item->created_at}}</time>
+                                    <span class="text">{{$item->student_name}} Menyetorkan <a
+                                            href="{{url("mentor/tahfidz/task/$item->id_submission")}}">"{{$item->start." ".$item->end}}"</a></span><br>
+                                    <div class="badge 
+                            @if ($item->status==0)
+                            badge-warning
+                            @endif
+                            @if ($item->status==1)
+                            badge-success
+                            @endif
+                            ">{{$item->status_text}}</div><br>
+                                </li>
+
+                                @empty
+                                <h2>Belum Ada Aktivitas Dari Siswa</h2>
+                                @endforelse
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (session()->has('success'))
+    <script>
+        toastr.success('{{ session('
                         success ') }}', ' {{ Session::get('success')}}');
 
-</script>
-@elseif(session()-> has('error'))
-<script>
-    toastr.error('{{ session('
+    </script>
+    @elseif(session()-> has('error'))
+    <script>
+        toastr.error('{{ session('
                         error ') }}', ' {{ Session::get('error')}}');
 
-</script>
+    </script>
 
-@endif
+    @endif
 
-@endsection
+    @endsection
