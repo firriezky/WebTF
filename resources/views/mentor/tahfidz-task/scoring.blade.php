@@ -21,6 +21,56 @@
                 </a>
             </div>
         </div>
+        @if(session() -> has('success'))
+        <div class="alert alert-primary alert-dismissible fade show mx-2 my-2" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+            </button>
+
+            <script>
+                var notify = $.notify('<strong>Saving</strong> Do not close this page...', { allow_dismiss: false });
+                    notify.update({ type: 'success', '<strong>Success</strong> Your page has been saved!' });
+            </script>
+
+            <strong>{{Session::get( 'success' )}}</strong>
+        </div>
+
+        @elseif(session() -> has('error'))
+
+        <div class="alert alert-danger alert-dismissible fade show mx-2 my-2" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+            </button>
+            <strong>{{Session::get( 'error' )}}</strong>
+        </div>
+        @endif
+
+        @error('score')
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          Score Akhir Masih Kosong
+          <strong>Silakan Klik Hitung Nilai Terlebih Dahulu</strong> 
+        </div>
+        
+        <script>
+          $(".alert").alert();
+        </script>
+        @enderror
+
+        @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+            </button>
+
+            {!! implode('', $errors->all('<div>:message</div>')) !!}
+        </div>
+        @endif
 
     </div>
 
@@ -47,43 +97,8 @@
         <div class="col-md-12">
 
             <div class="card border-0 shadow rounded">
-                @if(session() -> has('success'))
-                <div class="alert alert-primary alert-dismissible fade show mx-2 my-2" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-
-                    <script>
-                        var notify = $.notify('<strong>Saving</strong> Do not close this page...', { allow_dismiss: false });
-                            notify.update({ type: 'success', '<strong>Success</strong> Your page has been saved!' });
-                    </script>
-
-                    <strong>{{Session::get( 'success' )}}</strong>
-                </div>
-
-
-                @elseif(session() -> has('error'))
-
-                <div class="alert alert-danger alert-dismissible fade show mx-2 my-2" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                    <strong>{{Session::get( 'error' )}}</strong>
-                </div>
-                @endif
-
-                @if ($errors->any())
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-
-                    {!! implode('', $errors->all('<div>:message</div>')) !!}
-                </div>
-                @endif
+             
+   
 
                 <form action="{{url('correction/save')}}" method="post" enctype="multipart/form-data">
                     @csrf
@@ -135,15 +150,15 @@
                                             <input required type="number" required min="0" max="100"
                                                 name="score_makhroj"
                                                 class="form-control @error('score_makhroj') is-invalid @enderror"
-                                                id="score-makhroj" placeholder="Nilai Makhroj" " value="
-                                                {{old('score_makhroj',$dayta->score_makhroj)}}">
+                                                id="score-makhroj" placeholder="Nilai Makhroj" " 
+                                                value="{{old('score_makhroj',$dayta->score_makhroj)}}">
                                         </div>
                                         <div class="form-group col-md-6 col-sm-12">
                                             <label>Nilai Kelancaran Hafalan</label>
                                             <input type="number" required min="0" max="100" name="score_itqan"
                                                 class="form-control @error('score_itqan') is-invalid @enderror"
-                                                id="score-itqan" placeholder="Nilai Kelancaran"" value="
-                                                {{old('score_itqan',$dayta->score_itqan)}}">
+                                                id="score-itqan" placeholder="Nilai Kelancaran"" 
+                                                value="{{old('score_itqan',$dayta->score_itqan)}}">
                                         </div>
 
                                         <div class="form-group col-md-6 col-sm-12">
@@ -151,7 +166,7 @@
                                             <input type="text" required disabled class="form-control class="
                                                 form-control @error('score') is-invalid @enderror" id="score"
                                                 value="{{old('score',$dayta->score)}}">
-                                            <input type="hidden" name="score" id="score-sent">
+                                            <input type="hidden" name="score" id="score-sent"  value="{{old('score',$dayta->score)}}">
                                         </div>
                                         <div class="col-12">
                                             <strong>Pembagian Nilai : </strong>

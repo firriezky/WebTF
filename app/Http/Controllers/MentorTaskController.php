@@ -76,6 +76,7 @@ class MentorTaskController extends Controller
      */
     public function edit($id)  //view
     {
+
         $data = Http::get(config('base_tahfidz_url') . '/submission/api_get_submission_master.php', [
             'id' => $id,
         ]);
@@ -130,6 +131,7 @@ class MentorTaskController extends Controller
         } else {
             $dayta = $dayta->submission;
         }
+
 
         $isGroup = true;
         $group_id = $modelGroup->id;
@@ -202,9 +204,18 @@ class MentorTaskController extends Controller
                 $dayta = array();
                 $status = false;
             } else {
+                $tahfidzTask = TahfidzTask::findOrFail($request->submission_id);
+                $tahfidzTask->update([
+                    'score_ahkam'     => $request->score_ahkam,
+                    'score_itqan'     => $request->score_itqan,
+                    'score_makhroj'     => $request->score_makhroj,
+                    'score'     => $request->score,
+                    'status'     => $request->status,
+                    'correction'     => $request->correction,
+                ]);
                 $status = true;
             }
-            if ($status) {
+            if ($status && $tahfidzTask) {
                 return redirect("mentor/tahfidz/task/$request->submission_id")->with(['success' => 'Penilaian Berhasil Disimpan!']);
             } else {
                 return redirect("mentor/tahfidz/task/$request->submission_id")->with(['error' => 'Penilaian Gagal Disimpan!']);
