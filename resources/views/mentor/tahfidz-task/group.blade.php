@@ -13,46 +13,12 @@
 
         <div class="page-header row no-gutters">
             <div class="col-12 text-center text-sm-left mb-0">
-                <span class="text-uppercase page-subtitle">Manage Setoran Tahfidz</span>
-                <h3 class="page-title">Setoran Tahfidz {{$groupName}}</h3>
+                <span class="text-uppercase page-subtitle">Daftar Siswa Tahfidz Yang Anda Asuh</span>
+                <h3 class="page-title">Siswa Tahfidz Anda</h3>
             </div>
         </div>
 
     </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card border-0 shadow rounded">
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="">Filter Kelas</label>
-                        <select class="form-control" onchange="location = this.value">
-                            <option value="{{url('/mentor/tahfidz/task')}}">Pilih Kelompok</option>
-                            <option value="{{url('/mentor/tahfidz/task')}}"></a>Semua Siswa Yang Saya Bimbing</option>
-                            @forelse ($groupData as $item)
-                            <option value="{{url("/mentor/tahfidz/task/group/$item->group_id")}}">{{$item->group_name}}</option>
-                            @empty
-
-                            @endforelse
-                        </select>
-                    </div>
-
-                    <div>
-
-                    </div>
-                    <ul class="mt-3">
-                        <li>Pilih Kelompok Yang Ingin Dinilai Menggunakan Pilihan Diatas</li>
-                        <li>Klik Tombol <strong>Input/Lihat</strong> Untuk Menginput atau Melihat Nilai Siswa</li>
-                        <li>Untuk Mengimport Data Setoran, Silakan Klik Tombol
-                            <strong>Sembunyikan Kolom Untuk Import</strong> terlebih dahulu jika ingin menyembunyikan
-                            Kolom
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <div class="row">
         <div class="col-md-12">
@@ -99,26 +65,7 @@
 
 
                 <div class="card-body">
-                    <h2 class="card-title"><strong>Daftar Hafalan dari Kelompok {{$groupName}}</strong></h2>
-                    <div class="d-none">
-                        <label class="">Gunakan Tombol dibawah untuk menyembunyikan/menampilkan kolom tertentu</label>
-                        <div class=" container row">
-                            <button type="button" data-column="1"
-                                class="v-filter btn btn-outline-primary btn-xs col-2">Kolom 1</button>
-                            <button type="button" data-column="2"
-                                class="v-filter btn btn-outline-primary btn-xs col-2">Kolom 2</button>
-                            <button type="button" data-column="3"
-                                class="v-filter btn btn-outline-primary btn-xs col-2">Kolom 3</button>
-                            <button type="button" data-column="4"
-                                class="v-filter btn btn-outline-primary btn-xs col-2">Kolom 4</button>
-                            <button type="button" data-column="5"
-                                class="v-filter btn btn-outline-primary btn-xs col-2">Kolom 5</button>
-                            <button type="button" data-column="6"
-                                class="v-filter btn btn-outline-primary btn-xs col-2">Kolom 6</button>
-                            <button type="button" data-column="7"
-                                class="v-filter btn btn-outline-primary btn-xs col-2">Kolom 7</button>
-                        </div>
-                    </div>
+                    <h2 class="card-title"><strong>Daftar Siswa</strong></h2>
                     <div class="table-responsive">
                         <table id="datatables" class="table table-bordered table-responsive">
                             <thead>
@@ -126,188 +73,101 @@
                                     <th scope="col">No</th>
                                     <th scope="col">Nama Siswa</th>
                                     <th scope="col">NISN</th>
+                                    <th scope="col">JK</th>
+                                    <th scope="col">Foto</th>
                                     <th scope="col">Asal Kelas</th>
-                                    <th scope="col">Mulai</th>
-                                    <th scope="col">Selesai</th>
-                                    <th scope="col">Tajwid</th>
-                                    <th scope="col">Kelancaran</th>
-                                    <th scope="col">Makhorijul Huruf</th>
-                                    <th scope="col">Nilai Akhir</th>
-                                    <th scope="col">Detail</th>
+                                    <th scope="col">Kelompok Tahfidz</th>
+                                    <th scope="col">Pembimbing</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @if ($dayta != null)
                                 @forelse ($dayta as $data)
                                 <tr>
-                                    <td>{{$loop->index+1}}</td>
-                                    <td>{{ $data->student_name }}</td>
-                                    {{-- <td>
-                                        <div class="avatar-sm float-left mr-2">
-                                            <img onerror="this.src='{{asset('img/img-error.jpg')}}';"
-                                    src="{{ "http://tahfidz.sditwahdahbtg.com/student/" . $data->student_photo }}"
-                                    alt="image profile" class="avatar-img rounded-circle">
-                    </div>
-                    </td> --}}
-                    <td>{{ $data->student_nisn }}</td>
-                    <td>{{ $data->group_name }}</td>
-                    <td>
-                        {{$data->start}}
-                    </td>
-                    <td>
-                        {{ $data->end}}
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>{{$data->score}}</td>
-
-                    <td> <button class="btn btn-success btn-border btn-round mb-3" data-toggle="modal"
-                            data-target="#modalInputScore{{$loop->index+1}}">
-                            Input/Lihat Penilaian
-                        </button></td>
-                    </tr>
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{ $data->name }}</td>
+                                    <td>{{ $data->nisn }}</td>
+                                    <td>{{ $data->student_gender }}</td>
+                                    <td>
+                                        <div class="profile-picture">
+                                            <div class="avatar avatar-xl">
+                                                <img onerror="this.src='{{asset('img/img-error.jpg')}}?n={{time()}}';"
+                                                    src="http://tahfidz.sditwahdahbtg.com/student/{{$data->student_photo}}?n={{time()}}"
+                                                    alt="image profile" class="avatar-img rounded-circle">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{{ $data->class }}</td>
+                                    <td>{{$data->group_name}}</td>
+                                    <td>{{$data->mentor}}</td>
 
 
-
-                    <div class="modal fade" id="modalInputScore{{$loop->index+1}}" tabindex="-1" role="dialog"
-                        aria-hidden="true">
-                        <div class="modal-dialog  modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalCenterTitle">
-                                        Nilai Hafalan Siswa</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                </tr>
+                                @empty
+                                <div class="alert alert-danger">
+                                    Anda Belum Memiliki Siswa Tahfidz.
                                 </div>
-                                <div class="modal-body">
-                                    Nama Siswa : <br>
-                                    {{$data->student_name}} <br>
-                                    Hafalan yang disetorkan :
-                                    <p>{{$data->start}} - {{$data->end}}</p>
-                                    <div class="col-lg-12">
-                                        <audio controls loop style="width: 100%;">
-                                            <source src="http://tahfidz.sditwahdahbtg.com/submission/{{$data->audio}}"
-                                                type="audio/ogg">
-                                            Your browser dose not Support the audio Tag
-                                        </audio>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-md-6 col-sm-12">
-                                            <label>Nilai Tajwid</label>
-                                            <input type="text" class="form-control" name="score-tajwid"
-                                                id="score-tajwid" placeholder="Nilai Tajwid">
-                                        </div>
-                                        <div class="form-group col-md-6 col-sm-12">
-                                            <label>Nilai Makhorijul Huruf</label>
-                                            <input type="text" class="form-control" name="score-makhroj"
-                                                id="score-makhroj" placeholder="Nilai Makhroj">
-                                        </div>
-                                        <div class="form-group col-md-6 col-sm-12">
-                                            <label>Nilai Kelancaran Hafalan</label>
-                                            <input type="text" class="form-control" name="score-itqan" id="score-itqan"
-                                                placeholder="Nilai Kelancaran">
-                                        </div>
-                                        <div class="form-group col-md-6 col-sm-12">
-                                            <label>Nilai Akhir</label>
-                                            <input type="text" disabled class="form-control" name="score" id="score"
-                                                aria-describedby="helpId" placeholder="Nilai Kelancaran">
-                                        </div>
-                                        <div class="form-group col-md-6 col-sm-12">
-                                            <label for="">Status</label>
-                                            <select class="form-control" name="status" id="">
-                                                <option value="0">Menunggu Dinilai</option>
-                                                <option value="1">Sudah Dinilai</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <label for="">Jika status diset menunggu dinilai, maka nilai tidak ditampilkan di
-                                        siswa</label>
-                                    <div class="form-group col-12">
-                                        <label for="">Catatan Untuk Siswa</label>
-                                        <textarea
-                                            class="form-control ckeditor @error('correction') is-invalid @enderror"
-                                            name="content" rows="5"
-                                            placeholder="Masukkan Catatan Untuk Siswa">{{ $data->correction,old('correction') }}</textarea>
-                                    </div>
+                                @endforelse
 
 
-                                </div>
-                            </div>
-                        </div>
+                            </tbody>
+                        </table>
+
+
+                        {{-- Next Page Link --}}
+                        {{-- {{ $dayta->links() }} --}}
+                        <br>
                     </div>
-                    @empty
-                    <div class="alert alert-danger">
-                        Data Setoran belum Tersedia.
-                    </div>
-                    @endforelse
-
-                    @else
-                    <div class="alert alert-danger">
-                        Data Setoran belum Tersedia.
-                    </div>
-                    @endif
-
-
-                    </tbody>
-                    </table>
-
-
-                    {{-- Next Page Link --}}
-                    {{-- {{ $dayta->links() }} --}}
-                    <br>
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            {{-- {{ $blogs->links() }} --}}
+        </div>
     </div>
 
-    <div class="row">
-        {{-- {{ $blogs->links() }} --}}
-    </div>
-</div>
+    @endsection
 
-@endsection
+    @section('script')
 
-@section('script')
-
-
-
-{{-- Toastr --}}
-<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <!-- Datatables -->
-<script>
-    $.calculateFinalScore = function() {
-                    var scoreItqan = $.trim($("#score-itqan").val())
-                    var scoreMakhroj = $.trim($("#score-makhroj").val())
-                    var scoreTajwid = $.trim($("#score-tajwid").val())
+    <script>
+        $(document).ready(function() {
+            var table = $('#datatables').DataTable( {
+            // dom: '<"bottom"i>rt<"top"flp><"clear">',
+            dom: 'T<"clear">lfrtip<"bottom"B>',
+            // "scrollY": "1000px",
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "bPaginate": true,
+            "lengthChange": true,
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+            });
+            $(".v-filter").click(function(){
+            var column = table.column( $(this).attr('data-column') );
+            column.visible( ! column.visible() );
+            });
+            $('a.toggle-v').on( 'click', function (e) {
+            e.preventDefault();
+            column.visible( ! column.visible() );
+        } );
+        });
+    </script>
 
-                    finalScore = (scoreItqan+scoreMakhroj+scoreTajwid)/3;
-                    $("#score").text(finalScore);
-                };
-
-                $("#score-tajwid").keyup(function() {
-                    $.calculateFinalScore();
-                });
-                $("#score-itqan").keyup(function() {
-                    $.calculateFinalScore();
-                });
-                $("#score-makhroj").keyup(function() {
-                    $.calculateFinalScore();
-                });
-</script>
-
-<script>
-    //message with toastr
+    {{-- Toastr --}}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        //message with toastr
             @if(session()-> has('success'))
                 toastr.success('{{ session('success') }}', 'BERHASIL!'); 
             @elseif(session()-> has('error'))
                 toastr.error('{{ session('error') }}', 'GAGAL!'); 
             @endif
-</script>
+    </script>
 
 
-@endsection
+    @endsection
 
 </div>
 </div>

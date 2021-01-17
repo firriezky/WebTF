@@ -7,6 +7,7 @@ use App\Models\TahfidzTask;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class MentorTaskController extends Controller
@@ -24,12 +25,12 @@ class MentorTaskController extends Controller
 
         $response =
             Http::get(config('base_tahfidz_url') . '/submission/api_get_submission_master.php', [
-                'mentor_id' => Auth::guard('mentor')->user()->id,
+                'mentor_id' => $mentor_id,
             ]);
 
         $responseGroup =
             Http::get(config('base_tahfidz_url') . '/group/grouping_mentor_info.php', [
-                'mentor_id' => Auth::guard('mentor')->user()->id,
+                'mentor_id' => $mentor_id,
             ]);
 
         $groupData = json_decode($responseGroup);
@@ -46,6 +47,26 @@ class MentorTaskController extends Controller
             $dayta = $dayta->submission;
         }
         return view('mentor.tahfidz-task.manage')->with(compact('groupData', 'dayta', 'groupName'));
+    }
+
+        /**
+     * update data show all task from all student
+     *
+     * @return void
+     */
+    public function getStudent()
+    {
+        $mentor_id =  Auth::guard('mentor')->user()->id;
+
+        $response =  DB::table('group_data_for_student')
+        ->where('mentor_id','=',$mentor_id)
+        ->get();
+
+        $dayta=$response;
+        if (empty($dayta)) {
+            $dayta = array();
+        }
+        return view('mentor.tahfidz-task.group')->with(compact('dayta'));
     }
 
     /**

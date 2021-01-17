@@ -66,6 +66,11 @@
                     </a>
                     <div class="collapse {{ Request::is('mentor/tahfidz/*') ? 'show' : '' }}" id="messages-app-nav">
                         <ul class="nav nav-collapse">
+                            <li class="{{(Request::is('mentor/tahfidz/student')) ? 'active' : ''}}">
+                                <a href="{{url('mentor/tahfidz/student')}}">
+                                    <span class="sub-item">Daftar Siswa Saya</span>
+                                </a>
+                            </li>
                             <li class="{{(Request::is('mentor/tahfidz/task')) ? 'active' : ''}}">
                                 <a href="{{url('mentor/tahfidz/task')}}">
                                     <span class="sub-item">Kelompok Tahfidz</span>
