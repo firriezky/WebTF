@@ -149,9 +149,9 @@ class MentorTaskController extends Controller
         if (!$request->hasFile('correction_audio')) {
             $tahfidzTask = TahfidzTask::findOrFail($request->submission_id);
             $tahfidzTask->update([
-                'score-ahkam'     => $request->score_ahkam,
-                'score-itqan'     => $request->score_itqan,
-                'score-makhroj'     => $request->score_makhroj,
+                'score_ahkam'     => $request->score_ahkam,
+                'score_itqan'     => $request->score_itqan,
+                'score_makhroj'     => $request->score_makhroj,
                 'score'     => $request->score,
                 'status'     => $request->status,
                 'correction'     => $request->correction,
