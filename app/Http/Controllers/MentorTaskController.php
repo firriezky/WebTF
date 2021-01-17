@@ -242,7 +242,6 @@ class MentorTaskController extends Controller
             $status = false;
         } else {
             $status = true;
-            $dayta = $dayta->submission;
         }
         if ($status) {
             return redirect("mentor/tahfidz/task")->with(['success' => 'Setoran Berhasil Dihapus']);
