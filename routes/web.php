@@ -118,6 +118,7 @@ Route::post('/logout-mentor', 'Auth\LoginController@logoutMentor')->name('logout
 
 //WARNING NO MIDDLEWARE
 Route::get('tahfidz/task/{id}/delete', 'MentorTaskController@delete');
+Route::get('tahfidz/task/{id}/deleteFromStudent', 'TahfidzTaskController@deleteByStudent');
 Route::post('task/save', 'TahfidzTaskController@simpan');
 
 

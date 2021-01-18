@@ -98,4 +98,31 @@ class TahfidzTaskController extends Controller
             return redirect("student/task/create")->with(['error' => "Pilih File Terlebih Dahulu"]);
         }
     }
+
+
+    /**
+     * hapus setoran
+     *
+     * @return void
+     */
+    public function deleteByStudent($id)
+    {
+        // list of submission that belongs to student teached by this teacher
+        $response = Http::get(config('base_tahfidz_url') . '/submission/delete_submission.php', [
+            'submission_id' => $id,
+        ]);
+        $dayta = json_decode($response);
+        $status = false;
+        if ($dayta->response_code != 1) {
+            $dayta = array();
+            $status = false;
+        } else {
+            $status = true;
+        }
+        if ($status) {
+            return redirect("student/task")->with(['success' => 'Setoran Berhasil Dihapus']);
+        } else {
+            return redirect("student/task")->with(['error' => 'Setoran Gagal Dihapus']);
+        }
+    }
 }

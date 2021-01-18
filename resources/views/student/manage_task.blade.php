@@ -139,7 +139,7 @@
                                     </td>
                                     <td>
                                         <div class="form-button-action">
-                                            <form action="{{url("tahfidz/task/$data->id_submission/delete")}}"
+                                            <form action="{{url("tahfidz/task/$data->id_submission/deleteFromStudent")}}"
                                                 onsubmit="return confirm('Anda Yakin Ingin Menghapus Setoran Ini ?');">
                                                 @csrf
                                                 <button type="submit" title='' class="btn btn-link btn-danger"
