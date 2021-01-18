@@ -151,22 +151,20 @@
                                             <input required type="number" required min="0" max="100"
                                                 name="score_makhroj"
                                                 class="form-control @error('score_makhroj') is-invalid @enderror"
-                                                id="score-makhroj" placeholder="Nilai Makhroj" " 
+                                                id="score-makhroj" placeholder="Nilai Makhroj"  
                                                 value="{{old('score_makhroj',$dayta->score_makhroj)}}">
                                         </div>
                                         <div class="form-group col-md-6 col-sm-12">
                                             <label>Nilai Kelancaran Hafalan</label>
                                             <input type="number" required min="0" max="100" name="score_itqan"
                                                 class="form-control @error('score_itqan') is-invalid @enderror"
-                                                id="score-itqan" placeholder="Nilai Kelancaran"" 
+                                                id="score-itqan" placeholder="Nilai Kelancaran" 
                                                 value="{{old('score_itqan',$dayta->score_itqan)}}">
                                         </div>
 
                                         <div class="form-group col-md-6 col-sm-12">
                                             <label>Nilai Akhir</label>
-                                            <input type="text" required disabled class="form-control class="
-                                                form-control @error('score') is-invalid @enderror" id="score"
-                                                value="{{old('score',$dayta->score)}}">
+                                            <input type="number" required disabled class="form-control @error('score') is-invalid @enderror" id="score" value="{{old('score',$dayta->score)}}">
                                             <input type="hidden" name="score" id="score-sent"  value="{{old('score',$dayta->score)}}">
                                         </div>
                                         <div class="col-12">
