@@ -75,10 +75,17 @@
                     <h4 class="text-section">Menu</h4>
                 </li>
 
+                <li class="nav-item {{ (Request::is('student/task/create')) ? 'active' : ''}}">
+                    <a href="{{ url('/student/task/create') }}">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="link-collapse">Kirim Bacaan/Setoran</span>
+                    </a>
+                </li>
+
                 <li class="nav-item {{ (Request::is('student/task')) ? 'active' : ''}}">
                     <a href="{{ url('/student/task') }}">
                         <i class="fas fa-sign-out-alt"></i>
-                        <span class="link-collapse">Kirim Setoran</span>
+                        <span class="link-collapse">Lihat Nilai Setoran</span>
                     </a>
                 </li>
 

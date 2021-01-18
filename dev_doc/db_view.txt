@@ -30,7 +30,7 @@ CREATE or REPLACE view `admin_submission` as select a.id , b.name ,b.id as `stud
 b.url_profile as `student_photo`, b.contact as `student_contact`,
  b.id_kelompok as `group_id` , c.id_mentor as `mentor_id`, c.name as `group_name`, d.name as `mentor_name` , d.contact as `mentor_contact`,
  d.gender as `mentor_gender` , d.email as `mentor_email`, d.url_profile as `mentor_profile`, 
- a.status , a.start,a.end , a.audio_path, a.correction_audio_path, 
+ a.status , a.type, a.start,a.end , a.audio_path, a.correction_audio_path, 
 a.created_at,a.score_ahkam,a.score_makhroj,a.score_itqan, a.score ,a.correction from setoran a 
 left join student b on a.student_id=b.id
  left join kelompok c on b.id_kelompok=c.id 

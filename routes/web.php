@@ -77,14 +77,14 @@ Route::get('admin/task/retrieve', 'AdminTaskTahfidzController@retrieveTask');
 
 
 Route::group(['middleware’' => ['auth:student']], function () {
-Route::get('/student/task', 'HomeStudentController@view_task')->middleware('auth:student');
+Route::get('/student/task', 'TahfidzTaskController@viewStudent')->middleware('auth:student');
+Route::get('/student/task/create', 'TahfidzTaskController@viewCreate')->middleware('auth:student');
 Route::get('/student/group', 'HomeStudentController@view_group')->middleware('auth:student');
 });
 
 Route::group(['middleware’' => ['auth:mentor']], function () {
     Route::get('/mentor/tahfidz/task', 'MentorTaskController@manage')->middleware('auth:mentor');
     Route::get('/mentor/tahfidz/student', 'MentorTaskController@getStudent')->middleware('auth:mentor');
-    Route::get('tahfidz/task/{id}/delete', 'MentorTaskController@delete')->middleware('auth:mentor');
     Route::get('/mentor/tahfidz/task/{task}', 'MentorTaskController@edit')->middleware('auth:mentor');
     Route::get('/mentor/tahfidz/task/group/{group}', 'MentorTaskController@taskByGroup')->middleware('auth:mentor');
     Route::get('/mentor/group', 'HomeStudentController@view_group')->middleware('auth:mentor');
@@ -110,6 +110,10 @@ Route::group(['middleware’' => ['auth:mentor']], function () {
 
 Route::post('/logout-student','Auth\LoginController@logoutStudent')->name('logout-student');
 Route::post('/logout-mentor','Auth\LoginController@logoutMentor')->name('logout-mentor');
+
+//WARNING NO MIDDLEWARE
+Route::get('tahfidz/task/{id}/delete', 'MentorTaskController@delete');
+Route::post('task/save', 'TahfidzTaskController@simpan');
 
 
 
