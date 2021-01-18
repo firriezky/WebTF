@@ -91,7 +91,7 @@
                             </div>
                             <div class="col-7 col-stats">
                                 <div class="numbers">
-                                    <p class="card-category">Setoran Sudah Dinilai</p>
+                                    <p class="card-category">Setoran<br>Sudah Dinilai</p>
                                     <h4 class="card-title">{{$tahfidzTask1}}</h4>
                                 </div>
                             </div>

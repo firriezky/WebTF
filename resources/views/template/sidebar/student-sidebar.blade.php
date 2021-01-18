@@ -2,11 +2,10 @@
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
             <div class="user">
-                <div class="avatar-sm float-left mr-2">
-                    <img onerror="this.src='{{asset('img/img-error.jpg')}}';"
-                    src="{{ "http://tahfidz.sditwahdahbtg.com/student/photo/" . Auth::guard('student')->user()->url_profile }}"
-                    alt="image profile" class="avatar-img rounded-circle">
-                </div>
+                <div class="avatar-lg"> <img
+                    onerror="this.src='{{asset('img/img-error.jpg')}}?n={{time()}}';"
+                    src="{{ "http://tahfidz.sditwahdahbtg.com/student/" . Auth::guard('student')->user()->url_profile }}"
+                    alt="image profile" class="avatar-img rounded-circle"></div>
                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                         <span>
@@ -77,21 +76,21 @@
 
                 <li class="nav-item {{ (Request::is('student/task/create')) ? 'active' : ''}}">
                     <a href="{{ url('/student/task/create') }}">
-                        <i class="fas fa-sign-out-alt"></i>
+                        <i class="fas fas fa-tasks"></i>
                         <span class="link-collapse">Kirim Bacaan/Setoran</span>
                     </a>
                 </li>
 
                 <li class="nav-item {{ (Request::is('student/task')) ? 'active' : ''}}">
                     <a href="{{ url('/student/task') }}">
-                        <i class="fas fa-sign-out-alt"></i>
+                        <i class="fas fas fa-book-open"></i>
                         <span class="link-collapse">Lihat Nilai Setoran</span>
                     </a>
                 </li>
 
                 <li class="nav-item {{ (Request::is('student/group')) ? 'active' : ''}}">
                     <a href="{{ url('/student/group') }}">
-                        <i class="fas fa-sign-out-alt"></i>
+                        <i class="fas fa-shapes"></i>
                         <span class="link-collapse">Kelompok Tahfidz</span>
                     </a>
                 </li>

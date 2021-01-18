@@ -89,32 +89,15 @@
 
 
                 <div class="card-body">
-                    <h2 class="card-title"><strong>Daftar Hafalan dari {{Auth::guard('student')->user()->name}}</strong></h2>
-                    <div class="d-none">
-                        <label class="">Gunakan Tombol dibawah untuk menyembunyikan/menampilkan kolom tertentu</label>
-                        <div class=" container row">
-                            <button type="button" data-column="1"
-                                class="v-filter btn btn-outline-primary btn-xs col-2">Kolom 1</button>
-                            <button type="button" data-column="2"
-                                class="v-filter btn btn-outline-primary btn-xs col-2">Kolom 2</button>
-                            <button type="button" data-column="3"
-                                class="v-filter btn btn-outline-primary btn-xs col-2">Kolom 3</button>
-                            <button type="button" data-column="4"
-                                class="v-filter btn btn-outline-primary btn-xs col-2">Kolom 4</button>
-                            <button type="button" data-column="5"
-                                class="v-filter btn btn-outline-primary btn-xs col-2">Kolom 5</button>
-                            <button type="button" data-column="6"
-                                class="v-filter btn btn-outline-primary btn-xs col-2">Kolom 6</button>
-                            <button type="button" data-column="7"
-                                class="v-filter btn btn-outline-primary btn-xs col-2">Kolom 7</button>
-                        </div>
-                    </div>
+                    <h2 class="card-title"><strong>Daftar Hafalan dari {{Auth::guard('student')->user()->name}}</strong>
+                    </h2>
                     <div class="table-responsive">
                         <table id="datatables" class="table table-bordered table-responsive">
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">Dengar Rekaman</th>
                                     <th scope="col">Hapus Setoran</th>
                                     <th scope="col">Nama Siswa</th>
                                     <th scope="col">NISN</th>
@@ -136,167 +119,125 @@
                                     <td>{{$loop->index+1}}</td>
                                     <td><span class="badge badge-{{ ($data->status==0) ? 'danger' : 'success'  }}
                                         ">{{ $data->status_text }}</span></td>
-
+                                    <td>
+                                        <button class="btn btn-success btn-border btn-round" data-toggle="modal"
+                                            data-target="#modalPreviewRecord{{$loop->index+1}}">
+                                            Dengar Rekaman
+                                        </button>
+                                    </td>
                                     <td>
                                         <div class="form-button-action">
                                             <form action="{{url("tahfidz/task/$data->id_submission/delete")}}"
                                                 onsubmit="return confirm('Anda Yakin Ingin Menghapus Setoran Ini ?');">
                                                 @csrf
-                                                <button type="submit"  title='' class="btn btn-link btn-danger" data-original-title="Remove">
+                                                <button type="submit" title='' class="btn btn-link btn-danger"
+                                                    data-original-title="Remove">
                                                     <i class="fa fa-times"></i>
                                                 </button>
                                             </form>
                                         </div>
                                     </td>
                                     <td>{{ $data->student_name }}</td>
-                                    {{-- <td>
-                                        <div class="avatar-sm float-left mr-2">
-                                            <img onerror="this.src='{{asset('img/img-error.jpg')}}';"
-                                    src="{{ "http://tahfidz.sditwahdahbtg.com/student/" . $data->student_photo }}"
-                                    alt="image profile" class="avatar-img rounded-circle">
-                    </div>
-                    </td> --}}
-                    <td>{{ $data->student_nisn }}</td>
-                    <td>{{ $data->group_name }}</td>
-                    <td>
-                        {{$data->start}}
-                    </td>
-                    <td>
-                        {{ $data->end}}
-                    </td>
-                    @php
-                    $scoreAhkam = $data->score_ahkam;
-                    $scoreMakhroj = $data->score_makhroj;
-                    $scoreItqan = $data->score_itqan;
-                    if ($scoreAhkam == null || $scoreAhkam == "") {
-                    $scoreAhkam=0;
-                    }
-                    if ($scoreItqan == null || $scoreItqan == "") {
-                    $scoreItqan=0;
-                    }
-                    if ($scoreMakhroj == null || $scoreMakhroj == "") {
-                    $scoreMakhroj=0;
-                    }
+                                    <td>{{ $data->student_nisn }}</td>
+                                    <td>{{ $data->group_name }}</td>
+                                    <td>
+                                        {{$data->start}}
+                                    </td>
+                                    <td>
+                                        {{ $data->end}}
+                                    </td>
+                                    @php
+                                    $scoreAhkam = $data->score_ahkam;
+                                    $scoreMakhroj = $data->score_makhroj;
+                                    $scoreItqan = $data->score_itqan;
+                                    if ($scoreAhkam == null || $scoreAhkam == "") {
+                                    $scoreAhkam=0;
+                                    }
+                                    if ($scoreItqan == null || $scoreItqan == "") {
+                                    $scoreItqan=0;
+                                    }
+                                    if ($scoreMakhroj == null || $scoreMakhroj == "") {
+                                    $scoreMakhroj=0;
+                                    }
 
-                    $scoreTajwid=($scoreAhkam+$scoreMakhroj)/2;
+                                    $scoreTajwid=($scoreAhkam+$scoreMakhroj)/2;
 
-                    @endphp
-                    <td>{{$scoreAhkam}}</td>
-                    <td>{{$scoreMakhroj}}</td>
-                    <td>{{$scoreTajwid}}</td>
-                    <td>{{$scoreItqan}}</td>
-                    <td>{{$data->score}}</td>
-                    <td>{{$data->created_at}}</td>
+                                    @endphp
+                                    <td>{{$scoreAhkam}}</td>
+                                    <td>{{$scoreMakhroj}}</td>
+                                    <td>{{$scoreTajwid}}</td>
+                                    <td>{{$scoreItqan}}</td>
+                                    <td>{{$data->score}}</td>
+                                    <td>{{$data->created_at}}</td>
 
 
-                    </tr>
+                                </tr>
 
 
-
-                    <div class="modal fade" id="modalInputScore{{$loop->index+1}}" tabindex="-1" role="dialog"
-                        aria-hidden="true">
-                        <div class="modal-dialog  modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalCenterTitle">
-                                        Nilai Hafalan Siswa</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                <div class="modal fade" id="modalPreviewRecord{{$loop->index+1}}" tabindex="-1"
+                                    role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalCenterTitle">Dengarkan
+                                                    Rekaman Siswa</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>{{$data->student_name}}</p>
+                                                <p>{{$data->start}} - {{$data->end}}</p>
+                                                <div class="col-lg-12">
+                                                    <audio controls loop style="width: 100%;">
+                                                        <source
+                                                            src="http://tahfidz.sditwahdahbtg.com/submission/{{$data->audio}}"
+                                                            type="audio/ogg">
+                                                        Your browser dose not Support the audio Tag
+                                                    </audio>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="modal-body">
-                                    Nama Siswa : <br>
-                                    {{$data->student_name}} <br>
-                                    Hafalan yang disetorkan :
-                                    <p>{{$data->start}} - {{$data->end}}</p>
-                                    <div class="col-lg-12">
-                                        <audio controls loop style="width: 100%;">
-                                            <source src="http://tahfidz.sditwahdahbtg.com/submission/{{$data->audio}}"
-                                                type="audio/ogg">
-                                            Your browser dose not Support the audio Tag
-                                        </audio>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-md-6 col-sm-12">
-                                            <label>Nilai Tajwid</label>
-                                            <input type="text" class="form-control" name="score-tajwid"
-                                                id="score-tajwid" placeholder="Nilai Tajwid">
-                                        </div>
-                                        <div class="form-group col-md-6 col-sm-12">
-                                            <label>Nilai Makhorijul Huruf</label>
-                                            <input type="text" class="form-control" name="score-makhroj"
-                                                id="score-makhroj" placeholder="Nilai Makhroj">
-                                        </div>
-                                        <div class="form-group col-md-6 col-sm-12">
-                                            <label>Nilai Kelancaran Hafalan</label>
-                                            <input type="text" class="form-control" name="score-itqan" id="score-itqan"
-                                                placeholder="Nilai Kelancaran">
-                                        </div>
-                                        <div class="form-group col-md-6 col-sm-12">
-                                            <label>Nilai Akhir</label>
-                                            <input type="text" disabled class="form-control" name="score" id="score"
-                                                aria-describedby="helpId" placeholder="Nilai Kelancaran">
-                                        </div>
-                                        <div class="form-group col-md-6 col-sm-12">
-                                            <label for="">Status</label>
-                                            <select class="form-control" name="status" id="">
-                                                <option value="0">Menunggu Dinilai</option>
-                                                <option value="1">Sudah Dinilai</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <label for="">Jika status diset menunggu dinilai, maka nilai tidak
-                                        ditampilkan di
-                                        siswa</label>
-                                    <div class="form-group col-12">
-                                        <label for="">Catatan Untuk Siswa</label>
-                                        <textarea
-                                            class="form-control ckeditor @error('correction') is-invalid @enderror"
-                                            name="content" rows="5"
-                                            placeholder="Masukkan Catatan Untuk Siswa">{{ $data->correction,old('correction') }}</textarea>
-                                    </div>
 
-
+                                @empty
+                                <div class="alert alert-danger">
+                                    Data Setoran belum Tersedia.
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    @empty
-                    <div class="alert alert-danger">
-                        Data Setoran belum Tersedia.
-                    </div>
-                    @endforelse
+                                @endforelse
 
-                    @else
-                    <div class="alert alert-danger">
-                        Data Setoran belum Tersedia.
-                    </div>
-                    @endif
+                                @else
+                                <div class="alert alert-danger">
+                                    Data Setoran belum Tersedia.
+                                </div>
+                                @endif
 
 
-                    </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            {{-- {{ $blogs->links() }} --}}
+        </div>
     </div>
 
-    <div class="row">
-        {{-- {{ $blogs->links() }} --}}
-    </div>
-</div>
+    @endsection
 
-@endsection
-
-@section('script')
+    @section('script')
 
 
 
-{{-- Toastr --}}
-<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<!-- Datatables -->
-<script>
-    $(document).ready(function() {
+    {{-- Toastr --}}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- Datatables -->
+    <script>
+        $(document).ready(function() {
         var table = $('#datatables').DataTable( {
         // dom: '<"bottom"i>rt<"top"flp><"clear">',
         dom: 'T<"clear">lfrtip<"bottom"B>',
@@ -317,16 +258,16 @@
         column.visible( ! column.visible() );
     } );
     });
-</script>
+    </script>
 
-<script>
-    //message with toastr
+    <script>
+        //message with toastr
             @if(session()-> has('success'))
                 toastr.success('{{ session('success') }}', 'BERHASIL!'); 
             @elseif(session()-> has('error'))
                 toastr.error('{{ session('error') }}', 'GAGAL!'); 
             @endif
-</script>
+    </script>
 
 
-@endsection
+    @endsection

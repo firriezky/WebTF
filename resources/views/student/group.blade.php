@@ -50,7 +50,7 @@
                         </div>
                         <h4>Pembimbing Tahfidz : {{$mentor->name}}</h4>
                         <h4>Kontak Pembimbing : {{$mentor->contact_mentor}}</h4>
-                        <table id="basic-datatables" class="table table-bordered table-responsive">
+                        <table id="datatables" class="table table-bordered table-responsive">
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
@@ -72,7 +72,7 @@
                                     <td>
                                         <div class="avatar-sm float-left mr-2">
                                             <img onerror="this.src='{{asset('img/img-error.jpg')}}';"
-                                            src="{{ "http://tahfidz.sditwahdahbtg.com/student/photo/" . $item->student_photo }}"
+                                            src="{{ "http://tahfidz.sditwahdahbtg.com/student/" . $item->student_photo }}"
                                             alt="image profile" class="avatar-img rounded-circle">
                                         </div>
                                     </td>
@@ -97,6 +97,31 @@
         </div>
     </div>
 </div>
+
+    <!-- Datatables -->
+    <script>
+        $(document).ready(function() {
+        var table = $('#datatables').DataTable( {
+        // dom: '<"bottom"i>rt<"top"flp><"clear">',
+        dom: 'T<"clear">lfrtip<"bottom"B>',
+        // "scrollY": "1000px",
+        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+        "bPaginate": true,
+        "lengthChange": true,
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+        });
+        $(".v-filter").click(function(){
+        var column = table.column( $(this).attr('data-column') );
+        column.visible( ! column.visible() );
+        });
+        $('a.toggle-v').on( 'click', function (e) {
+        e.preventDefault();
+        column.visible( ! column.visible() );
+    } );
+    });
+    </script>
 
 
 

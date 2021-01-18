@@ -109,7 +109,7 @@
                                             {{ $data->end}}
                                         </td>
                                         <td>
-                                            <button class="btn btn-success btn-border btn-round mb-3"
+                                            <button class="btn btn-success btn-border btn-round"
                                                 data-toggle="modal" data-target="#modalPreviewRecord{{$loop->index+1}}">
                                                 Dengar Rekaman Siswa
                                             </button>
