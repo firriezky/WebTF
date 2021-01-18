@@ -220,4 +220,40 @@ class StudentController extends Controller
             return redirect("admin/student/manage")->with(['error' => 'Password Siswa Gagal Diupdate!']);
         }
     }
+
+
+        /**
+     * update password student
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function updatePassword(Request $req)
+    {
+        $urlAPI = config('base_tahfidz_url') . "mentor/update_pass_user.php";
+        $userID = Auth::guard('student')->user()->id;
+        $this->validate($req, [
+            'old_pass'     => 'required|min:6',
+            'new_pass'     => 'required|min:6|confirmed',
+            'new_pass_confirmation'     => 'required',
+        ]);
+
+        $response = Http::asForm()->post($urlAPI, [
+            '_id' => $userID,
+            'old_password' => $req->old_pass,
+            'new_password' => $req->new_pass,
+        ]);
+
+        $response = json_decode($response);
+
+        if ($response->response_code == 3) {
+            return redirect('mentor/profile')->with(['error' => 'Password Lama Tidak Sesuai']);
+        }
+        if ($response->response_code == 1) {
+            return redirect('mentor/profile')->with(['success' => 'Password Berhasil Diupdate']);
+        }
+        if ($response->response_code == 0) {
+            return redirect('mentor/profile')->with(['error' => 'Password Gagal Diupdate']);
+        }
+    }
 }

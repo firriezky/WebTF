@@ -77,9 +77,14 @@ Route::get('admin/task/retrieve', 'AdminTaskTahfidzController@retrieveTask');
 
 
 Route::group(['middleware’' => ['auth:student']], function () {
-Route::get('/student/task', 'TahfidzTaskController@viewStudent')->middleware('auth:student');
-Route::get('/student/task/create', 'TahfidzTaskController@viewCreate')->middleware('auth:student');
-Route::get('/student/group', 'HomeStudentController@view_group')->middleware('auth:student');
+    Route::get('/student/task', 'TahfidzTaskController@viewStudent')->middleware('auth:student');
+    Route::get('/student/task/create', 'TahfidzTaskController@viewCreate')->middleware('auth:student');
+    Route::get('/student/group', 'HomeStudentController@view_group')->middleware('auth:student');
+
+    // Profile Section
+    Route::view('/student/profile', 'student.profile')->middleware('auth:student');
+    Route::post('/student/profile/update', 'StudentController@update');
+    Route::post('/student/profile/update-pass', 'StudentController@updatePassword')->name('student.update-password');
 });
 
 Route::group(['middleware’' => ['auth:mentor']], function () {
@@ -88,28 +93,28 @@ Route::group(['middleware’' => ['auth:mentor']], function () {
     Route::get('/mentor/tahfidz/task/{task}', 'MentorTaskController@edit')->middleware('auth:mentor');
     Route::get('/mentor/tahfidz/task/group/{group}', 'MentorTaskController@taskByGroup')->middleware('auth:mentor');
     Route::get('/mentor/group', 'HomeStudentController@view_group')->middleware('auth:mentor');
-    
-    // Profile Section
-    Route::view('/mentor/profile','mentor.profile');
-    Route::post('/mentor/profile/update','MentorController@update');
-    Route::post('/mentor/profile/update-pass','MentorController@updatePassword')->name('mentor.update-password');
-    
-    Route::post('tahfidz/group/announcement/save','GroupController@updateAnnouncement');
 
-    Route::get('/mentor/tahfidz/quiz','TahfidzQuizController@manage');
-    Route::post('/mentor/tahfidz/quiz/save','TahfidzQuizController@save');
-    Route::post('/mentor/tahfidz/quiz/delete','TahfidzQuizController@delete');
-    Route::post('/mentor/tahfidz/quiz/update','TahfidzQuizController@update');
+    // Profile Section
+    Route::view('/mentor/profile', 'mentor.profile')->middleware('auth:mentor');
+    Route::post('/mentor/profile/update', 'MentorController@update');
+    Route::post('/mentor/profile/update-pass', 'MentorController@updatePassword')->name('mentor.update-password');
+
+    Route::post('tahfidz/group/announcement/save', 'GroupController@updateAnnouncement');
+
+    Route::get('/mentor/tahfidz/quiz', 'TahfidzQuizController@manage');
+    Route::post('/mentor/tahfidz/quiz/save', 'TahfidzQuizController@save');
+    Route::post('/mentor/tahfidz/quiz/delete', 'TahfidzQuizController@delete');
+    Route::post('/mentor/tahfidz/quiz/update', 'TahfidzQuizController@update');
 
     Route::post('/correction/save', 'MentorTaskController@updateTask')->middleware('auth:mentor');
     Route::get('/correction/deleteCorrectionAudio/{id}', 'MentorTaskController@deleteCorrectionAudio')->middleware('auth:mentor');
 });
-    
-    
 
 
-Route::post('/logout-student','Auth\LoginController@logoutStudent')->name('logout-student');
-Route::post('/logout-mentor','Auth\LoginController@logoutMentor')->name('logout-mentor');
+
+
+Route::post('/logout-student', 'Auth\LoginController@logoutStudent')->name('logout-student');
+Route::post('/logout-mentor', 'Auth\LoginController@logoutMentor')->name('logout-mentor');
 
 //WARNING NO MIDDLEWARE
 Route::get('tahfidz/task/{id}/delete', 'MentorTaskController@delete');

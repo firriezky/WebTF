@@ -151,6 +151,7 @@
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">Tipe</th>
                                     <th scope="col">Edit</th>
                                     <th scope="col">Nama Siswa</th>
                                     <th scope="col">NISN</th>
@@ -172,7 +173,9 @@
                                     <td>{{$loop->index+1}}</td>
                                     <td><span class="badge badge-{{ ($data->status==0) ? 'danger' : 'success'  }}
                                         ">{{ $data->status_text }}</span></td>
-
+                                    <td>
+                                        <span class="badge badge-primary">{{$data->type}}</span>
+                                    </td>
                                     <td>
                                         <div class="form-button-action">
                                             <a href="{{url("mentor/tahfidz/task/$data->id_submission")}}"><button
@@ -185,7 +188,8 @@
                                             <form action="{{url("tahfidz/task/$data->id_submission/delete")}}"
                                                 onsubmit="return confirm('Anda Yakin Ingin Menghapus Setoran Ini ?');">
                                                 @csrf
-                                                <button type="submit"  title='' class="btn btn-link btn-danger" data-original-title="Remove">
+                                                <button type="submit" title='' class="btn btn-link btn-danger"
+                                                    data-original-title="Remove">
                                                     <i class="fa fa-times"></i>
                                                 </button>
                                             </form>

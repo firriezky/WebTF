@@ -37,7 +37,7 @@
                                     <h4>{{Auth::guard('student')->user()->name}}</h4>
                                     <h4>{{Auth::guard('student')->user()->contact}}</h4>
                                     <p class="text-muted">{{ Auth::guard('student')->user()->email }}</p>
-                                    <a href="{{url('mentor/profile')}}" class="btn btn-xs btn-secondary btn-sm">View
+                                    <a href="{{url('student/profile')}}" class="btn btn-xs btn-secondary btn-sm">View
                                         Profile</a>
                                 </div>
                             </div>

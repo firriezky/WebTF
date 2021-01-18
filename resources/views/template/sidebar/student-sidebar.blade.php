@@ -95,6 +95,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item   {{ (Request::is('student/profile')) ? 'active' : ''}}">
+                    <a href="{{ url('student/profile') }}">
+                        <i class="fas fa-user-circle"></i>
+                        <span class="link-collapse">Profile</span>
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();">

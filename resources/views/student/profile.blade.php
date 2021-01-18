@@ -12,7 +12,7 @@
 <div class="page-inner">
     <h4 class="page-title">User Profile</h4>
     @if ($errors->any())
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
             <script>
@@ -40,21 +40,21 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="{{url('mentor/profile/update')}}" method="post" enctype="multipart/form-data">
+                    <form action="{{url('student/profile/update')}}" method="post" enctype="multipart/form-data">
                         @method('POST')
                         @csrf
                         <div class="form-group">
                             <label>Nama Guru</label>
                             <input type="text" class="form-control @error('contact') is-invalid has-error @enderror"
                                 name="name" placeholder="Name"
-                                value="{{old('name',Auth::guard('mentor')->user()->name)}}">
+                                value="{{old('name',Auth::guard('student')->user()->name)}}">
                         </div>
                         <div class="form-group">
                             <label>Phone</label>
-                            <input type="text" class="form-control @error('contact') is-invalid has-error @enderror"
-                                value="{{old('contact',Auth::guard('mentor')->user()->contact)}}" name="contact"
-                                placeholder="contact">
-                            <label class="text-muted">Nomor Ini Akan Digunakan Untuk Login</label>
+                            <input type="text" class="form-control @error('nisn') is-invalid has-error @enderror"
+                                value="{{old('contact',Auth::guard('student')->user()->nisn)}}" name="nisn"
+                                placeholder="contact" disabled>
+                            <label class="text-muted">Gunakan NISN Ini Untuk Login</label>
                         </div>
                         <div class="form-group">
                             <label for="">Ganti Foto Profile</label>
@@ -72,7 +72,7 @@
             </div>
 
             <div class="card card-with-nav col-md-12">
-                <form action="{{url('/mentor/profile/update-pass')}}" method="post">
+                <form action="{{url('/student/profile/update-pass')}}" method="post">
                     @csrf
                     <div class="card-header">
                         <div class="row row-nav-line">
@@ -128,14 +128,14 @@
                     <div class="profile-picture">
                         <div class="avatar avatar-xl">
                             <img onerror="this.src='{{asset('img/img-error.jpg')}}?n={{time()}}';"
-                                src="{{ "http://tahfidz.sditwahdahbtg.com/mentor/" . Auth::guard('mentor')->user()->url_profile}}?n={{time()}}"
+                                src="{{ "http://tahfidz.sditwahdahbtg.com/student/" . Auth::guard('student')->user()->url_profile}}?n={{time()}}"
                                 alt="image profile" class="avatar-img rounded-circle">
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="user-profile text-center">
-                        <div class="name">{{Auth::guard('mentor')->user()->name}}</div>
+                        <div class="name">{{Auth::guard('student')->user()->name}}</div>
                     </div>
                 </div>
                 <div class="card-footer d-none">

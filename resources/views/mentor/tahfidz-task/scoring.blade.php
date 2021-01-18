@@ -120,6 +120,7 @@
                                     <h4 class="card-title"> {{$dayta->student_name}}</h4>
                                     <p class="card-text">{{$dayta->student_nisn}}</p>
                                     <p class="card-text">Asal Kelas : {{$dayta->student_class}}</p>
+                                    <p class="card-text">Jenis Setoran : {{$dayta->type}}</p>
                                     <h4>Hafalan Yang Disetorkan : </h4>
                                     <p>{{$dayta->start}} - {{$dayta->end}}</p>
                                     <div class="col-lg-12">

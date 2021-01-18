@@ -97,6 +97,8 @@
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">Tipe</th>     <th scope="col">Tipe</th>
+                                    <th scope="col">Koreksi Dari Guru</th>
                                     <th scope="col">Dengar Rekaman</th>
                                     <th scope="col">Hapus Setoran</th>
                                     <th scope="col">Nama Siswa</th>
@@ -119,6 +121,16 @@
                                     <td>{{$loop->index+1}}</td>
                                     <td><span class="badge badge-{{ ($data->status==0) ? 'danger' : 'success'  }}
                                         ">{{ $data->status_text }}</span></td>
+
+                                    <td>
+                                        <span class="badge badge-primary">{{$data->type}}</span>
+                                    </td>
+                                    <td>
+                                        <button class="badge badge-primary" data-toggle="modal"
+                                            data-target="#modalPreviewCorrection{{$loop->index+1}}">
+                                            Lihat Koreksi Bacaan
+                                        </button>
+                                    </td>
                                     <td>
                                         <button class="btn btn-success btn-border btn-round" data-toggle="modal"
                                             data-target="#modalPreviewRecord{{$loop->index+1}}">
@@ -168,6 +180,7 @@
                                     <td>{{$scoreTajwid}}</td>
                                     <td>{{$scoreItqan}}</td>
                                     <td>{{$data->score}}</td>
+
                                     <td>{{$data->created_at}}</td>
 
 
@@ -196,6 +209,42 @@
                                                             type="audio/ogg">
                                                         Your browser dose not Support the audio Tag
                                                     </audio>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="modal fade" id="modalPreviewCorrection{{$loop->index+1}}" tabindex="-1"
+                                    role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalCenterTitle">Koreksi Hafalan
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>{{$data->student_name}}</p>
+                                                <p>{{$data->start}} - {{$data->end}}</p>
+                                                <hr>
+                                                <div class="col-lg-12">
+                                                    <audio controls loop style="width: 100%;">
+                                                        <source
+                                                            src="http://tahfidz.sditwahdahbtg.com/submission/{{$data->correction_audio}}"
+                                                            type="audio/ogg">
+                                                        Your browser dose not Support the audio Tag
+                                                    </audio>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    @if ($data->correction == null || $data->correction == "")
+                                                    <h4>Belum Ada Data Koreksi</h4>
+                                                    @endif
+                                                    {!!$data->correction!!}
                                                 </div>
                                             </div>
                                         </div>
