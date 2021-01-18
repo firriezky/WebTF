@@ -44,26 +44,38 @@
                         @method('POST')
                         @csrf
                         <div class="form-group">
-                            <label>Nama Guru</label>
+                            <label>Nama Siswa</label>
                             <input type="text" class="form-control @error('contact') is-invalid has-error @enderror"
                                 name="name" placeholder="Name"
                                 value="{{old('name',Auth::guard('student')->user()->name)}}">
                         </div>
                         <div class="form-group">
-                            <label>Phone</label>
+                            <label>NISN</label>
                             <input type="text" class="form-control @error('nisn') is-invalid has-error @enderror"
                                 value="{{old('contact',Auth::guard('student')->user()->nisn)}}" name="nisn"
                                 placeholder="contact" disabled>
                             <label class="text-muted">Gunakan NISN Ini Untuk Login</label>
                         </div>
                         <div class="form-group">
+                            <label>Contact</label>
+                            <input type="text" class="form-control @error('contact') is-invalid has-error @enderror"
+                                value="{{old('contact',Auth::guard('student')->user()->contact)}}" name="contact"
+                                placeholder="contact">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" class="form-control @error('email') is-invalid has-error @enderror"
+                                value="{{old('email',Auth::guard('student')->user()->email)}}" name="email"
+                                placeholder="contact">
+                        </div>
+                        <div class="form-group">
                             <label for="">Ganti Foto Profile</label>
-                            <input type="file" class="form-control-file" name="photo" id="" placeholder=""
+                            <input type="file" accept="image/*" class="form-control-file" name="photo" id="" placeholder=""
                                 aria-describedby="fileHelpId">
                             <small id="fileHelpId" class="form-text text-muted">Klik Disini Untuk Upload/Ganti Foto
                                 Profile</small>
                         </div>
-                        <div class="text-right mt-3 mb-3 d-none">
+                        <div class="text-right mt-3 mb-3">
                             <button class="btn btn-success">Save</button>
                             <button class="btn btn-danger">Reset</button>
                         </div>
@@ -115,7 +127,7 @@
                         </div>
 
                         <div class="text-right mt-3 mb-3">
-                            <button class="btn btn-primary d-none">Save</button>
+                            <button class="btn btn-primary">Save</button>
                         </div>
                     </div>
                 </form>

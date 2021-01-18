@@ -90,12 +90,12 @@ class TahfidzTaskController extends Controller
             ]);
             $response = json_decode($response);
             if ($response->response_code == 1) {
-                return redirect("student/task/create")->with(['success' => "Berhasil Upload Setoran"]);
+                return redirect("student/task")->with(['success' => "Berhasil Upload Setoran"]);
             } else {
-                return redirect("student/task/create")->with(['error' => "Gagal Mengupload Setoran"]);
+                return redirect("student/task")->with(['error' => "Gagal Mengupload Setoran"]);
             }
         } else {
-            return redirect("student/task/create")->with(['error' => "Pilih File Terlebih Dahulu"]);
+            return redirect("student/task")->with(['error' => "Pilih File Terlebih Dahulu"]);
         }
     }
 
