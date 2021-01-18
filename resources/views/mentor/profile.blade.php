@@ -28,7 +28,7 @@
     </div>
     @endif
 
-    <div class="row">
+    <div class="row p-3">
         <div class="col-md-8 row">
             <div class="card card-with-nav col-12">
                 <div class="card-header">
