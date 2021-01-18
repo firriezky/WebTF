@@ -58,8 +58,8 @@ class StudentController extends Controller
         } else {
             $groupInfo = $group[0];
         }
-        
-        $user=Student::findOrFail($student_id);
+
+        $user = Student::findOrFail($student_id);
 
 
 
@@ -143,6 +143,18 @@ class StudentController extends Controller
             $customMessages = [
                 'required' => 'Mohon Isi Kolom :attribute terlebih dahulu'
             ];
+
+            $email = "-";
+            $contact = "-";
+
+            if ($request->email!=null) {
+                $email = $request->email;
+            }
+            
+            if ($request->contact!=null) {
+                $contact = $request->contact;
+            }
+            
             $this->validate($request, $rules, $customMessages);
 
             $inputDeyta = Student::create([
@@ -165,7 +177,6 @@ class StudentController extends Controller
                 return redirect("admin/student/manage")->with(['error' => 'Siswa Gagal Disimpan!']);
             }
         } catch (Exception $e) {
-            abort(401, $e);
             return redirect("admin/student/manage")->with(['error' => "Error $e Akhi!"]);
         }
     }
@@ -259,7 +270,7 @@ class StudentController extends Controller
     }
 
 
-      /**
+    /**
      * update mentor profile
      *
      * @param  mixed $request

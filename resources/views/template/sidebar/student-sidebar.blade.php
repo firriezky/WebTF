@@ -4,7 +4,7 @@
             <div class="user">
                 <div class="avatar-lg"> <img
                     onerror="this.src='{{asset('img/img-error.jpg')}}?n={{time()}}';"
-                    src="{{ "http://tahfidz.sditwahdahbtg.com/student/" . Auth::guard('student')->user()->url_profile }}"
+                    src="{{ "http://tahfidz.sditwahdahbtg.com/student/" . Auth::guard('student')->user()->url_profile }}?n={{time()}}"
                     alt="image profile" class="avatar-img rounded-circle"></div>
                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
