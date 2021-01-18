@@ -63,7 +63,7 @@
                             <small id="fileHelpId" class="form-text text-muted">Klik Disini Untuk Upload/Ganti Foto
                                 Profile</small>
                         </div>
-                        <div class="text-right mt-3 mb-3">
+                        <div class="text-right mt-3 mb-3 d-none">
                             <button class="btn btn-success">Save</button>
                             <button class="btn btn-danger">Reset</button>
                         </div>
@@ -115,7 +115,7 @@
                         </div>
 
                         <div class="text-right mt-3 mb-3">
-                            <button class="btn btn-primary">Save</button>
+                            <button class="btn btn-primary d-none">Save</button>
                         </div>
                     </div>
                 </form>
