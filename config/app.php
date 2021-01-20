@@ -177,6 +177,10 @@ return [
         
         //Datatables
         Yajra\DataTables\DataTablesServiceProvider::class,
+        
+
+        //Laravel Firebase
+        Kreait\Laravel\Firebase\ServiceProvider::class
 
     ],
 

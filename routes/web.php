@@ -34,6 +34,8 @@ Route::get('/command/migrate', function () {
 Route::get('/command/seeder', function () {
     Artisan::call('db:seed');
 });
+Route::get('/notification/test', 'NotificationController@test');
+
 
 
 
