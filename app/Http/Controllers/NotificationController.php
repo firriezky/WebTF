@@ -31,4 +31,25 @@ class NotificationController extends Controller
         $topicResponse->shouldRetry();
         $topicResponse->error();
     }
+
+
+    public function sendFromOutside($title,$body){
+
+        $topic = "all";
+
+        $notificationBuilder = new PayloadNotificationBuilder("$title");
+        $notificationBuilder->setBody("$body")
+                            ->setSound('default');
+
+        $notification = $notificationBuilder->build();
+
+        $topic = new Topics();
+        $topic->topic('all');
+
+        $topicResponse = FacadesFCM::sendToTopic($topic, null, $notification, null);
+
+        $topicResponse->isSuccess();
+        $topicResponse->shouldRetry();
+        $topicResponse->error();
+    }
 }

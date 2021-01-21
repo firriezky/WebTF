@@ -36,6 +36,7 @@ Route::get('/command/seeder', function () {
 });
 Route::get('/notification/test', 'NotificationController@test');
 
+Route::get('/notification/test/{title}/{body}', 'NotificationController@sendFromOutside');
 
 
 
