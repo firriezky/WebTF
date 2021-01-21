@@ -51,5 +51,7 @@ class NotificationController extends Controller
         $topicResponse->isSuccess();
         $topicResponse->shouldRetry();
         $topicResponse->error();
+
+        return $topicResponse->isSuccess();
     }
 }
