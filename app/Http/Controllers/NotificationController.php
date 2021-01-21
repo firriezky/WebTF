@@ -35,7 +35,6 @@ class NotificationController extends Controller
 
     public function sendFromOutside($title,$body,Request $request){
 
-        dd($request->all());
         
         $topic = "all";
 
