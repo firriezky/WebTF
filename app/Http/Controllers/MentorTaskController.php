@@ -9,6 +9,9 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use LaravelFCM\Facades\FCM;
+use LaravelFCM\Message\PayloadNotificationBuilder;
+use LaravelFCM\Message\Topics;
 
 class MentorTaskController extends Controller
 {
@@ -155,6 +158,11 @@ class MentorTaskController extends Controller
      */
     public function updateTask(Request $request)
     {
+
+        $submission_id=$request->submission_id;
+
+        $tahfidzTask = TahfidzTask::findOrFail($request->submission_id);
+        $sendNotifToStudent = false;
         $rules = [
             'score'     => 'required',
             'submission_id'     => 'required',
@@ -170,7 +178,7 @@ class MentorTaskController extends Controller
         $this->validate($request, $rules, $customMessages);
 
         if (!$request->hasFile('correction_audio')) {
-            $tahfidzTask = TahfidzTask::findOrFail($request->submission_id);
+         
             $tahfidzTask->update([
                 'score_ahkam'     => $request->score_ahkam,
                 'score_itqan'     => $request->score_itqan,
@@ -180,6 +188,7 @@ class MentorTaskController extends Controller
                 'correction'     => $request->correction,
             ]);
             if ($tahfidzTask) {
+                $sendNotifToStudent = true;
                 //redirect dengan pesan sukses
                 return redirect("mentor/tahfidz/task/$request->submission_id")->with(['success' => 'Penilaian Berhasil Disimpan!']);
             } else {
@@ -215,11 +224,19 @@ class MentorTaskController extends Controller
                 ]);
                 $status = true;
             }
+            
+
+         
             if ($status && $tahfidzTask) {
+                $sendNotifToStudent = true;
                 return redirect("mentor/tahfidz/task/$request->submission_id")->with(['success' => 'Penilaian Berhasil Disimpan!']);
             } else {
                 return redirect("mentor/tahfidz/task/$request->submission_id")->with(['error' => 'Penilaian Gagal Disimpan!']);
             }
+        }
+
+        if($sendNotifToStudent){
+            $this->sendNotification("Test","Test2");
         }
     }
 
@@ -267,5 +284,24 @@ class MentorTaskController extends Controller
         }else{
             return redirect("mentor/tahfidz/task/$id")->with(['success' => "Koreksi Dengan Audio Berhasil Dihapus"]);
         }
+    }
+
+
+    public function sendNotification($title,$body){
+
+        $notificationBuilder = new PayloadNotificationBuilder("$title");
+        $notificationBuilder->setBody("$body")
+                            ->setSound('defaut');
+
+        $notification = $notificationBuilder->build();
+
+        $topic = new Topics();
+        $topic->topic('all');
+
+        $topicResponse = FCM::sendToTopic($topic, null, $notification, null);
+
+        $topicResponse->isSuccess();
+        $topicResponse->shouldRetry();
+        $topicResponse->error();
     }
 }

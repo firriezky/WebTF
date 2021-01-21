@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
-
+use LaravelFCM\Facades\FCM;
+use LaravelFCM\Message\PayloadNotificationBuilder;
+use LaravelFCM\Message\Topics;
 
 class TahfidzTaskController extends Controller
 {
@@ -90,6 +92,7 @@ class TahfidzTaskController extends Controller
             ]);
             $response = json_decode($response);
             if ($response->response_code == 1) {
+                $this->sendNotification("Setoran Baru","$studentName Mengirimkan Setoran Hafalan Baru");
                 return redirect("student/task")->with(['success' => "Berhasil Upload Setoran"]);
             } else {
                 return redirect("student/task")->with(['error' => "Gagal Mengupload Setoran"]);
@@ -124,5 +127,24 @@ class TahfidzTaskController extends Controller
         } else {
             return redirect("student/task")->with(['error' => 'Setoran Gagal Dihapus']);
         }
+    }
+
+
+    public function sendNotification($title,$body){
+
+        $notificationBuilder = new PayloadNotificationBuilder("$title");
+        $notificationBuilder->setBody("$body")
+                            ->setSound('defaut');
+
+        $notification = $notificationBuilder->build();
+
+        $topic = new Topics();
+        $topic->topic('all');
+
+        $topicResponse = FCM::sendToTopic($topic, null, $notification, null);
+
+        $topicResponse->isSuccess();
+        $topicResponse->shouldRetry();
+        $topicResponse->error();
     }
 }
