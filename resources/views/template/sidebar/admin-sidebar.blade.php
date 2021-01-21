@@ -69,6 +69,22 @@
                     <h4 class="text-section">Menu</h4>
                 </li>
 
+                <li class="nav-item  {{ (Request::is('admnin/notification/*')) ? 'active' : ''}}">
+                    <a data-toggle="collapse" href="#az">
+                        <i class="fas fa-cubes"></i>
+                        <p>Push Notification</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse  {{ (Request::is('admin/notification/*')) ? 'show' : ''}}" id="az">
+                        <ul class="nav nav-collapse">
+                            <li class="{{ (Request::is('admin/notification/broadcast')) ? 'active' : ''}}">
+                                <a href="{{url('admin/notification/broadcast')}}">
+                                    <span class="sub-item">Push Notification</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
 
                 <li class="nav-item  {{ (Request::is('admnin/student/*')) ? 'active' : ''}}">
                     <a data-toggle="collapse" href="#arts">

@@ -41,7 +41,7 @@ Route::get('/notification/test/{title}/{body}', 'NotificationController@sendFrom
 
 
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth:web']], function () {
 
     Route::get('/admin/student/all', 'AdminStudentController@allStudent')->name('admin.student.all');
     Route::get('/admin/student/manage', 'AdminStudentController@manageStudent')->name('admin.student.manage');
@@ -57,6 +57,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/group/create', 'GroupController@create');
     Route::get('/admin/mentor/create', 'AdminMentorController@create');
     Route::get('/admin/mentor/manage', 'AdminMentorController@manage');
+
+    Route::get('/admin/notification/broadcast', 'NotificationController@broadcast');
+    Route::post('/notification/broadcast/send', 'NotificationController@sendBroadcast');
 
     //Mentor
     Route::post('/admin/mentor/store', 'AdminMentorController@simpan')->name('admin.mentor.create');
