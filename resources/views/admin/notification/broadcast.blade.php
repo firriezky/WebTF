@@ -93,6 +93,21 @@
                             </select>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label for="to" class="col-form-label col-md-1">Type/Redirect Intent To</label>
+                        <div class="col-md-11">
+                            <select class="form-control" name="redirect" id="">
+                                <option>Choose Intent Action When User Open/Click Notification</option>
+                                <option value="all">Playstore/New Update</option>
+                                <option value="all">Announcement Page</option>
+                                <option value="all">Profile Page</option>
+                                <option value="all">Nothing</option>
+                            </select>
+                        </div>
+                    </div>
+
+
                     <div class="form-group">
                         <label for="subject" class="col-form-label col-md-1">Judul Notifikasi:</label><br>
                         <div class="col-md-11">
