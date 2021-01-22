@@ -201,13 +201,13 @@
                                               <div class="form-group">
                                                 <label>Waktu Mulai</label>
                                                 <div class="input-group">
-                                                    <input type="datetime-local" value="{{ date("d-m-Y\TH:i:s", strtotime($data->start))}}" class="form-control" id="datetime" name="u_start">
+                                                    <input type="datetime-local" value="{{ date("Y-m-d\TH:i:s", strtotime($data->start))}}" class="form-control" id="datetime" name="u_start">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label>Waktu Selesai</label>
                                                 <div class="input-group">
-                                                    <input type="datetime-local" value="{{ date("d-m-Y\TH:i:s", strtotime($data->end))}}" class="form-control" id="datetime" name="u_end">
+                                                    <input type="datetime-local" value="{{ date("Y-m-d\TH:i:s", strtotime($data->end))}}" class="form-control" id="datetime" name="u_end">
                                                 </div>
                                             </div>
 
