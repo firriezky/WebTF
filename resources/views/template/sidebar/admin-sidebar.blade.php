@@ -118,11 +118,6 @@
                     <div class="collapse  {{ (Request::is('admin/group/*')) ? 'show' : ''}}" id="groupz">
                         <ul class="nav nav-collapse">
 
-                            <li class="{{ (Request::is('admin/group/create')) ? 'active' : ''}}">
-                                <a href="{{url('admin/group/create')}}">
-                                    <span class="sub-item">Import Data Kelompok</span>
-                                </a>
-                            </li>
                             <li class="{{ (Request::is('admin/group/manage')) ? 'active' : ''}}">
                                 <a href="{{url('admin/group/manage')}}">
                                     <span class="sub-item">Manage Data Kelompok</span>

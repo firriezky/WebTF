@@ -82,7 +82,11 @@
                                         <th scope="col">Asal Kelas</th>
                                         <th scope="col">Mulai</th>
                                         <th scope="col">Selesai</th>
-                                        <th scope="col">.</th>
+                                        <th scope="col">Makhroj</th>
+                                        <th scope="col">Hukum Bacaan</th>
+                                        <th scope="col">Tajwid</th>
+                                        <th scope="col">Kelancaran</th>
+                                        <th scope="col">Nilai Akhir</th>
                                         <th scope="col">Pembimbing</th>
                                     </tr>
                                 </thead>
@@ -102,49 +106,18 @@
                                         
                                         <td>{{ $data->student_nisn }}</td>
                                         <td>{{ $data->group_name }}</td>
-                                        <td>
-                                            {{$data->start}}
-                                        </td>
-                                        <td>
-                                            {{ $data->end}}
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-success btn-border btn-round"
-                                                data-toggle="modal" data-target="#modalPreviewRecord{{$loop->index+1}}">
-                                                Dengar Rekaman Siswa
-                                            </button>
-                                        </td>
+                                        <td>{{$data->start}}</td>
+                                        <td>{{ $data->end}}</td>
+                                        <td>{{$data->score_makhroj}}</td>
+                                        <td>{{$data->score_ahkam}}</td>
+                                        <td>{{$data->score_tajwid}}</td>
+                                        <td>{{$data->score_itqan}}</td>
+                                        <td>{{$data->score}}</td>
                                         <td>{{$data->mentor_name}}</td>
                                     </tr>
 
 
-                                    <div class="modal fade" id="modalPreviewRecord{{$loop->index+1}}" tabindex="-1"
-                                        role="dialog" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalCenterTitle">Dengarkan
-                                                        Rekaman Siswa</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>{{$data->student_name}}</p>
-                                                    <p>{{$data->start}} - {{$data->end}}</p>
-                                                    <div class="col-lg-12">
-                                                        <audio controls loop style="width: 100%;">
-                                                            <source
-                                                                src="http://tahfidz.sditwahdahbtg.com/submission/{{$data->audio}}"
-                                                                type="audio/ogg">
-                                                            Your browser dose not Support the audio Tag
-                                                        </audio>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                             
                                     @empty
                                     <div class="alert alert-danger">
                                         Belum Ada Siswa Yang Mengirim Hafalan

@@ -35,6 +35,8 @@ class AdminTaskTahfidzController extends Controller
         return view('admin.tahfidz-task.manage')->with('dayta', $dayta);
     }
 
+    
+
     public function getTask()
     {
         $dayta = DB::table("student");
