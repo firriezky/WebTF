@@ -167,7 +167,6 @@
                                     <th scope="col">Asal Kelas Siswa</th>
                                     <th scope="col">Pembimbing</th>
                                     <th scope="col">Kontak Pembimbing</th>
-                                    <th scope="col">Edit</th>
                                     <th scope="col">Hapus</th>
                                 </tr>
                             </thead>
@@ -179,13 +178,7 @@
                                     <td>{{ $data->class }}</td>
                                     <td>{{ $data->mentor }}</td>
                                     <td>{{ $data->contact_mentor }}</td>
-                                    <td>
-                                        <button type="button" title="" class="btn btn-link btn-primary btn-lg"
-                                            data-toggle="modal" data-target="#updateModal{{$loop->index+1}}"
-                                            data-original-title="Edit Task">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                    </td>
+                                 
 
                                     <form id="delete-post-form" action="{{ route('group.remove-student') }}"
                                         method="POST">
@@ -196,7 +189,7 @@
                                         <input type="hidden" name="student_id" value="{{$data->student_id}}">
                                         <td>
                                             <button type="submit"
-                                                onclick="return confirm('Apakah Anda Yakin ? Ini Akan Menghapus Data Kelompok')"
+                                                onclick="return confirm('Apakah Anda Yakin ? Ini Akan Menghapus Siswa Dari Kelompok')"
                                                 class="btn btn-warning btn-border btn-round mb-3" data-toggle="tooltip">
                                                 Hapus Anggota
                                             </button>

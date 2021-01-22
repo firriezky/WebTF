@@ -69,9 +69,9 @@
                     <h4 class="text-section">Menu</h4>
                 </li>
 
-                <li class="nav-item  {{ (Request::is('admnin/notification/*')) ? 'active' : ''}}">
+                <li class="nav-item  {{ (Request::is('admin/notification/*')) ? 'active' : ''}}">
                     <a data-toggle="collapse" href="#az">
-                        <i class="fas fa-cubes"></i>
+                        <i class="fas fa-bullhorn"></i>
                         <p>Push Notification</p>
                         <span class="caret"></span>
                     </a>
@@ -86,9 +86,32 @@
                     </div>
                 </li>
 
+                <li class="nav-item  {{ (Request::is('admin/agenda/*')) ? 'active' : ''}}">
+                    <a data-toggle="collapse" href="#agenda">
+                        <i class="fas fa-calendar-check"></i>
+                        <p>Buat Agenda/Jadwal</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse  {{ (Request::is('admin/agenda/*')) ? 'show' : ''}}" id="agenda">
+                        <ul class="nav nav-collapse">
+                            <li class="{{ (Request::is('admin/agenda/create')) ? 'active' : ''}}">
+                                <a href="{{url('admin/agenda/create')}}">
+                                    <span class="sub-item">Buat Agenda</span>
+                                </a>
+                            </li>
+                            <li class="{{ (Request::is('admin/agenda/manage')) ? 'active' : ''}}">
+                                <a href="{{url('admin/agenda/manage')}}">
+                                    <span class="sub-item">Manage Agenda</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+
                 <li class="nav-item  {{ (Request::is('admnin/student/*')) ? 'active' : ''}}">
                     <a data-toggle="collapse" href="#arts">
-                        <i class="fas fa-cubes"></i>
+                        <i class="fas fa-users"></i>
                         <p>Siswa</p>
                         <span class="caret"></span>
                     </a>
@@ -129,7 +152,7 @@
 
                 <li class="nav-item  {{ (Request::is('admnin/mentor/*')) ? 'active' : ''}}">
                     <a data-toggle="collapse" href="#mentorz">
-                        <i class="fas fa-cubes"></i>
+                        <i class="fas fa-user-tie"></i>
                         <p>Pembimbing</p>
                         <span class="caret"></span>
                     </a>
@@ -152,7 +175,7 @@
 
                 <li class="nav-item  {{ (Request::is('admin/task/manage*')) ? 'active' : ''}}">
                     <a href="{{ url('admin/task/manage') }}">
-                        <i class="fas fa-sign-out-alt"></i>
+                        <i class="fas fa-book-open"></i>
                         <span class="link-collapse">Setoran Siswa</span>
                     </a>
                 </li>

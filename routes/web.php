@@ -61,6 +61,15 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::get('/admin/notification/broadcast', 'NotificationController@broadcast');
     Route::post('/notification/broadcast/send', 'NotificationController@sendBroadcast');
 
+    Route::get('/admin/agenda/manage', 'AgendaController@adminSee');
+    Route::get('/admin/agenda/create', 'AgendaController@vAdminCreate');
+
+    // Agenda Operation
+    Route::post('/admin/agenda/save', 'AgendaController@simpanByAdmin');
+    Route::post('/admin/agenda/edit', 'AgendaController@editByAdmin');
+    Route::post('/admin/agenda/delete', 'AgendaController@deleteByAdmin');
+    
+    
     //Mentor
     Route::post('/admin/mentor/store', 'AdminMentorController@simpan')->name('admin.mentor.create');
     Route::delete('/mentor/destroy/{mentor}', 'AdminMentorController@destroy')->name('admin.mentor.destroy');

@@ -93,6 +93,69 @@
             </div>
 
         </div>
+
+        <div class="row mt--2">
+            <div class="row center col-12">
+                <div class="col-sm-6 col-md-4">
+                    <div class="card card-stats card-round">
+                        <div class="card-body ">
+                            <div class="row">
+                                <div class="col-5">
+                                    <div class="icon-big text-center">
+                                        <i class="flaticon-chart-pie text-warning"></i>
+                                    </div>
+                                </div>
+                                <div class="col-7 col-stats">
+                                    <div class="numbers">
+                                        <p class="card-category">Jumlah Seluruh Siswa</p>
+                                        <h4 class="card-title">0</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="card card-stats card-round">
+                        <div class="card-body ">
+                            <div class="row">
+                                <div class="col-5">
+                                    <div class="icon-big text-center">
+                                        <i class="flaticon-check text-success"></i>
+                                    </div>
+                                </div>
+                                <div class="col-7 col-stats">
+                                    <div class="numbers">
+                                        <p class="card-category">Siswa<br>Ikhwan</p>
+                                        <h4 class="card-title">0</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="card card-stats card-round">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-5">
+                                    <div class="icon-big text-center">
+                                        <i class="flaticon-error text-danger"></i>
+                                    </div>
+                                </div>
+                                <div class="col-7 col-stats">
+                                    <div class="numbers">
+                                        <p class="card-category">Siswa <br> Akhwat</p>
+                                        <h4 class="card-title">4</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-12">
 
@@ -103,11 +166,6 @@
                             <span aria-hidden="true">&times;</span>
                             <span class="sr-only">Close</span>
                         </button>
-
-                        <script>
-                            var notify = $.notify('<strong>Saving</strong> Do not close this page...', { allow_dismiss: false });
-                            notify.update({ type: 'success', '<strong>Success</strong> Your page has been saved!' });
-                        </script>
 
                         <strong>{{Session::get( 'success' )}}</strong>
                     </div>

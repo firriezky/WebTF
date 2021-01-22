@@ -132,7 +132,7 @@ class StudentController extends Controller
      */
     public function simpan(Request $request)
     {
-        try {
+    
             //code causing exception to be thrown
             $rules = [
                 'name'     => 'required',
@@ -176,9 +176,7 @@ class StudentController extends Controller
                 //redirect dengan pesan error
                 return redirect("admin/student/manage")->with(['error' => 'Siswa Gagal Disimpan!']);
             }
-        } catch (Exception $e) {
-            return redirect("admin/student/manage")->with(['error' => "Error $e Akhi!"]);
-        }
+       
     }
 
     /**
@@ -190,7 +188,6 @@ class StudentController extends Controller
     {
 
         $student = Student::findOrFail($request->id);
-
         $student->update([
             'name'     => $request->name,
             'nisn'     => $request->nisn,
