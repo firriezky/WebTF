@@ -41,3 +41,6 @@ CREATE or REPLACE view `mentor_tahfidz_quiz` as
 SELECT a.*, c.id as `mentor_id`, b.name as `group_name`
 from quiz a left join kelompok b on a.group_id=b.id
 left join mentor c on b.id_mentor=c.id
+
+
+ALTER TABLE `absensi` ADD CONSTRAINT `studewnt` FOREIGN KEY (`student_id`) REFERENCES `student`(`id`) ON DELETE CASCADE ON UPDATE CASCADE; ALTER TABLE `absensi` ADD CONSTRAINT `menetre` FOREIGN KEY (`mentor_id`) REFERENCES `mentor`(`id`) ON DELETE CASCADE ON UPDATE CASCADE; ALTER TABLE `absensi` ADD CONSTRAINT `agenda` FOREIGN KEY (`agenda_id`) REFERENCES `agenda`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;

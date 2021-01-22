@@ -33,6 +33,7 @@
 
                 </div>
             </div>
+            {{-- /mentor/tahfidz/presensi --}}
             <ul class="nav nav-primary">
 
                 <li class="nav-section">
@@ -41,6 +42,8 @@
                     </span>
                     <h4 class="text-section">Menu</h4>
                 </li>
+
+                
 
                 <li class="nav-item {{ (Request::is('mentor')) ? 'active' : ''}}">
                     <a href="{{url('/mentor')}}" aria-expanded="false">
@@ -58,6 +61,27 @@
                     </div>
                 </li>
 
+                
+
+                <li class="nav-item  {{ (Request::is('mentor/student/*')) ? 'active' : ''}}">
+                    <a data-toggle="collapse" href="#arts">
+                        <i class="fas fa-users"></i>
+                        <p>Siswa</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse  {{ (Request::is('mentor/student/*')) ? 'show' : ''}}" id="arts">
+                        <ul class="nav nav-collapse">
+
+                            <li class="{{(Request::is('mentor/student/tahfidz')) ? 'active' : ''}}">
+                                <a href="{{url('mentor/student/tahfidz')}}">
+                                    <span class="sub-item">Tahfidz</span>
+                                </a>
+                            </li>
+                          
+                        </ul>
+                    </div>
+                </li>
+
                 <li class="nav-item  {{ Request::is('mentor/tahfidz/*') ? 'active submenu' : '' }}">
                     <a data-toggle="collapse" href="#messages-app-nav">
                         <i class="far fa-paper-plane"></i>
@@ -66,14 +90,22 @@
                     </a>
                     <div class="collapse {{ Request::is('mentor/tahfidz/*') ? 'show' : '' }}" id="messages-app-nav">
                         <ul class="nav nav-collapse">
-                            <li class="{{(Request::is('mentor/tahfidz/student')) ? 'active' : ''}}">
-                                <a href="{{url('mentor/tahfidz/student')}}">
-                                    <span class="sub-item">Daftar Siswa Saya</span>
+
+                            <li class="{{(Request::is('mentor/tahfidz/presensi')) ? 'active' : ''}}">
+                                <a href="{{url('mentor/tahfidz/presensi')}}">
+                                    <span class="sub-item">Input Presensi</span>
                                 </a>
                             </li>
+
+                            <li class="{{(Request::is('tahfidz/presensi/report')) ? 'active' : ''}}">
+                                <a href="{{url('tahfidz/presensi/report')}}">
+                                    <span class="sub-item">Laporan Presensi</span>
+                                </a>
+                            </li>
+                          
                             <li class="{{(Request::is('mentor/tahfidz/task')) ? 'active' : ''}}">
                                 <a href="{{url('mentor/tahfidz/task')}}">
-                                    <span class="sub-item">Kelompok Tahfidz</span>
+                                    <span class="sub-item">Setoran Siswa</span>
                                 </a>
                             </li>
                             <li class="{{(Request::is('mentor/tahfidz/quiz')) ? 'active' : ''}}">

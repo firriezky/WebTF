@@ -325,7 +325,31 @@
     <!-- Datatables -->
     <script src="{{asset('atlantis/examples')}}/assets/js/plugin/datatables/datatables.min.js"></script>
    
-    
+    <script>
+        $(document).ready(function() {
+            var table = $('#datatables').DataTable( {
+            // dom: '<"bottom"i>rt<"top"flp><"clear">',
+            dom: 'T<"clear">lfrtip<"bottom"B>',
+            // "scrollY": "1000px",
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "bPaginate": true,
+            "lengthChange": true,
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+            });
+            $(".v-filter").click(function(){
+            var column = table.column( $(this).attr('data-column') );
+            column.visible( ! column.visible() );
+            });
+            $('a.toggle-v').on( 'click', function (e) {
+            e.preventDefault();
+            column.visible( ! column.visible() );
+        } );
+        });
+    </script>
+
+
     <script>
         //message with toastr
                 @if(session()-> has('success'))

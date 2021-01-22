@@ -104,11 +104,21 @@ Route::group(['middleware’' => ['auth:student']], function () {
 
 Route::group(['middleware’' => ['auth:mentor']], function () {
     Route::get('/mentor/tahfidz/task', 'MentorTaskController@manage')->middleware('auth:mentor');
-    Route::get('/mentor/tahfidz/student', 'MentorTaskController@getStudent')->middleware('auth:mentor');
     Route::get('/mentor/tahfidz/task/{task}', 'MentorTaskController@edit')->middleware('auth:mentor');
     Route::get('/mentor/tahfidz/task/group/{group}', 'MentorTaskController@taskByGroup')->middleware('auth:mentor');
     Route::get('/mentor/group', 'HomeStudentController@view_group')->middleware('auth:mentor');
+    
+    
+    Route::get('/mentor/tahfidz/presensi', 'AbsensiController@v_mentor');
+    Route::get('/mentor/tahfidz/presensi/{group}', 'AbsensiController@mentorInputGroup');
+    Route::post('/mentor/tahfidz/presensi/save', 'AbsensiController@store');
 
+
+    //Student
+    Route::get('/mentor/student/tahfidz', 'MentorTaskController@getStudent')->middleware('auth:mentor');
+
+
+    
     // Profile Section
     Route::view('/mentor/profile', 'mentor.profile')->middleware('auth:mentor');
     Route::post('/mentor/profile/update', 'MentorController@update');
@@ -135,6 +145,9 @@ Route::post('/logout-mentor', 'Auth\LoginController@logoutMentor')->name('logout
 Route::get('tahfidz/task/{id}/delete', 'MentorTaskController@delete');
 Route::get('tahfidz/task/{id}/deleteFromStudent', 'TahfidzTaskController@deleteByStudent');
 Route::post('task/save', 'TahfidzTaskController@simpan');
+
+Route::get('/tahfidz/presensi/report', 'AbsensiController@vSeeReport');
+Route::get('/tahfidz/presensi/report/{id}', 'AbsensiController@seeReport');
 
 
 

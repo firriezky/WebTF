@@ -109,7 +109,7 @@
                 </li>
 
 
-                <li class="nav-item  {{ (Request::is('admnin/student/*')) ? 'active' : ''}}">
+                <li class="nav-item  {{ (Request::is('admin/student/*')) ? 'active' : ''}}">
                     <a data-toggle="collapse" href="#arts">
                         <i class="fas fa-users"></i>
                         <p>Siswa</p>

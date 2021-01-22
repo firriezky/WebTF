@@ -37,6 +37,7 @@ class MentorTaskController extends Controller
             ]);
 
         $groupData = json_decode($responseGroup);
+        
         if ($groupData->response_code != 1) {
             $groupData = array();
         } else {
